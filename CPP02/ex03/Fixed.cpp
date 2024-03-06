@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:59:05 by rita              #+#    #+#             */
-/*   Updated: 2024/03/06 15:00:52 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/06 12:59:46 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 Fixed::Fixed(){
     _fixedPointValue = 0;
-    std::cout << "Default constructor called" << std::endl;
+    std::cout << "Default Fixed constructor called" << std::endl;
     return ;
 }
 
@@ -26,6 +26,28 @@ Fixed::Fixed(const Fixed& copy){ //const reference
     _fixedPointValue = copy._fixedPointValue;
     std::cout << "Copy constructor called" << std::endl;
     return ;
+}
+
+//Copy assignment operator overload
+Fixed& Fixed::operator= (const Fixed& copy)
+{
+    // self-assignment check
+    if(this == &copy)
+        return *this;
+    _fixedPointValue = copy._fixedPointValue;
+    std::cout << "Copy assignment operator overload" << std::endl;
+    return (*this);
+}
+
+//Copy assignment operator overload
+Fixed& Fixed::operator= (const Fixed& copy) const
+{
+    // self-assignment check
+    if(this == &copy)
+        return (Fixed&)(*this);
+    (Fixed)(this)->_fixedPointValue = copy._fixedPointValue;
+    std::cout << "Copy assignment operator overload" << std::endl;
+    return (Fixed&)(*this);
 }
 
 //int -> fixed.point 
@@ -52,17 +74,6 @@ Fixed::Fixed(const float number)
     this->_fixedPointValue = (int)x;
     std::cout << "Float constructor called" << std::endl;
     return ;
-}
-
-//Copy assignment operator overload
-Fixed& Fixed::operator= (const Fixed& copy)
-{
-    // self-assignment check
-    if(this == &copy)
-        return *this;
-    _fixedPointValue = copy._fixedPointValue;
-    std::cout << "Copy assignment operator overload" << std::endl;
-    return (*this);
 }
 
 //returns the raw value of the fixed-point value
