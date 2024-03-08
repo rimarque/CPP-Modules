@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:59:05 by rita              #+#    #+#             */
-/*   Updated: 2024/03/06 12:59:46 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/08 14:56:55 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,32 @@ Fixed::Fixed(){
 //Copy constructor
 Fixed::Fixed(const Fixed& copy){ //const reference
     _fixedPointValue = copy._fixedPointValue;
-    std::cout << "Copy constructor called" << std::endl;
+    std::cout << "Copy Fixed constructor called" << std::endl;
     return ;
 }
 
-//Copy assignment operator overload
+//Copy assignment constructor
 Fixed& Fixed::operator= (const Fixed& copy)
 {
     // self-assignment check
     if(this == &copy)
         return *this;
-    _fixedPointValue = copy._fixedPointValue;
-    std::cout << "Copy assignment operator overload" << std::endl;
+    this->_fixedPointValue = copy._fixedPointValue;
+    std::cout << "Fixed Copy assignment operator overload" << std::endl;
     return (*this);
-}
-
-//Copy assignment operator overload
-Fixed& Fixed::operator= (const Fixed& copy) const
-{
-    // self-assignment check
-    if(this == &copy)
-        return (Fixed&)(*this);
-    (Fixed)(this)->_fixedPointValue = copy._fixedPointValue;
-    std::cout << "Copy assignment operator overload" << std::endl;
-    return (Fixed&)(*this);
 }
 
 //int -> fixed.point 
 //shiftar 8 bits para a esquerda (<< 8) ou * 256
 Fixed::Fixed(const int number)
 {
-    int x;
-    
-    x = number << _fractionalBits; 
-    this->_fixedPointValue = x;
+    // Usando um tipo de dados de maior precisão para cálculos intermediários
+    long long x = static_cast<long long>(number) << _fractionalBits; 
+
+    // Convertendo o resultado de volta para o tipo de dados fixo
+    this->_fixedPointValue = static_cast<int>(x);
+
     std::cout << "Int constructor called" << std::endl;
-    return ;
 }
 
 //float -> fixed.point
@@ -67,13 +57,11 @@ Fixed::Fixed(const int number)
 //roundf -> devolve-te o numero inteiro mais próximo
 Fixed::Fixed(const float number)
 {
-    float x;
-    
-    x = number * 256;
-    x = roundf(x);
-    this->_fixedPointValue = (int)x;
+    // Converta o número de ponto flutuante para ponto fixo com precisão adequada
+    // Preserva a precisão usando roundf para arredondar corretamente o número
+    this->_fixedPointValue = static_cast<int>(roundf(number * 256.0f));
+
     std::cout << "Float constructor called" << std::endl;
-    return ;
 }
 
 //returns the raw value of the fixed-point value
@@ -83,7 +71,7 @@ int Fixed::getRawBits( void ) const
     return(this->_fixedPointValue);
 }
 
-    //sets the raw value of the fixed-point number.
+//sets the raw value of the fixed-point number.
 void Fixed::setRawBits( int const raw)
 {
     this->_fixedPointValue = raw;
@@ -142,20 +130,32 @@ bool    Fixed::operator!= (const Fixed& compare) const
 }
 
 //Aritmetic operators
+
 Fixed Fixed::operator+ (const Fixed& copy) const
 {
     Fixed result;
-    std::cout << "Aritmetic '+' operator overload called" << std::endl;
-    result._fixedPointValue = _fixedPointValue + copy._fixedPointValue;
+    std::cout << "Arithmetic '+' operator overload called" << std::endl;
+
+    // Realiza a adição mantendo mais bits durante o cálculo
+    long long sum = static_cast<long long>(_fixedPointValue) + static_cast<long long>(copy._fixedPointValue);
+
+    // Ajusta o resultado para o número correto de bits fracionários
+    result._fixedPointValue = static_cast<int>(sum);
+
     return result;
 }
 
 Fixed Fixed::operator- (const Fixed& copy) const
 {
     Fixed result;
+    std::cout << "Arithmetic '-' operator overload called" << std::endl;
 
-    std::cout << "Aritmetic '-' operator overload called" << std::endl;
-    result._fixedPointValue = _fixedPointValue - copy._fixedPointValue;
+    // Realiza a subtração mantendo mais bits durante o cálculo
+    long long difference = static_cast<long long>(_fixedPointValue) - static_cast<long long>(copy._fixedPointValue);
+
+    // Ajusta o resultado para o número correto de bits fracionários
+    result._fixedPointValue = static_cast<int>(difference);
+
     return result;
 }
 
@@ -166,8 +166,8 @@ Fixed Fixed::operator* (const Fixed& copy) const
     
     std::cout << "Aritmetic '*' operator overload called" << std::endl;
     //Perform multiplication using a larger integer type to prevent overflow
-    long long product = (_fixedPointValue * copy._fixedPointValue);
-    result._fixedPointValue = product / 256;
+    long long product = static_cast<long long>(_fixedPointValue) * static_cast<long long>(copy._fixedPointValue);
+    result._fixedPointValue = static_cast<int>(product / 256);
     return result;
 }
 
@@ -175,9 +175,16 @@ Fixed Fixed::operator* (const Fixed& copy) const
 Fixed Fixed::operator/ (const Fixed& copy) const
 {
     Fixed result;
-
+    
     std::cout << "Aritmetic '/' operator overload called" << std::endl;
-    result._fixedPointValue = (_fixedPointValue * 256) / copy._fixedPointValue;
+    long long dividend = static_cast<long long>(_fixedPointValue) * 256;
+    long long divisor = static_cast<long long>(copy._fixedPointValue);
+    if(divisor == 0)
+    {
+        std::cout << "error: division by zero" << std::endl;
+        return(result);
+    }
+    result._fixedPointValue = static_cast<int>(dividend / divisor);
     return result;
 }
 
@@ -247,6 +254,6 @@ const Fixed&  Fixed::max(const Fixed& a, const Fixed& b) //retorna referencia ao
 }
 
 Fixed::~Fixed(){
-    std::cout << "Destructor caled" << std::endl;
+    std::cout << "Fixed Destructor caled" << std::endl;
     return ;
 }

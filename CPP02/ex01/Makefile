@@ -36,7 +36,7 @@ all: $(NAME)
 
 $(NAME): $(OBJDIR) $(TARGET) main.cpp
 	$(CC) $(CFLAGS) main.cpp  $(TARGET) -I $(INCLUDE) -o $(NAME)
-	echo "[$(GREEN)Success$(RESET)] ex00 created!$(BOLD)$(RESET)"
+	echo "[$(GREEN)Success$(RESET)] $(NAME) created!$(BOLD)$(RESET)"
 
 $(OBJDIR)/%.o : %.cpp $(HDR)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $<$(RESET)"

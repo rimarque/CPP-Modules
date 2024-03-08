@@ -19,15 +19,15 @@ CFLAGS			= -Wall -Wextra -Werror -std=c++98
 NPD				= --no-print-directory
 
 #--------------------------------- FILES  ---------------------------------------
-NAME 			= ex02
+NAME 			= ex03
 INCLUDE			= includes
 OBJDIR			= obj
 
-_FILES 			= Fixed
+_FILES 			= Fixed Point bsp
 
 OBJ				= $(_FILES:%=%.o)
 TARGET			= $(addprefix $(OBJDIR)/, $(OBJ))
-_HEADERS		= Fixed.hpp
+_HEADERS		= Fixed.hpp Point.hpp
 HDR				= $(addprefix $(INCLUDE)/, $(_HEADERS))
 
 #---------------------------------  RULES  --------------------------------------
@@ -36,7 +36,7 @@ all: $(NAME)
 
 $(NAME): $(OBJDIR) $(TARGET) main.cpp
 	$(CC) $(CFLAGS) main.cpp  $(TARGET) -I $(INCLUDE) -o $(NAME)
-	echo "[$(GREEN)Success$(RESET)] ex00 created!$(BOLD)$(RESET)"
+	echo "[$(GREEN)Success$(RESET)] $(NAME) created!$(BOLD)$(RESET)"
 
 $(OBJDIR)/%.o : %.cpp $(HDR)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $<$(RESET)"
@@ -47,7 +47,7 @@ $(OBJDIR):
 
 clean:
 	$(RM) $(OBJDIR)
-	echo "[$(RED)Deleting$(RESET)]  object files deleted$(BOLD)$(RESET)"
+	echo "[$(RED)Deleting$(RESET)] object files deleted$(BOLD)$(RESET)"
 
 fclean: clean
 	$(RM) $(NAME)

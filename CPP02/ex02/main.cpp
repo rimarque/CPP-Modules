@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:42:08 by rita              #+#    #+#             */
-/*   Updated: 2024/03/05 15:41:37 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/08 13:51:51 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ std::ostream& operator<<(std::ostream& out, const Fixed& fixed)
     return(out);
 }
 
-void	info_values(Fixed &a, Fixed &b, Fixed &c, Fixed &d, Fixed &e, Fixed &f, Fixed &g, Fixed &h, Fixed &i) {
+void	info_values(Fixed &a, Fixed &b, Fixed &c, Fixed &d, Fixed &e, Fixed &f, Fixed &g, Fixed &h, Fixed &i, Fixed &test) {
 	std::cout << YELLOW << "--------------------INFO--------------------" << RESET << std::endl;
 	std::cout << "\ta is: " << a << std::endl;
 	std::cout << "\tb is: " << b << std::endl;
@@ -30,6 +30,7 @@ void	info_values(Fixed &a, Fixed &b, Fixed &c, Fixed &d, Fixed &e, Fixed &f, Fix
 	std::cout << "\tg is: " << g << std::endl;
 	std::cout << "\th is: " << h << std::endl;
 	std::cout << "\ti is: " << i << std::endl;
+	std::cout << "\ttest is: " << test << std::endl;
 
 	std::cout << std::endl;
 
@@ -48,21 +49,21 @@ void	info_values(Fixed &a, Fixed &b, Fixed &c, Fixed &d, Fixed &e, Fixed &f, Fix
 int main() {
 	Fixed			a;
 	Fixed const		a_cpy;
-	Fixed			b ( Fixed( 5.05f ) * Fixed( 2 ));
+	Fixed			b ( Fixed( 5.05f ) * Fixed( -2 ));
 	Fixed const		b_cpy ( Fixed( 5.05f ) * Fixed( 2 ));
-	Fixed			c( 10 );
-	Fixed			d( 42.42f );
+	Fixed			c( -10 );
+	Fixed			d( -42.42f );
 	Fixed const		d_cpy( 42.42f );
 	Fixed			e( c );
 	Fixed			f;
-	Fixed			g ( Fixed( 234.45f ) + Fixed( 0.75f ));
-	Fixed			h ( Fixed( 71.3f ) - Fixed( 2.29f ));
-	Fixed const		h_cpy ( Fixed( 71.3f ) - Fixed( 2.29f ));
-	Fixed			i ( Fixed( 60.08f ) / Fixed( 3.09f ));
-
+	Fixed			g ( Fixed( -234.45f ) + Fixed( 0.75f ));
+	Fixed			h ( Fixed( -71.3f ) - Fixed( 2.29f ));
+	Fixed const		h_cpy ( Fixed( 71.3f ) - Fixed( -2.29f ));
+	Fixed			i ( Fixed( 60.08f ) / Fixed( -3.09f ));
+	Fixed			test(10.2f);
 	f = Fixed ( 1234.4321f );
 
-	info_values(a, b, c, d, e, f, g, h, i);
+	info_values(a, b, c, d, e, f, g, h, i, test);
 	std::cout << YELLOW << "-----------------COMPARISON-----------------" << RESET << std::endl;
 	std::cout << std::boolalpha <<"d > e: " << CYAN << (d > e) << RESET << std::endl;
 	std::cout << std::boolalpha <<"a < b: " << CYAN << (a < b) << RESET << std::endl;
