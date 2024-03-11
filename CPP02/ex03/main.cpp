@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:42:08 by rita              #+#    #+#             */
-/*   Updated: 2024/03/08 16:02:33 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/11 11:29:44 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ int main( void )
     Point pointInPeripheral(9.412,3.823);
     Point pointEdge(11.18829164644,3.5686577173323);
     
-    std::cout << "Points outside of triangle: " << "close: " << CYAN << bsp(a, b, c, pointOutClose) << RESET
-    << "\nfar: " << CYAN << bsp(a, b, c, pointOutClose) << RESET <<  std::endl;
-    std::cout << "Points inside of triangle: " << "midle: " << GREEN << bsp(a, b, c, pointInMidle) << RESET
-    << "\nperipheral: " << GREEN << bsp(a, b, c, pointInPeripheral) << RESET << std::endl;
-    std::cout << "Point edge of triangle: " << RED << bsp(a, b, c, pointEdge) << RESET << std::endl;
-    std::cout << "Point vertix of triangle: " << WHITE <<  bsp(a, b, c, a) << RESET << std::endl;
+    std::cout << "Points outside of triangle: " << "close - " << bsp(a, b, c, pointOutClose)
+    << "; far - " << bsp(a, b, c, pointOutClose) << std::endl;
+    std::cout << "Points inside of triangle: " << "midle - " << bsp(a, b, c, pointInMidle) << RESET
+    << "; peripheral - " << bsp(a, b, c, pointInPeripheral) << std::endl;
+    std::cout << "Point edge of triangle: " << bsp(a, b, c, pointEdge) << std::endl;
+    std::cout << "Point vertix of triangle: " << bsp(a, b, c, a) << std::endl;
+    std::cout << "Invalid Triangle: " << bsp(a, a, a, b) << std::endl;
     return 0;
 }
 
@@ -41,9 +42,9 @@ int main( void )
 {
 	Point a;
 
-	std::cout << CYAN << "a.x is: \n" << RESET;
+	std::cout << "a.x is: \n" << RESET;
     std::cout << a.getFixed_x() << std::endl;
-    std::cout << CYAN << "a.y is: \n" << RESET;
+    std::cout << "a.y is: \n" << RESET;
     std::cout << a.getFixed_y() << std::endl;
     
     a.setFixed_x(Fixed(10.2155f));
