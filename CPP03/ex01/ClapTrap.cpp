@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:38:12 by rita              #+#    #+#             */
-/*   Updated: 2024/03/13 16:27:33 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/13 19:05:03 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,14 @@ bool    ClapTrap::checkPoints(std::string msg)
     {
         if(!msg.empty())
             std::cout <<_name << RED << msg << RESET
-            << " no hit points left" << std::endl;
+            << "no hit points left" << std::endl;
         return false;
     }
     if(_energyPoints == 0)
     {
         if(!msg.empty())
             std::cout << _name << RED << msg << RESET
-            << " has no energy points left" << std::endl;
+            << "no energy points left" << std::endl;
         return false;
     }
     return true;
