@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:38:12 by rita              #+#    #+#             */
-/*   Updated: 2024/03/13 00:06:35 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/13 13:10:06 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,89 @@ ClapTrap& ClapTrap::operator= (const ClapTrap& copy)
     _attackDamage = copy._attackDamage;
     std::cout << "Copy assignment operator overload" << std::endl;
     return (*this);
+}
+
+int     ClapTrap::getAttackDamage()
+{
+    return(_attackDamage);
+}
+
+void    ClapTrap::setAttackDamage(int a)
+{
+    if(a < 0)
+    {
+        std::cout << "Attack damage must be equal"
+        << " to or greater than zero" << std::endl;
+        return ;
+    }
+    _attackDamage = a;
+    return ;
+}
+
+bool    ClapTrap::checkPoints(std::string msg)
+{
+    if(_hitPoints == 0)
+    {
+        if(!msg.empty())
+            std::cout <<_name << RED << msg << RESET
+            << " no hit points left" << std::endl;
+        return false;
+    }
+    if(_energyPoints == 0)
+    {
+        if(!msg.empty())
+            std::cout << _name << RED << msg << RESET
+            << " has no energy points left" << std::endl;
+        return false;
+    }
+    return true;
+}
+
+void ClapTrap::attack(const std::string& target)
+{
+    if(!this->checkPoints(" IS UNABLE TO ATTACK: "))
+        return ;
+    if(_attackDamage == 1)
+        std::cout << "ClapTrap " << _name << " attacks " << target
+        << " causing " << _attackDamage << " point of damage!" << std::endl;
+    else
+        std::cout << "ClapTrap " << _name << " attacks " << target
+        << " causing " << _attackDamage << " points of damage!" << std::endl;
+    _energyPoints--;
+    if(_energyPoints < 0)
+        _energyPoints = 0;
+}
+
+void ClapTrap::takeDamage(unsigned int amount)
+{
+    if(!this->checkPoints(" HAS NO DAMAGE LEFT TO DO: "))
+        return ;
+    if(amount == 1)
+        std::cout << "ClapTrap " << _name << " takes " << 
+        amount << " point of damage!" << std::endl;
+    else
+        std::cout << "ClapTrap " << _name << " takes " << 
+        amount << " points of damage!" << std::endl;
+    _hitPoints -= amount;
+    if(_hitPoints < 0)
+        _hitPoints = 0;
+}
+
+void ClapTrap::beRepaired(unsigned int amount)
+{
+    if(!this->checkPoints(" IS UNABLE TO BE REPAIRED: "))
+        return ;
+    if(amount == 1)
+        std::cout << "ClapTrap " << _name << " is repared, gaining " 
+        << amount << " hit point" << std::endl;
+    else
+        std::cout << "ClapTrap " << _name << " is repared, gaining " 
+        << amount << " hit points" << std::endl;
+    _hitPoints += amount;
+    _energyPoints--;
+    if(_energyPoints < 0)
+        _energyPoints = 0;
+    return ;
 }
 
 void ClapTrap::display()

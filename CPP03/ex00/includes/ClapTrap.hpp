@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:13:51 by rita              #+#    #+#             */
-/*   Updated: 2024/03/12 23:54:56 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/13 12:58:02 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,7 @@
 
 # include <iostream>
 # include <string.h>
-# include <cctype>
-# include <stdint.h>
-# include <stdlib.h>
 # include <unistd.h>
-# include <iomanip> 
-# include <cstdlib>
-# include <ctime>
 # include <math.h>
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
@@ -46,8 +40,15 @@ class ClapTrap
         //Copy constructor
         ClapTrap(const ClapTrap& copy);
         //Copy assignment constructor
-        ClapTrap& operator= (const ClapTrap& copy);
-        void display();
+        ClapTrap&   operator= (const ClapTrap& copy);
+        //Myfuncions
+        int         getAttackDamage();
+        void        setAttackDamage(int a);
+        void        attack(const std::string& target);
+        void        takeDamage(unsigned int amount);
+        void        beRepaired(unsigned int amount);
+        bool        checkPoints(std::string msg);
+        void        display();
         ~ClapTrap();
         
 };
