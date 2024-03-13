@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:13:51 by rita              #+#    #+#             */
-/*   Updated: 2024/03/13 13:14:48 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/13 16:28:24 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 class ClapTrap 
 {
-    private:
+    protected:
         std::string _name;
         int         _hitPoints;
         int         _energyPoints;
@@ -37,6 +37,10 @@ class ClapTrap
         ClapTrap();
         //Constructor that inicialized _name
         ClapTrap(std::string name);
+        //Constructor that inicializes int atributes
+        ClapTrap(int hitPoints, int energyPoints, int attackDamage);
+        //Constructor that inicializes all atributes
+        ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage);
         //Copy constructor
         ClapTrap(const ClapTrap& copy);
         //Copy assignment constructor
