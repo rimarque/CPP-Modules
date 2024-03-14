@@ -23,11 +23,11 @@ NAME 			= ex02
 INCLUDE			= includes
 OBJDIR			= obj
 
-_FILES 			= ClapTrap FragTrap
+_FILES 			= ClapTrap ScavTrap FragTrap
 
 OBJ				= $(_FILES:%=%.o)
 TARGET			= $(addprefix $(OBJDIR)/, $(OBJ))
-_HEADERS		= ClapTrap.hpp FragTrap.hpp
+_HEADERS		= ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 HDR				= $(addprefix $(INCLUDE)/, $(_HEADERS))
 
 #---------------------------------  RULES  --------------------------------------

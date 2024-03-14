@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:13:51 by rita              #+#    #+#             */
-/*   Updated: 2024/03/13 18:56:52 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/14 16:37:26 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ class ClapTrap
         //Copy assignment constructor
         ClapTrap&   operator= (const ClapTrap& copy);
         //Myfuncions
+        std::string         getName();
         int         getAttackDamage();
         void        setAttackDamage(int a);
         void        attack(const std::string& target);
@@ -54,6 +55,7 @@ class ClapTrap
         void        beRepaired(unsigned int amount);
         bool        checkPoints(std::string msg);
         void        display();
+        void        duel(ClapTrap fighter);
         ~ClapTrap();
         
 };

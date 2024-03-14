@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:51:02 by rita              #+#    #+#             */
-/*   Updated: 2024/03/13 19:07:27 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/14 15:31:50 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int main()
 {
     ScavTrap    skyBison("Appa");
     ScavTrap    avatar("Ang");
-    ScavTrap    firebender("Zuko");
+    ClapTrap    firebender("Zuko", 50, 10, 10);
     int         i = 1;
 
     std::cout << CYAN << "\nDISPLAY SKY BISON: " << RESET << std::endl;
@@ -66,7 +66,7 @@ int main()
     std::cout << std::endl;
     while(firebender.checkPoints(" IS DEAD: ") && avatar.checkPoints(" IS DEAD: "))
     {
-        std::cout << WHITE <<"ROUND " << i++ << " \n";
+        std::cout << CYAN <<"ROUND " << i++ << RESET << " \n";
         avatar.attack("Zuko");
         if(avatar.checkPoints(""))
             firebender.takeDamage(avatar.getAttackDamage());

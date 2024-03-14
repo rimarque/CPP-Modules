@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:50 by rita              #+#    #+#             */
-/*   Updated: 2024/03/13 19:21:28 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/14 16:21:07 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,25 @@ FragTrap& FragTrap::operator= (const FragTrap& copy)
     return (*this);
 }
 
+void FragTrap::attack(const std::string& target)
+{
+    if(!this->checkPoints(" IS UNABLE TO ATTACK: "))
+        return ;
+    if(_attackDamage == 1)
+        std::cout << "FragTrap " << GREEN << _name << RESET << " attacks " << target
+        << " causing " << _attackDamage << " point of damage!" << std::endl;
+    else
+        std::cout << "FragTrap " << GREEN << _name << RESET << " attacks " << target
+        << " causing " << _attackDamage << " points of damage!" << std::endl;
+    _energyPoints--;
+    if(_energyPoints < 0)
+        _energyPoints = 0;
+}
+
 void    FragTrap::highFivesGuys()
 {
-    std::cout << "Hello, my name is " << _name
-    << "! Can I get a high five?" << std::endl; 
+    std::cout << "Hello, my name is " << GREEN << _name << RESET
+    << "! I'm from the FragTrap tribe! Can I get a high five?" << std::endl; 
 }
 
 FragTrap::~FragTrap()

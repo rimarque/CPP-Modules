@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
+/*   ClapTrap copy.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:38:12 by rita              #+#    #+#             */
-/*   Updated: 2024/03/13 19:05:03 by rita             ###   ########.fr       */
+/*   Updated: 2024/03/14 17:03:56 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ int     ClapTrap::getAttackDamage()
     return(_attackDamage);
 }
 
+std::string     ClapTrap::getName()
+{
+    return(_name);
+}
+
 void    ClapTrap::setAttackDamage(int a)
 {
     if(a < 0)
@@ -113,14 +118,40 @@ void ClapTrap::attack(const std::string& target)
     if(!this->checkPoints(" IS UNABLE TO ATTACK: "))
         return ;
     if(_attackDamage == 1)
-        std::cout << "ClapTrap " << _name << " attacks " << target
+        std::cout << "ClapTrap " << PURPLE << _name << RESET << " attacks " << target
         << " causing " << _attackDamage << " point of damage!" << std::endl;
     else
-        std::cout << "ClapTrap " << _name << " attacks " << target
+        std::cout << "ClapTrap " << PURPLE << _name << RESET << " attacks " << target
         << " causing " << _attackDamage << " points of damage!" << std::endl;
     _energyPoints--;
     if(_energyPoints < 0)
         _energyPoints = 0;
+}
+
+void        ClapTrap::duel(ClapTrap fighter)
+{
+    int i = 1;
+
+    std::cout << CYAN << "\n    DUEL BETWEEN " << _name 
+    << " & " << fighter.getName() << RESET << std::endl;
+    while(this->checkPoints(" IS DEAD: ") && fighter.checkPoints(" IS DEAD: "))
+    {
+        std::cout << CYAN <<"ROUND " << i++ << RESET << " \n";
+        std::cout << ORANGE << "\nDISPLAY FIGHTER: " << RESET << std::endl;
+        fighter.display();
+        std::cout << PURPLE << "\nDISPLAY SELF: " << RESET << std::endl;
+        this->display();
+        std::cout << std::endl; 
+        fighter.attack(_name);
+        if(fighter.checkPoints(""))
+            this->takeDamage(fighter.getAttackDamage());
+        this->beRepaired(5);
+        this->attack(fighter.getName());
+        if(this->checkPoints(""))
+            fighter.takeDamage(this->getAttackDamage());
+        fighter.beRepaired(5);
+    }
+    std::cout << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
