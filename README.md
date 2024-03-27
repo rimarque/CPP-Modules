@@ -13,14 +13,24 @@ git clone git@github.com:rimarque/CPP-Modules.git
 ```
 
 ## 💎 **Modules concluded so far**
-### **Module 00**
- - Namespaces, classes, member functions, stdio streams, initialization lists, static, const
-### **Module 01**
- - Memory allocation, pointers to members, references, switch statement
-### **Module 02**
- - Ad-hoc polymorphism, operator overloading and Orthodox Canonical class form
-### **Module 03**
- - Inheritance
+### **Module** 0️⃣0️⃣
+```
+Namespaces, classes, member functions, stdio streams, initialization lists, static, const
+```
+### **Module** 0️⃣1️⃣
+```
+Memory allocation, pointers to members, references, switch statement
+```
+
+### **Module** 0️⃣2️⃣
+```
+Ad-hoc polymorphism, operator overloading and Orthodox Canonical class form
+```
+
+### **Module** 0️⃣3️⃣
+```
+Inheritance
+```
 
 ## :link: **Compilation**
 
