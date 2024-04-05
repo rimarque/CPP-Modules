@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:50 by rita              #+#    #+#             */
-/*   Updated: 2024/03/14 16:21:07 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/05 20:19:29 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ FragTrap::FragTrap(): ClapTrap(100, 100, 30)
 }
 
 //Name constructor
-FragTrap::FragTrap(std::string name): ClapTrap(name, 100, 100, 30)
+FragTrap::FragTrap(std::string name): ClapTrap(name)
 {
+    _hitPoints = 100;
+    _attackDamage = 30;
     std::cout << "FragTrap name constructor called: "
     << name << std::endl;
 }

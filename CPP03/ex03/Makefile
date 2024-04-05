@@ -19,7 +19,7 @@ CFLAGS			= -Wall -Wextra -Werror -std=c++98
 NPD				= --no-print-directory
 
 #--------------------------------- FILES  ---------------------------------------
-NAME 			= ex02
+NAME 			= ex03
 INCLUDE			= includes
 OBJDIR			= obj
 

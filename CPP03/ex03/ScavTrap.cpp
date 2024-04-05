@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:50 by rita              #+#    #+#             */
-/*   Updated: 2024/03/14 16:21:26 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/05 20:18:44 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ ScavTrap::ScavTrap(): ClapTrap(100, 50, 20)
 }
 
 //Name constructor
-ScavTrap::ScavTrap(std::string name): ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 {
+    _energyPoints = 50;
     std::cout << "ScavTrap name constructor called: "
     << name << std::endl;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:57:35 by rita              #+#    #+#             */
-/*   Updated: 2024/03/14 16:22:36 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/05 17:07:01 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "ClapTrap.hpp"
 //Duvida se é necessário fazer a ortodoxol cannonical form: copy assigment operator overload?
-class ScavTrap: public ClapTrap
+class ScavTrap: virtual public ClapTrap
 {
   public:
     //Default Constuctor
