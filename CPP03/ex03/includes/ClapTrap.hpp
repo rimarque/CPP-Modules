@@ -6,7 +6,7 @@
 /*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:13:51 by rita              #+#    #+#             */
-/*   Updated: 2024/04/05 16:43:46 by rimarque         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:49:28 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ class ClapTrap
         std::string         getName();
         int                 getAttackDamage();
         void                setAttackDamage(int a);
-        void                attack(const std::string& target);
+        virtual void        attack(const std::string& target);
         void                takeDamage(unsigned int amount);
         void                beRepaired(unsigned int amount);
         bool                checkPoints(std::string msg);
-        void        display();
+        virtual void        display();
         void                duel(ClapTrap fighter);
         ~ClapTrap();
         

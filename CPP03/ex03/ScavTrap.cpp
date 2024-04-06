@@ -6,7 +6,7 @@
 /*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:50 by rita              #+#    #+#             */
-/*   Updated: 2024/04/05 20:18:44 by rimarque         ###   ########.fr       */
+/*   Updated: 2024/04/06 16:03:04 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ ScavTrap& ScavTrap::operator= (const ScavTrap& copy)
 
 void ScavTrap::attack(const std::string& target)
 {
-    if(!this->checkPoints(" IS UNABLE TO ATTACK: "))
+    if(!this->checkPoints(" SCAV TRAP IS UNABLE TO ATTACK: "))
         return ;
     if(_attackDamage == 1)
         std::cout << "ScavTrap " << ORANGE << _name << RESET << " attacks " << target

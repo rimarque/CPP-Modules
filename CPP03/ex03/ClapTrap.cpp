@@ -6,7 +6,7 @@
 /*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:38:12 by rita              #+#    #+#             */
-/*   Updated: 2024/04/05 18:44:46 by rimarque         ###   ########.fr       */
+/*   Updated: 2024/04/06 16:04:05 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ bool    ClapTrap::checkPoints(std::string msg)
 
 void ClapTrap::attack(const std::string& target)
 {
-    if(!this->checkPoints(" IS UNABLE TO ATTACK: "))
+    if(!this->checkPoints(" CLAP TRAP IS UNABLE TO ATTACK: "))
         return ;
     if(_attackDamage == 1)
         std::cout << "ClapTrap " << PURPLE << _name << RESET << " attacks " << target
@@ -188,10 +188,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 
 void ClapTrap::display()
 {
-    std::cout << "name: " << _name << std::endl
+    std::cout << CYAN << "\nDISPLAY:" << RESET << std::endl
+    << "name: " << _name << std::endl
     << "hit points: " << _hitPoints << std::endl
     << "energy points: " << _energyPoints << std::endl
-    << "attack damage: " << _attackDamage << std::endl;
+    << "attack damage: " << _attackDamage << std::endl << std::endl;
 }
 
 ClapTrap::~ClapTrap()

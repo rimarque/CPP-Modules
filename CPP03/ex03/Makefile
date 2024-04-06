@@ -15,7 +15,7 @@ CC				= c++
 RM 				= rm -rf
 
 #-----------------------------------  FLAGS  -----------------------------------
-CFLAGS			= -Wall -Wextra -Werror -std=c++98
+CFLAGS			= -Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow
 NPD				= --no-print-directory
 
 #--------------------------------- FILES  ---------------------------------------

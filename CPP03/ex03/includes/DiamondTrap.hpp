@@ -6,7 +6,7 @@
 /*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:54:35 by rimarque          #+#    #+#             */
-/*   Updated: 2024/04/05 20:22:14 by rimarque         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:46:50 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class DiamondTrap: public FragTrap, public ScavTrap
     DiamondTrap&  operator= (const DiamondTrap& copy);
     void          attack(const std::string& target);
     void          whoAmI();
+    void          display();
     //Destructor */
     ~DiamondTrap();
 };

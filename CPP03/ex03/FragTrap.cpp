@@ -6,7 +6,7 @@
 /*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:50 by rita              #+#    #+#             */
-/*   Updated: 2024/04/05 20:19:29 by rimarque         ###   ########.fr       */
+/*   Updated: 2024/04/06 16:03:16 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ FragTrap& FragTrap::operator= (const FragTrap& copy)
 
 void FragTrap::attack(const std::string& target)
 {
-    if(!this->checkPoints(" IS UNABLE TO ATTACK: "))
+    if(!this->checkPoints(" FRAG TRAP IS UNABLE TO ATTACK: "))
         return ;
     if(_attackDamage == 1)
         std::cout << "FragTrap " << GREEN << _name << RESET << " attacks " << target
