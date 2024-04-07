@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 10:59:05 by rita              #+#    #+#             */
-/*   Updated: 2024/03/06 15:00:52 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/07 11:01:33 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ bool    Fixed::operator== (const Fixed& compare) const
 bool    Fixed::operator!= (const Fixed& compare) const
 {
     std::cout << "Comparison operator overload'!=' called" << std::endl;
-    return(this->_fixedPointValue <= compare._fixedPointValue);
+    return(this->_fixedPointValue != compare._fixedPointValue);
 }
 
 //Aritmetic operators
