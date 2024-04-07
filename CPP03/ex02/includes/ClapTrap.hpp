@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:13:51 by rita              #+#    #+#             */
-/*   Updated: 2024/03/14 16:37:26 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/07 13:19:28 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLAPTRAP_H
-# define CPLAPTRAP_H
+# define CLAPTRAP_H
 
 # include <iostream>
 # include <string.h>

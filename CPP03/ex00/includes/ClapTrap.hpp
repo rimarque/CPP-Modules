@@ -6,12 +6,12 @@
 /*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:13:51 by rita              #+#    #+#             */
-/*   Updated: 2024/04/06 15:19:20 by rimarque         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:15:22 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLAPTRAP_H
-# define CPLAPTRAP_H
+# define CLAPTRAP_H
 
 # include <iostream>
 # include <string.h>
@@ -41,7 +41,6 @@ class ClapTrap
         ClapTrap(const ClapTrap& copy);
         //Copy assignment constructor
         ClapTrap&   operator= (const ClapTrap& copy);
-        a = b;
         //Myfuncions
         int         getAttackDamage();
         void        setAttackDamage(int a);
@@ -54,9 +53,4 @@ class ClapTrap
         
 };
 
-claptrap a;
-claptrap b;
-
-a = b;
-claptrap c = a + b;
 #endif
