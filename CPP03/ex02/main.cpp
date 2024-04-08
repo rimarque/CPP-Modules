@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:51:02 by rita              #+#    #+#             */
-/*   Updated: 2024/03/14 17:14:26 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/08 15:36:27 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,17 +133,15 @@ int main()
 //Test wih claptrap member function duel
 int main()
 {
-    ScavTrap    skyBison("Appa");
     ClapTrap    firebender("Zuko");
     ScavTrap    avatar("Ang");
     FragTrap    earthbender("Bumi");
-
-    std::cout << ORANGE << "\nDISPLAY SKY BISON: " << RESET << std::endl;
-    skyBison.display();
-    std::cout << std::endl; 
-    skyBison.guardGate();
+    
+    std::cout << std::endl;
+    earthbender.highFivesGuys();
     std::cout << std::endl; 
     avatar.duel(firebender);
+    avatar.display();
     std::cout << std::endl;
     earthbender.duel(firebender);
     std::cout << std::endl;

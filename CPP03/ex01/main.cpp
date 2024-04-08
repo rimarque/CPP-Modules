@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:51:02 by rita              #+#    #+#             */
-/*   Updated: 2024/03/14 15:31:50 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/08 12:35:21 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 int main()
 {
     ScavTrap    skyBison("Appa");
-    ScavTrap    avatar("Ang");
+    ScavTrap    avatar("Aang");
     ClapTrap    firebender("Zuko", 50, 10, 10);
     int         i = 1;
 
@@ -71,7 +71,7 @@ int main()
         if(avatar.checkPoints(""))
             firebender.takeDamage(avatar.getAttackDamage());
         firebender.beRepaired(5);
-        firebender.attack("Appa");
+        firebender.attack("Aang");
         if(firebender.checkPoints(""))
             avatar.takeDamage(firebender.getAttackDamage());
         avatar.beRepaired(5);

@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:51:02 by rita              #+#    #+#             */
-/*   Updated: 2024/03/13 13:12:01 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/08 12:24:41 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int main()
     ClapTrap    firebender("Zuko");
     
     skyBison.setAttackDamage(8);
-    firebender.setAttackDamage(-5);
     std::cout << CYAN << "\nDISPLAY SKY BISON: " << RESET << std::endl;
     skyBison.display();
     std::cout <<  PURPLE << "\nDISPLAY FIREBENDER" << RESET << std::endl;

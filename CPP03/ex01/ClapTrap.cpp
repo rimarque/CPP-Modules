@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap copy.cpp                                  :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:38:12 by rita              #+#    #+#             */
-/*   Updated: 2024/03/14 17:03:56 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/08 15:00:43 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ ClapTrap::ClapTrap()
         _energyPoints(10),
         _attackDamage(0)
 {
-    std::cout << "Default constructor called" << std::endl;
+    std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(int hitPoints, int energyPoints, int attackDamage)
@@ -25,7 +25,7 @@ ClapTrap::ClapTrap(int hitPoints, int energyPoints, int attackDamage)
         _energyPoints(energyPoints),
         _attackDamage(attackDamage)
 {
-    std::cout << "Name constructor called" << std::endl;
+    std::cout << "ClapTrap atributtes constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name)
@@ -34,8 +34,8 @@ ClapTrap::ClapTrap(std::string name)
         _energyPoints(10),
         _attackDamage(0)
 {
-    std::cout << "Name constructor called: " 
-    << name << std::endl;
+    std::cout << "ClapTrap name constructor called: " 
+    << name << " was created" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage)
@@ -44,8 +44,8 @@ ClapTrap::ClapTrap(std::string name, int hitPoints, int energyPoints, int attack
         _energyPoints(energyPoints),
         _attackDamage(attackDamage)
 {
-    std::cout << "Name constructor called: " 
-    << name << std::endl;
+    std::cout << "ClapTrap all constructor called: " 
+    << name << " was created" << std::endl;
 }
 
 //Copy constructor
@@ -55,7 +55,7 @@ ClapTrap::ClapTrap(const ClapTrap& copy)
         _energyPoints(copy._energyPoints),
         _attackDamage(copy._attackDamage)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    std::cout << "ClapTrap copy constructor called" << std::endl;
     return ;
 }
 
@@ -68,7 +68,7 @@ ClapTrap& ClapTrap::operator= (const ClapTrap& copy)
     _hitPoints = copy._hitPoints;
     _energyPoints = copy._energyPoints;
     _attackDamage = copy._attackDamage;
-    std::cout << "Copy assignment operator overload" << std::endl;
+    std::cout << "ClapTrap copy assignment operator overload" << std::endl;
     return (*this);
 }
 
@@ -86,7 +86,8 @@ void    ClapTrap::setAttackDamage(int a)
 {
     if(a < 0)
     {
-        std::cout << "Attack damage must be equal"
+        std::cout << RED << "ERROR: " << RESET 
+        << "attack damage must be equal"
         << " to or greater than zero" << std::endl;
         return ;
     }
@@ -196,5 +197,5 @@ void ClapTrap::display()
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "Destructor called! " << _name << " is dead" << std::endl;
 }

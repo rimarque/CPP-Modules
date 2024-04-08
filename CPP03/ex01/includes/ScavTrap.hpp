@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:57:35 by rita              #+#    #+#             */
-/*   Updated: 2024/03/14 16:35:53 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/08 12:26:51 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SCAVTRAP_H
 
 #include "ClapTrap.hpp"
-//Duvida se é necessário fazer a ortodoxol cannonical form: copy assigment operator overload?
 class ScavTrap: public ClapTrap
 {
   public:
@@ -24,7 +23,7 @@ class ScavTrap: public ClapTrap
     ScavTrap(std::string name);
     //Copy constructor
     ScavTrap(const ScavTrap &copy);
-    //copy assigment operator overload -> funciona na mesma sem isto
+    //copy assigment operator overload
     ScavTrap&   operator= (const ScavTrap& copy);
     void        attack(const std::string& target);
     void        guardGate();

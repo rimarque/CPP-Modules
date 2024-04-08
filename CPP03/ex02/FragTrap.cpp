@@ -6,7 +6,7 @@
 /*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:50 by rita              #+#    #+#             */
-/*   Updated: 2024/03/14 16:21:07 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/08 15:26:46 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ FragTrap::FragTrap(): ClapTrap(100, 100, 30)
 FragTrap::FragTrap(std::string name): ClapTrap(name, 100, 100, 30)
 {
     std::cout << "FragTrap name constructor called: "
-    << name << std::endl;
+    << name << " was created!"<< std::endl;
 }
 
 //Copy constructor
@@ -43,21 +43,6 @@ FragTrap& FragTrap::operator= (const FragTrap& copy)
     return (*this);
 }
 
-void FragTrap::attack(const std::string& target)
-{
-    if(!this->checkPoints(" IS UNABLE TO ATTACK: "))
-        return ;
-    if(_attackDamage == 1)
-        std::cout << "FragTrap " << GREEN << _name << RESET << " attacks " << target
-        << " causing " << _attackDamage << " point of damage!" << std::endl;
-    else
-        std::cout << "FragTrap " << GREEN << _name << RESET << " attacks " << target
-        << " causing " << _attackDamage << " points of damage!" << std::endl;
-    _energyPoints--;
-    if(_energyPoints < 0)
-        _energyPoints = 0;
-}
-
 void    FragTrap::highFivesGuys()
 {
     std::cout << "Hello, my name is " << GREEN << _name << RESET
@@ -66,5 +51,6 @@ void    FragTrap::highFivesGuys()
 
 FragTrap::~FragTrap()
 {
-    std::cout << "FragTrap destructor called" << std::endl;
+    std::cout << "FragTrap destructor called" << _name 
+    << " is dead" << std::endl;
 }

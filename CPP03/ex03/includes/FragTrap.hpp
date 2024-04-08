@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:57:35 by rita              #+#    #+#             */
-/*   Updated: 2024/04/05 17:06:39 by rimarque         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:27:03 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ class FragTrap: virtual public ClapTrap
     FragTrap(const FragTrap &copy);
     //copy assigment operator overload -> funciona na mesma sem isto
     FragTrap&   operator= (const FragTrap& copy);
-    void        attack(const std::string& target);
     void        highFivesGuys();
     //Destructor
     ~FragTrap();

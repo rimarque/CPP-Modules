@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:51:02 by rita              #+#    #+#             */
-/*   Updated: 2024/04/07 11:52:00 by rimarque         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:50:22 by rita             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int main()
     ScavTrap d("roberto");
     FragTrap e("gaspar");
 
-    std::cout << PURPLE << "\n\nTesting copy constructor\n" << RESET;
+    d.duel(a);
+   /*  std::cout << PURPLE << "\n\nTesting copy constructor\n" << RESET;
     DiamondTrap copy(a);
     a.whoAmI();
     a.display();
@@ -31,11 +32,10 @@ int main()
     b = a;
     a.whoAmI();
     a.display();
-    b.whoAmI();
-    b.display();
+    b.whoAmI(); */
+    /* b.display();
     std::cout << std::endl;
-    /* a.duel(b);
-    d.duel(a); */
+    a.duel(b); */
     /* std::cout << PURPLE << "\nDIAMOND VS DIAMOND\n" << RESET;
     a.whoAmI();
     a.display();
@@ -54,8 +54,8 @@ int main()
         a.display();
         b.display();
         std::cout << std::endl;
-    } */
-    /* std::cout << PURPLE << "\nDIAMOND VS CLAP\n" << RESET;
+    }
+    std::cout << PURPLE << "\nDIAMOND VS CLAP\n" << RESET;
     a.display();
     c.display();
     while(b.checkPoints(" IS DEAD ") && c.checkPoints(" IS DEAD "))
