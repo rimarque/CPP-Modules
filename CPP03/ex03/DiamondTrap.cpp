@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:26:40 by rimarque          #+#    #+#             */
-/*   Updated: 2024/04/08 15:44:41 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/08 18:25:05 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ DiamondTrap& DiamondTrap::operator= (const DiamondTrap& copy)
 
 void    DiamondTrap::attack(const std::string& target)
 {
+    std::cout << "DiamondTrap " << GREEN << _name 
+    << RESET << " will attack now: ";
     this->ScavTrap::attack(target);
 }
 

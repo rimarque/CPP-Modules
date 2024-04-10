@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:38:12 by rita              #+#    #+#             */
-/*   Updated: 2024/04/08 15:00:43 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/08 18:02:15 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ ClapTrap::ClapTrap(int hitPoints, int energyPoints, int attackDamage)
 }
 
 ClapTrap::ClapTrap(std::string name)
-    :   _name(name),
+    :   _name(name + "_clap_name"),
         _hitPoints(10),
         _energyPoints(10),
         _attackDamage(0)
@@ -39,7 +39,7 @@ ClapTrap::ClapTrap(std::string name)
 }
 
 ClapTrap::ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage)
-    :   _name(name),
+    :   _name(name + "_clap_name"),
         _hitPoints(hitPoints),
         _energyPoints(energyPoints),
         _attackDamage(attackDamage)
@@ -55,7 +55,8 @@ ClapTrap::ClapTrap(const ClapTrap& copy)
         _energyPoints(copy._energyPoints),
         _attackDamage(copy._attackDamage)
 {
-    std::cout << "ClapTrap copy constructor called" << std::endl;
+    std::cout << "ClapTrap copy constructor called for " 
+    << copy._name << std::endl;
     return ;
 }
 
@@ -68,7 +69,8 @@ ClapTrap& ClapTrap::operator= (const ClapTrap& copy)
     _hitPoints = copy._hitPoints;
     _energyPoints = copy._energyPoints;
     _attackDamage = copy._attackDamage;
-    std::cout << "ClapTrap copy assignment operator overload" << std::endl;
+    std::cout << "ClapTrap copy assignment operator overload for " 
+    << copy._name << std::endl;
     return (*this);
 }
 

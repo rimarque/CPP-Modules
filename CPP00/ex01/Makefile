@@ -35,7 +35,7 @@ all: $(NAME)
 
 $(NAME): $(OBJDIR) $(TARGET) main.cpp
 	$(CXX) $(CXXFLAGS) main.cpp  $(TARGET) -I $(INCLUDE) -o $(NAME)
-	echo "[$(GREEN)Success$(RESET)] crappy awesome phonebook created$(BOLD)$(RESET)"
+	echo "[$(GREEN)SuCXXess$(RESET)] crappy awesome phonebook created$(BOLD)$(RESET)"
 
 $(OBJDIR)/%.o : %.cpp $(HDR)
 	echo "[$(CYAN)Compiling$(RESET)] $(CXXFLAGS) $<$(RESET)"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:50 by rita              #+#    #+#             */
-/*   Updated: 2024/04/08 15:12:29 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/08 18:37:52 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ ScavTrap::ScavTrap(const ScavTrap &copy): ClapTrap(copy)
 {
     std::cout << "ScavTrap copy constructor called" << std::endl;
 }
+
 //Copy asigment operator overload -> nao é necessário
 ScavTrap& ScavTrap::operator= (const ScavTrap& copy)
 {

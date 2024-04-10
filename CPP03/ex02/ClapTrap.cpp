@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:38:12 by rita              #+#    #+#             */
-/*   Updated: 2024/04/08 15:00:43 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/08 18:55:00 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ ClapTrap::ClapTrap(const ClapTrap& copy)
         _energyPoints(copy._energyPoints),
         _attackDamage(copy._attackDamage)
 {
-    std::cout << "ClapTrap copy constructor called" << std::endl;
+    std::cout << "ClapTrap copy constructor called for " 
+    << copy._name << std::endl;
     return ;
 }
 

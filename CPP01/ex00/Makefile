@@ -11,11 +11,11 @@ WHITE 			= \033[1;37m
 CLEAR           = \033[2J\033[H
 
 #----------------------------------- COMMANDS ----------------------------------
-CC				= c++
+CXX				= c++
 RM 				= rm -rf
 
 #-----------------------------------  FLAGS  -----------------------------------
-CFLAGS			= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS			= -Wall -Wextra -Werror -std=c++98
 NPD				= --no-print-directory
 
 #--------------------------------- FILES  ---------------------------------------
@@ -35,12 +35,12 @@ HDR				= $(addprefix $(INCLUDE)/, $(_HEADERS))
 all: $(NAME)
 
 $(NAME): $(OBJDIR) $(TARGET) main.cpp
-	$(CC) $(CFLAGS) main.cpp  $(TARGET) -I $(INCLUDE) -o $(NAME)
-	echo "[$(GREEN)Success$(RESET)] Zombie Maker created!$(BOLD)$(RESET)"
+	$(CXX) $(CXXFLAGS) main.cpp  $(TARGET) -I $(INCLUDE) -o $(NAME)
+	echo "[$(GREEN)SuCXXess$(RESET)] Zombie Maker created!$(BOLD)$(RESET)"
 
 $(OBJDIR)/%.o : %.cpp $(HDR)
-	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $<$(RESET)"
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDE)
+	echo "[$(CYAN)Compiling$(RESET)] $(CXXFLAGS) $<$(RESET)"
+	$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(INCLUDE)
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)

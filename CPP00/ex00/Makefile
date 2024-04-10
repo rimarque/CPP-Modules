@@ -26,7 +26,7 @@ all: $(NAME)
 
 $(NAME): megaphone.cpp
 	$(CXX) $(CXXFLAGS) megaphone.cpp -o $(NAME)
-	echo "[$(GREEN)Success$(RESET)] megaphone created$(BOLD)$(RESET)"
+	echo "[$(GREEN)SuCXXess$(RESET)] megaphone created$(BOLD)$(RESET)"
 
 clean:
 	$(RM)

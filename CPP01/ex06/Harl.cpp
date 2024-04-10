@@ -16,12 +16,12 @@ void Harl::warning( void ){
 }
 
 void Harl::error( void ){
-    std::cout << "[ERROR]\nThis is unacceptable! I want to speak to the manager now.\n";
+    std::cout << "[ERROR]\nThis is unaCXXeptable! I want to speak to the manager now.\n";
 }
 
 void    Harl::complain(std::string level){
     int a = 4;
-    void (Harl::*p[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+    std::string levels[4] = {"debug", "info", "warning", "error"};
 
     for(int i = 0; i < 4; i++){
         if(!levels[i].compare(level))

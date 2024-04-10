@@ -53,7 +53,7 @@ void	PhoneBook::add(void) {
 	}
 	this->_contacts[_i++ % 8] = Contact(first_n, last_n, nickname, number, darkest_sc);
 	std::system("clear");
-	std::cout << "\n\t\t  " << first_n << GREEN << "'s CONTACT WAS SUCCESSFULLY ADDED\n" << RESET;
+	std::cout << "\n\t\t  " << first_n << GREEN << "'s CONTACT WAS SUCXXESSFULLY ADDED\n" << RESET;
 	sleep(1);
 }
 

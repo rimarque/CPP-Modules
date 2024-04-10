@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rita <rita@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rimarque <rimarque@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:53:50 by rita              #+#    #+#             */
-/*   Updated: 2024/04/08 15:26:46 by rita             ###   ########.fr       */
+/*   Updated: 2024/04/08 20:27:28 by rimarque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ void    FragTrap::highFivesGuys()
 
 FragTrap::~FragTrap()
 {
-    std::cout << "FragTrap destructor called" << _name 
+    std::cout << "FragTrap destructor called: " << _name 
     << " is dead" << std::endl;
 }

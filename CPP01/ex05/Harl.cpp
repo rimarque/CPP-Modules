@@ -16,7 +16,7 @@ void Harl::warning( void ){
 }
 
 void Harl::error( void ){
-    std::cout << "[ERROR]\nThis is unacceptable! I want to speak to the manager now.\n";
+    std::cout << "[ERROR]\nThis is unaCXXeptable! I want to speak to the manager now.\n";
 }
 
 void    Harl::complain(std::string level){
