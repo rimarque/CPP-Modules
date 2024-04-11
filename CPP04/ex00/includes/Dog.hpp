@@ -14,7 +14,7 @@ class Dog: public Animal
         //Copy constructor
         Dog(const Dog& copy);
         //Copy assignment constructor
-        Dog& operator= (const Dog& copy);
+        Dog&    operator= (const Dog& copy);
         //Myfuncions
         void    makeSound() const;
         ~Dog();

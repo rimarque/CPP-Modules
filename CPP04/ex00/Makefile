@@ -23,11 +23,11 @@ NAME 			= ex00
 INCLUDE			= includes
 OBJDIR			= obj
 
-_FILES 			= Animal Cat Dog
+_FILES 			= Animal Cat Dog WrongAnimal WrongCat
 
 OBJ				= $(_FILES:%=%.o)
 TARGET			= $(addprefix $(OBJDIR)/, $(OBJ))
-_HEADERS		= Animal.hpp Cat.hpp Dog.hpp
+_HEADERS		= Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
 HDR				= $(addprefix $(INCLUDE)/, $(_HEADERS))
 
 #---------------------------------  RULES  --------------------------------------

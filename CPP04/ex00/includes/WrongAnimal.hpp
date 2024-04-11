@@ -1,5 +1,5 @@
-#ifndef ANIMAL_H
-# define ANIMAL_H
+#ifndef WRONGANIMAL_H
+# define WRONGANIMAL_H
 # include <iostream>
 # include <string.h>
 # include <unistd.h>
@@ -16,7 +16,7 @@
 //Calcula o tamanho de um array estatico: inicializado assim 'arr[N]'
 # define ARRAY_SIZE(arr) (sizeof(arr) / sizeof(arr[0]))
 
-class Animal 
+class WrongAnimal 
 {
     protected:
         std::string _type;
@@ -25,18 +25,18 @@ class Animal
         void            animalSound(std::string*) const;
     public:
         //Default constructor
-        Animal();
+        WrongAnimal();
         //Constructor that inicialized _name
-        Animal(std::string name);
+        WrongAnimal(std::string name);
         //Copy constructor
-        Animal(const Animal& copy);
+        WrongAnimal(const WrongAnimal& copy);
         //Copy assignment constructor
-        Animal&         operator= (const Animal& copy);
+        WrongAnimal&    operator= (const WrongAnimal& copy);
         //Myfuncions
-        void    makeSound() const;
+        void            makeSound() const;
         std::string     getType() const;
         void            display() const;
-        ~Animal();
+        ~WrongAnimal();
         
 };
 
