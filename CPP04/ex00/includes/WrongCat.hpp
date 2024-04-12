@@ -3,7 +3,7 @@
 
 # include "WrongAnimal.hpp"
 
-class WrongCat: virtual public WrongAnimal
+class WrongCat: public WrongAnimal
 {
     public:
         //Default constructor
@@ -15,7 +15,7 @@ class WrongCat: virtual public WrongAnimal
         //Copy assignment constructor
         WrongCat& operator= (const WrongCat& copy);
         //Myfuncions
-        virtual void makeSound() const;
+        void makeSound() const;
         ~WrongCat();
 };
 

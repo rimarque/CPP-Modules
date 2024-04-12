@@ -63,7 +63,7 @@ void Animal::animalSound(std::string *sound) const
 
 void Animal::makeSound() const
 {
-    std::string sound[5] = {"Muuu", "Beeee", "Wooof", "Quack", "Meow"};
+    std::string sound[5] = {"Muuu", "Beeee", "Wooof", "Quack", "Meoww"};
     if(_type.empty())
         this->randomSound(sound);
     else
@@ -73,7 +73,7 @@ void Animal::makeSound() const
 void    Animal::display() const
 {
     std::cout << std::endl;
-    std::cout << CYAN << "DISPLAY ANIMAL" << RESET << std::endl;
+    std::cout << CYAN << "Display animal: " << RESET;
     if(!_type.empty())
         std::cout << "Hello, I'm a " << _type << "!" << std::endl;
     else

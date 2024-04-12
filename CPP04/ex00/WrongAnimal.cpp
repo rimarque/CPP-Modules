@@ -52,7 +52,7 @@ void WrongAnimal::animalSound(std::string *sound) const
     for(int i = 0; i < (int)ARRAY_SIZE(animal); i++){
         if(!animal[i].compare(_type))
         {
-            std::cout << _type << " makes " << _type << " sound: " << WHITE 
+            std::cout << "Animal makes " << _type << " sound: " << WHITE 
             << sound[i] << RESET << std::endl;
             return ;
         }
@@ -63,7 +63,7 @@ void WrongAnimal::animalSound(std::string *sound) const
 
 void WrongAnimal::makeSound() const
 {
-    std::string sound[5] = {"Muuu", "Beeee", "Wooof", "Quack", "Meow"};
+    std::string sound[5] = {"Muuu", "Beeee", "Wooof", "Quack", "Meoww"};
     if(_type.empty())
         this->randomSound(sound);
     else
@@ -73,7 +73,7 @@ void WrongAnimal::makeSound() const
 void    WrongAnimal::display() const
 {
     std::cout << std::endl;
-    std::cout << CYAN << "DISPLAY WrongAnimal" << RESET << std::endl;
+    std::cout << CYAN << "Display wrong animal: " << RESET; 
     if(!_type.empty())
         std::cout << "Hello, I'm a " << _type << "!" << std::endl;
     else

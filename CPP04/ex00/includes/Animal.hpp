@@ -33,10 +33,10 @@ class Animal
         //Copy assignment constructor
         Animal&         operator= (const Animal& copy);
         //Myfuncions
-        void    makeSound() const;
+        virtual void    makeSound() const;
         std::string     getType() const;
         void            display() const;
-        ~Animal();
+        virtual ~Animal();
         
 };
 
