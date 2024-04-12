@@ -48,6 +48,7 @@ git clone git@github.com:rimarque/CPP-Modules.git
 ```
 ## 🌐 **Resources**
 [Polymorphism](https://www.geeksforgeeks.org/cpp-polymorphism/)
+
 [Virtual functions and runtime polymorphism](https://www.geeksforgeeks.org/virtual-functions-and-runtime-polymorphism-in-cpp/)
 
 ## :link: **Compilation**
