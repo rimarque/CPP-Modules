@@ -2,7 +2,9 @@
 
 Dog::Dog(): Animal("Dog")
 {
-    std::cout << RED << "Dog " << RESET << "default constructor called" << std::endl;
+    _brain = new Brain();
+    std::cout << RED << "Dog " << RESET 
+    << "default constructor called" << std::endl;
 }
 
 Dog::Dog(std::string type)
@@ -40,6 +42,7 @@ void Dog::makeSound() const
 
 Dog::~Dog()
 {
+    delete _brain;
     std::cout << RED << "Dog " << RESET 
     << "destructor called" << std::endl;
 }

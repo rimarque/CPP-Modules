@@ -2,10 +2,12 @@
 # define DOG_H
 
 # include "Cat.hpp"
-# include "Animal.hpp"
+# include "Brain.hpp"
 
 class Dog: public Animal
 {
+    private:
+        Brain *_brain;
     public:
         //Default constructor
         Dog();

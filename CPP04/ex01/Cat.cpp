@@ -2,6 +2,7 @@
 
 Cat::Cat(): Animal("Cat")
 {
+    _brain = new Brain();
     std::cout << GREEN << "Cat " << RESET 
     << "default constructor called" << std::endl;
 }
@@ -40,6 +41,7 @@ void Cat::makeSound() const
 
 Cat::~Cat()
 {
+    delete _brain;
     std::cout << GREEN << "Cat " << RESET 
     << "destructor called" << std::endl;
 }
