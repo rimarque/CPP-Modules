@@ -18,6 +18,8 @@ Dog::Dog(std::string type)
 Dog::Dog(const Dog& copy)
     :   Animal(copy)
 {
+    _type = copy._type;
+    _brain = new Brain(*copy._brain);
     std::cout << RED << "Dog " << RESET 
     << "copy constructor called" << std::endl;
     return ;
@@ -29,6 +31,7 @@ Dog& Dog::operator= (const Dog& copy)
     if(this == &copy)
         return *this;
     _type = copy._type;
+    _brain = new Brain(*copy._brain);
     std::cout << RED << "Dog " << RESET 
     << "copy assignment operator overload" << std::endl;
     return (*this);
@@ -42,7 +45,6 @@ void Dog::makeSound() const
 
 void Dog::display() const
 {
-    std::cout << std::endl;
     std::cout << RED << "Display dog: " << RESET;
     _brain->displayIdeas();
     return ;

@@ -72,7 +72,6 @@ void Animal::makeSound() const
 
 void    Animal::display() const
 {
-    std::cout << std::endl;
     std::cout << CYAN << "Display animal: " << RESET;
     if(!_type.empty())
         std::cout << "Hello, I'm a " << _type << "!" << std::endl;
@@ -83,7 +82,9 @@ void    Animal::display() const
 
 bool    Animal::operator== (const std::string& compare) const
 {
-    return(_type == compare);
+    if(_type.compare(compare) == 0)
+        return(true);
+    return(false);
 }
 
 Animal::~Animal()
