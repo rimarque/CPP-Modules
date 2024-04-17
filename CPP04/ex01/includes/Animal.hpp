@@ -31,11 +31,12 @@ class Animal
         //Copy constructor
         Animal(const Animal& copy);
         //Copy assignment constructor
-        Animal&         operator= (const Animal& copy);
+        virtual Animal&         operator= (const Animal& copy);
         //Myfuncions
-        virtual void    makeSound() const;
         std::string     getType() const;
-        void            display() const;
+        virtual void    makeSound() const;
+        virtual void    display() const;
+        bool            operator== (const std::string& compare) const;
         virtual ~Animal();
         
 };

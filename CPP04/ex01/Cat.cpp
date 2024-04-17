@@ -39,6 +39,14 @@ void Cat::makeSound() const
     << "Meow"<< RESET << std::endl;
 }
 
+void Cat::display() const
+{
+    std::cout << std::endl;
+    std::cout << GREEN << "Display cat: " << RESET;
+    _brain->displayIdeas();
+    return ;
+}
+
 Cat::~Cat()
 {
     delete _brain;

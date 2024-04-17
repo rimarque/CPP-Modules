@@ -40,6 +40,14 @@ void Dog::makeSound() const
     << "Woof"<< RESET << std::endl;
 }
 
+void Dog::display() const
+{
+    std::cout << std::endl;
+    std::cout << RED << "Display dog: " << RESET;
+    _brain->displayIdeas();
+    return ;
+}
+
 Dog::~Dog()
 {
     delete _brain;

@@ -19,6 +19,7 @@ class Cat: public Animal
         Cat& operator= (const Cat& copy);
         //Myfuncions
         void    makeSound() const;
+        void    display() const;
         ~Cat();
         
 };

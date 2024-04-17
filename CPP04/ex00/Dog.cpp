@@ -2,7 +2,8 @@
 
 Dog::Dog(): Animal("Dog")
 {
-    std::cout << RED << "Dog " << RESET << "default constructor called" << std::endl;
+    std::cout << RED << "Dog " << RESET 
+    << "default constructor called" << std::endl;
 }
 
 Dog::Dog(std::string type)

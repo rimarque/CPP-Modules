@@ -12,7 +12,7 @@ Animal::Animal(std::string type)
     << "type constructor called for " << _type << std::endl;
 }
 
-//Copy constructor
+//Copy constructor (deep copy)
 Animal::Animal(const Animal& copy)
     :   _type(copy._type)
 {
@@ -20,7 +20,7 @@ Animal::Animal(const Animal& copy)
     return ;
 }
 
-//Copy asigment operator overload
+//Copy asigment operator overload (deep copy)
 Animal& Animal::operator= (const Animal& copy)
 {
     if(this == &copy)
@@ -79,6 +79,11 @@ void    Animal::display() const
     else
         std::cout << "Who am I? *" << WHITE 
         << "Having an existencial crises" << RESET << "*" << std::endl;
+}
+
+bool    Animal::operator== (const std::string& compare) const
+{
+    return(_type == compare);
 }
 
 Animal::~Animal()

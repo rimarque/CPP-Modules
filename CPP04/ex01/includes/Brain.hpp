@@ -14,15 +14,13 @@
 
 class Brain {
 private:
-    std::string ideas[100];
+    std::string _ideas[100];
 public:
     Brain(); // Constructor
     Brain(const Brain& copy);//Copy constructor
-    Brain& operator= (const Brain& copy); //Copy assignment constructor
+    Brain&  operator= (const Brain& copy); //Copy assignment constructor
+    void    displayIdeas() const;
     ~Brain(); // Destructor
-
-private:
-    // Add private members here
 };
 
 #endif // BRAIN_H
