@@ -25,7 +25,7 @@ Cat::Cat(const Cat& copy)
 }
 
 //Copy asigment operator overload
-Cat& Cat::operator= (const Cat copy)
+Cat& Cat::operator= (const Cat& copy)
 {
     if(this == &copy)
         return *this;

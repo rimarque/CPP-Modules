@@ -16,7 +16,7 @@ class Cat: public Animal
         //Copy constructor
         Cat(const Cat& copy);
         //Copy assignment constructor
-        Cat& operator= (const Cat copy);
+        Cat& operator= (const Cat& copy);
         //Myfuncions
         void    makeSound() const;
         void    display() const;
