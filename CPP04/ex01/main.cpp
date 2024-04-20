@@ -36,6 +36,7 @@ int main()
     std::cout << std::endl;
     std::cout << "\n\033[32m------Creating New\033[0m Cat:" << std::endl;
     Cat *cat = new Cat();
+    cat->setBrain("I'm the original cat. Copy me!");
     std::cout << "\n\033[32m------Copying a New\033[0m Cat from the original to deepcpy1 (copy constructor):" << std::endl;
     Animal *deepcpy1 = new Cat(*cat);
     std::cout << "\n\033[32m------Creating New\033[0m Cat (deepcpy2):" << std::endl;
