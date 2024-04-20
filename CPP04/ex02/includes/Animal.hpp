@@ -22,6 +22,7 @@
 //Calcula o tamanho de um array estatico: inicializado assim 'arr[N]'
 # define ARRAY_SIZE(arr) (sizeof(arr) / sizeof(arr[0]))
 
+//A class is abstract if it has at least one pure virtual function.
 class Animal 
 {
     protected:
@@ -40,7 +41,8 @@ class Animal
         virtual Animal&         operator= (const Animal& copy);
         //Myfuncions
         std::string     getType() const;
-        virtual void    makeSound() const;
+        //Creating a pure virtual function
+        virtual void    makeSound() const = 0;
         virtual void    display() const;
         bool            operator== (const std::string& compare) const;
         virtual ~Animal();

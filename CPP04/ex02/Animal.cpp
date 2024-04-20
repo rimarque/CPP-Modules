@@ -1,54 +1,54 @@
-#include "includes/WrongAnimal.hpp"
+#include "includes/Animal.hpp"
 
-WrongAnimal::WrongAnimal()
+Animal::Animal()
 {
-    std::cout << BOLD_WHITE << "WrongAnimal " << RESET << "default constructor called" << std::endl;
+    std::cout << BOLD_WHITE << "Animal " << RESET << "default constructor called" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(std::string type)
+Animal::Animal(std::string type)
     :   _type(type)
 {
-    std::cout << BOLD_WHITE << "WrongAnimal " << RESET 
+    std::cout << BOLD_WHITE << "Animal " << RESET 
     << "type constructor called for " << _type << std::endl;
 }
 
-//Copy constructor
-WrongAnimal::WrongAnimal(const WrongAnimal& copy)
+//Copy constructor (deep copy)
+Animal::Animal(const Animal& copy)
     :   _type(copy._type)
 {
-    std::cout << BOLD_WHITE << "WrongAnimal " << RESET << "copy constructor called" << std::endl;
+    std::cout << BOLD_WHITE << "Animal " << RESET << "copy constructor called" << std::endl;
     return ;
 }
 
-//Copy asigment operator overload
-WrongAnimal& WrongAnimal::operator= (const WrongAnimal& copy)
+//Copy asigment operator overload (deep copy)
+Animal& Animal::operator= (const Animal& copy)
 {
     if(this == &copy)
         return *this;
     _type = copy._type;
-    std::cout << BOLD_WHITE << "WrongAnimal " << RESET 
+    std::cout << BOLD_WHITE << "Animal " << RESET 
     << "copy assignment operator overload" << std::endl;
     return (*this);
 }
 
-std::string     WrongAnimal::getType() const
+std::string     Animal::getType() const
 {
     return(_type);
 }
 
-void WrongAnimal::randomSound(std::string *sound) const
+void Animal::randomSound(std::string *sound) const
 {
     //Generating random number that changes according to the current time
     std::srand((unsigned int)(std::time(0)));
     //Computing a random index between 0 e 5
     int i = std::rand() % 5;
-    std::cout << "WrongAnimal makes random sound: " << BOLD_WHITE 
+    std::cout << "Animal makes random sound: " << BOLD_WHITE 
     << sound[i] << RESET << std::endl;
 }
 
-void WrongAnimal::animalSound(std::string *sound) const
+void Animal::animalSound(std::string *sound) const
 {   
-    std::string animal[5] = {"Cow", "Sheep", "Dog", "Duck", "Dat"};
+    std::string animal[5] = {"Cow", "Sheep", "Dog", "Duck", "Cat"};
     for(int i = 0; i < (int)ARRAY_SIZE(animal); i++){
         if(!animal[i].compare(_type))
         {
@@ -61,7 +61,7 @@ void WrongAnimal::animalSound(std::string *sound) const
     << " in our database!" << std::endl;
 }
 
-void WrongAnimal::makeSound() const
+void Animal::makeSound() const
 {
     std::string sound[5] = {"Muuu", "Beeee", "Wooof", "Quack", "Meoww"};
     if(_type.empty())
@@ -70,10 +70,9 @@ void WrongAnimal::makeSound() const
         this->animalSound(sound);
 }
 
-void    WrongAnimal::display() const
+void    Animal::display() const
 {
-    std::cout << std::endl;
-    std::cout << CYAN << "Display wrong animal: " << RESET; 
+    std::cout << CYAN << "Display animal: " << RESET;
     if(!_type.empty())
         std::cout << "Hello, I'm a " << _type << "!" << std::endl;
     else
@@ -81,7 +80,14 @@ void    WrongAnimal::display() const
         << "Having an existencial crises" << RESET << "*" << std::endl;
 }
 
-WrongAnimal::~WrongAnimal()
+bool    Animal::operator== (const std::string& compare) const
+{
+    if(_type.compare(compare) == 0)
+        return(true);
+    return(false);
+}
+
+Animal::~Animal()
 {
     std::cout << BOLD_WHITE << "Animal " << RESET << "destructor called" << std::endl;
 }

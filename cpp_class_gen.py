@@ -1,25 +1,27 @@
 import os
 import sys
 
-def generate_class_files(class_names):
-    # Create 'includes' directory if it doesn't exist
-    includes_dir = 'includes'
-    os.makedirs(includes_dir, exist_ok=True)
+def generate_class_files(class_names, output_dir):
+    # Create the specified output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
 
     first_template_hpp = """\
 #ifndef {guard}
 # define {guard}
 
-# include <iostream>
-# include <string.h>
-# include <unistd.h>
-# define RED "\\033[1;31m"
-# define GREEN "\\033[1;32m"
-# define PURPLE "\\033[1;35m"
-# define YELLOW "\\033[1;33m"
-# define WHITE 	"\\033[1;37m"
-# define CYAN "\\033[1;36m"
-# define RESET "\\033[0m"
+# define RED "\033[31m"
+# define GREEN "\033[32m"
+# define PURPLE "\033[35m"
+# define YELLOW "\033[33m"
+# define WHITE "\033[37m"
+# define CYAN "\033[36m"
+# define BOLD_RED "\033[1;31m"
+# define BOLD_GREEN "\033[1;32m"
+# define BOLD_PURPLE "\033[1;35m"
+# define BOLD_YELLOW "\033[1;33m"
+# define BOLD_WHITE 	"\033[1;37m"
+# define BOLD_CYAN "\033[1;36m"
+# define RESET "\033[0m"
 
 class {class_name} {{
 public:
@@ -85,13 +87,13 @@ private:
     std::cout << WHITE << "{class_name}" << RESET 
     << " destructor called" << std::endl;
 }}
-    """
+"""
 
     last_class_name = None
     for index, class_name in enumerate(class_names):
         # Prepare file names and content
-        header_filename = os.path.join(includes_dir, f"{class_name}.hpp")
-        cpp_filename = f"{class_name}.cpp"
+        header_filename = os.path.join(output_dir, "includes", f"{class_name}.hpp")
+        cpp_filename = os.path.join(output_dir, f"{class_name}.cpp")
         guard_name = f"{class_name.upper()}_H"  # Header guard name
 
         if index == 0:
@@ -101,16 +103,17 @@ private:
                 class_name=class_name,
                 guard=guard_name, 
                 last_class_name=last_class_name if last_class_name else'')
-        
-        cpp_content = template_cpp.format(class_name=class_name, includes_dir=includes_dir)
 
-        # Write header file into 'includes' directory
+        cpp_content = template_cpp.format(class_name=class_name, includes_dir="includes")
+
+        # Write header file into 'includes' directory under the specified output directory
+        os.makedirs(os.path.dirname(header_filename), exist_ok=True)
         with open(header_filename, "w") as header_file:
             header_file.write(header_content)
 
         print(f"Generated {header_filename}")
 
-        # Write cpp file (not in 'includes' directory)
+        # Write cpp file under the specified output directory
         with open(cpp_filename, "w") as cpp_file:
             cpp_file.write(cpp_content)
 
@@ -121,10 +124,12 @@ private:
 
 if __name__ == "__main__":
     # Read class names from command-line arguments
-    class_names = sys.argv[1:]
+    class_names = sys.argv[1:-1]  # All but the last argument
+    output_directory = sys.argv[-1]  # Last argument is the output directory
 
-    if len(class_names) < 1:
-        print("Usage: python3 cppClassGenerator.py ClassName1 ClassName2 ...")
+    if len(class_names) < 1 or not output_directory:
+        print("Usage: python3 cppClassGenerator.py ClassName1 ClassName2 ... OutputDirectory")
         sys.exit(1)
 
-    generate_class_files(class_names)
+    generate_class_files(class_names, output_directory)
+

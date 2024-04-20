@@ -2,7 +2,7 @@
 
 Cat::Cat(): Animal("Cat")
 {
-    std::cout << GREEN << "Cat " << RESET 
+    std::cout << BOLD_YELLOW << "Cat " << RESET 
     << "default constructor called" << std::endl;
 }
 
@@ -16,7 +16,7 @@ Cat::Cat(std::string type)
 Cat::Cat(const Cat& copy)
     :   Animal(copy)
 {
-    std::cout << GREEN << "Cat " << RESET 
+    std::cout << BOLD_YELLOW << "Cat " << RESET 
     << "copy constructor called" << std::endl;
     return ;
 }
@@ -27,19 +27,19 @@ Cat& Cat::operator= (const Cat& copy)
     if(this == &copy)
         return *this;
     _type = copy._type;
-    std::cout << GREEN << "Cat " << RESET 
+    std::cout << BOLD_YELLOW << "Cat " << RESET 
     << "copy assignment operator overload" << std::endl;
     return (*this);
 }
 
 void Cat::makeSound() const
 {
-    std::cout << "Cat makes cat sound: " << GREEN 
+    std::cout << "Cat makes cat sound: " << BOLD_YELLOW 
     << "Meow"<< RESET << std::endl;
 }
 
 Cat::~Cat()
 {
-    std::cout << GREEN << "Cat " << RESET 
+    std::cout << BOLD_YELLOW << "Cat " << RESET 
     << "destructor called" << std::endl;
 }

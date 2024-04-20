@@ -3,6 +3,10 @@
 
 int main()
 {
+    //Because animal is an abstract class,
+    //it is not possible to instantiate an object of Class Animal
+/*     Animal *a = new Animal();
+    Animal  b; */
     std::string number;
     std::cout << "How many animals would you like to create?"
     << std::endl;
