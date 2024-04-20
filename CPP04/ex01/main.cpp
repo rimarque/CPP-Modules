@@ -36,11 +36,11 @@ int main()
     std::cout << std::endl;
     std::cout << "\n\033[32m------Creating New\033[0m Cat:" << std::endl;
     Cat *cat = new Cat();
-    std::cout << "\n\033[32m------Copying a New\033[0m Cat from the original (copy constructor):" << std::endl;
+    std::cout << "\n\033[32m------Copying a New\033[0m Cat from the original to deepcpy1 (copy constructor):" << std::endl;
     Animal *deepcpy1 = new Cat(*cat);
     std::cout << "\n\033[32m------Creating New\033[0m Cat (deepcpy2):" << std::endl;
     Cat *deepcpy2 = new Cat();
-    std::cout << "\n\033[32m------Copying \033[0m Cat from the original(copy assigment op):" << std::endl;
+    std::cout << "\n\033[32m------Copying \033[0m Cat from the original to deepcpy2 (copy assigment op):" << std::endl;
     *deepcpy2 = *cat;
     std::cout << std::endl << CYAN << "------DISPLAY CAT: "
     << RESET << std::endl;

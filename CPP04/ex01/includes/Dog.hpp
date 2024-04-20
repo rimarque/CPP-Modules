@@ -11,8 +11,6 @@ class Dog: public Animal
     public:
         //Default constructor
         Dog();
-        //Constructor that inicialized _name
-        Dog(std::string name);
         //Copy constructor
         Dog(const Dog& copy);
         //Copy assignment constructor

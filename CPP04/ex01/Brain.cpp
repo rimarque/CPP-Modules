@@ -54,6 +54,13 @@ void    Brain::displayIdeas() const
     return ;
 }
 
+void    Brain::setIdeas(std::string ideas)
+{
+    static int i = 0; 
+    std::cout << "Calling setIdeas...\n";
+    _ideas[i] = ideas;
+}
+
 Brain::~Brain() {
     std::cout << WHITE << "Brain" << RESET 
     << " destructor called" << std::endl;

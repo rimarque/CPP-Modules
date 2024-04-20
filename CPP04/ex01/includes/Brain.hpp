@@ -20,6 +20,7 @@ public:
     Brain(const Brain& copy);//Copy constructor
     Brain&  operator= (const Brain& copy); //Copy assignment constructor
     void    displayIdeas() const;
+    void    setIdeas(std::string ideas);
     ~Brain(); // Destructor
 };
 

@@ -7,12 +7,6 @@ Cat::Cat(): Animal("Cat")
     << "default constructor called" << std::endl;
 }
 
-Cat::Cat(std::string type)
-    :   Animal(type)
-{
-    std::cout << "Cat name constructor called" << std::endl;
-}
-
 //Copy constructor
 Cat::Cat(const Cat& copy)
     :   Animal(copy)
@@ -46,6 +40,13 @@ void Cat::display() const
 {
     std::cout << GREEN << "Display cat: " << RESET;
     _brain->displayIdeas();
+    return ;
+}
+
+void Cat::setBrain(std::string ideas) const
+{
+    std::cout << GREEN << "Calling setBrain... " << RESET;
+    _brain->setIdeas(ideas);
     return ;
 }
 

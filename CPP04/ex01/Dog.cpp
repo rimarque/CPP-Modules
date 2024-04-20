@@ -7,13 +7,6 @@ Dog::Dog(): Animal("Dog")
     << "default constructor called" << std::endl;
 }
 
-Dog::Dog(std::string type)
-    :   Animal(type)
-{
-    std::cout << RED << "Dog " << RESET 
-    << "name constructor called" << std::endl;
-}
-
 //Copy constructor
 Dog::Dog(const Dog& copy)
     :   Animal(copy)

@@ -11,8 +11,6 @@ class Cat: public Animal
     public:
         //Default constructor
         Cat();
-        //Constructor that inicialized _name
-        Cat(std::string name);
         //Copy constructor
         Cat(const Cat& copy);
         //Copy assignment constructor
@@ -20,8 +18,8 @@ class Cat: public Animal
         //Myfuncions
         void    makeSound() const;
         void    display() const;
+        void    setBrain(std::string ideas) const;
         ~Cat();
-        
 };
 
 #endif
