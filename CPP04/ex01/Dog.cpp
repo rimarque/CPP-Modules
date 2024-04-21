@@ -11,7 +11,6 @@ Dog::Dog(): Animal("Dog")
 Dog::Dog(const Dog& copy)
     :   Animal(copy)
 {
-    _type = copy._type;
     _brain = new Brain(*copy._brain);
     std::cout << BOLD_PURPLE << "Dog " << RESET 
     << "copy constructor called" << std::endl;

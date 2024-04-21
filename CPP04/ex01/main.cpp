@@ -48,6 +48,7 @@ int main()
     cat->display();
     std::cout << std::endl << CYAN << "------DISPLAY DEEPCOPY (copy constructor): "
     << RESET << std::endl;
+    std::cout << deepcpy1->getType() << std::endl;
     deepcpy1->makeSound();
     deepcpy1->display();
     std::cout << std::endl << CYAN << "------DISPLAY DEEPCOPY (copy assigment op): "

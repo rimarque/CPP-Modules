@@ -11,7 +11,6 @@ Cat::Cat(): Animal("Cat")
 Cat::Cat(const Cat& copy)
     :   Animal(copy)
 {
-    _type = copy._type;
     _brain = new Brain(*copy._brain);
     std::cout << BOLD_YELLOW << "Cat " << RESET 
     << "copy constructor called" << std::endl;

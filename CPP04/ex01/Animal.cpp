@@ -33,6 +33,7 @@ Animal& Animal::operator= (const Animal& copy)
 
 std::string     Animal::getType() const
 {
+    std::cout << BOLD_WHITE << "Calling getType: ";
     return(_type);
 }
 
