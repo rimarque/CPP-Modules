@@ -11,6 +11,11 @@ Cure::Cure(const Cure& copy): AMateria(copy) {
     << " copy constructor called" << std::endl;
 }
 
+Cure::Cure(const AMateria& copy): AMateria(copy){
+     std::cout << WHITE << "Cure-Amateria" << RESET 
+    << " copy constructor called" << std::endl;
+}
+
 // Copy assignment operator overload
 Cure& Cure::operator= (const Cure& copy){
     // Self-assignment check
