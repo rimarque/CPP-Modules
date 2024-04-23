@@ -12,30 +12,36 @@ int main()
     << std::endl;
     std::cin >> number;
     int n = std::atoi(number.c_str());
-    if (n <= 1 || n > 10 || n % 2 != 0){
+    if (n < 0 || n > 10 || n % 2 != 0){
         std::cout << "Error: pick an even number between 2 and 10" << std::endl;
         exit(1);
     }
-    std::cout << std::endl << GREEN << "-----Creating Array of\033[0m Animals:" << std::endl;
-    Animal *animals[n];
-    for(int i=0;i<n/2;i++){
-        animals[i] = new Cat();
+    if (n > 0)
+    {
+        std::cout << std::endl << GREEN << "-----Creating Array of\033[0m Animals:" << std::endl;
+        Animal *animals[n];
+        for(int i=0;i<n/2;i++){
+            animals[i] = new Cat();
+        }
+        for(int i=n/2;i<n;i++){
+            animals[i] = new Dog();
+        }
+        std::cout << std::endl << CYAN << "------DISPLAY ANIMAL ARRAY: "
+        << RESET << std::endl;
+        for (int i = 0; i < n; ++i) {
+            std::cout << "Animal " << i + 1 << ":" << std::endl;
+            animals[i]->makeSound();
+            animals[i]->display();
+            std::cout << std::endl;
+        }
+        std::cout << std::endl << RED << "------Deleting Array of\033[0m Animals:" << std::endl;
+        for (int i = 0; i < n; i++) {
+            delete animals[i];
+        }
     }
-    for(int i=n/2;i<n;i++){
-        animals[i] = new Dog();
-    }
-    std::cout << std::endl << CYAN << "------DISPLAY ANIMAL ARRAY: "
-    << RESET << std::endl;
-    for (int i = 0; i < n; ++i) {
-        std::cout << "Animal " << i + 1 << ":" << std::endl;
-        animals[i]->makeSound();
-        animals[i]->display();
-        std::cout << std::endl;
-    }
-    std::cout << std::endl << RED << "------Deleting Array of\033[0m Animals:" << std::endl;
-    for (int i = 0; i < n; i++) {
-        delete animals[i];
-    }
+    else
+         std::cout << std::endl << RED <<"No array of animals has been created"
+         << RESET << ", lest test our deep copys now!";
     std::cout << std::endl;
     std::cout << std::endl << GREEN << "-----Creating New\033[0m Cat:" << std::endl;
     Cat *cat = new Cat();
@@ -52,6 +58,7 @@ int main()
     cat->display();
     std::cout << std::endl << CYAN << "------DISPLAY DEEPCOPY (copy constructor): "
     << RESET << std::endl;
+    std::cout << deepcpy1->getType() << std::endl;
     deepcpy1->makeSound();
     deepcpy1->display();
     std::cout << std::endl << CYAN << "------DISPLAY DEEPCOPY (copy assigment op): "

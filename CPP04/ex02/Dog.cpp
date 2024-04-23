@@ -23,6 +23,8 @@ Dog& Dog::operator= (const Dog& copy)
     if(this == &copy)
         return *this;
     _type = copy._type;
+    if(_brain)
+        delete _brain;
     _brain = new Brain(*copy._brain);
     std::cout << BOLD_PURPLE << "Dog " << RESET 
     << "copy assignment operator overload" << std::endl;

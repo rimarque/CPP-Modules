@@ -11,10 +11,10 @@ Ice::Ice(const Ice& copy): AMateria(copy){
     << " copy constructor called" << std::endl;
 }
 
-Ice::Ice(const AMateria& copy): AMateria(copy){
+/* Ice::Ice(const AMateria& copy): AMateria(copy){
     std::cout << WHITE << "Ice-Amateria" << RESET 
     << " copy constructor called" << std::endl;
-}
+} */
 
 // Copy assignment operator overload
 Ice& Ice::operator= (const Ice& copy) {

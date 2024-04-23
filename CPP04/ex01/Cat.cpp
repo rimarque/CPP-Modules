@@ -23,6 +23,8 @@ Cat& Cat::operator= (const Cat& copy)
     if(this == &copy)
         return *this;
     _type = copy._type;
+    if(_brain)
+        delete _brain;
     _brain = new Brain(*copy._brain);
     std::cout << BOLD_YELLOW << "Cat " << RESET 
     << "copy assignment operator overload" << std::endl;
