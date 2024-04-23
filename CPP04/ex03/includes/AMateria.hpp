@@ -21,18 +21,18 @@
 # define RESET "\033[0m"
 
 class AMateria {
-public:
-    AMateria(); // Constructor
-    AMateria(std::string const & type); //Constructor that takes a const reference to type
-    AMateria(const AMateria& copy);//Copy constructor
-    AMateria& operator= (const AMateria& copy); //Copy assignment constructor
-    std::string const & getType() const; //Returns the materia type
-    virtual AMateria* clone() const = 0;
-    virtual void use(ICharacter& target);
-    virtual ~AMateria(); // Destructor
+    public:
+        AMateria(); // Constructor
+        AMateria(std::string const & type); //Constructor that takes a const reference to type
+        AMateria(const AMateria& copy);//Copy constructor
+        AMateria& operator= (const AMateria& copy); //Copy assignment constructor
+        std::string const & getType() const; //Returns the materia type
+        virtual AMateria* clone() const = 0;
+        virtual void use(ICharacter& target);
+        virtual ~AMateria(); // Destructor
 
-protected:
-    std::string _type;
+    protected:
+        std::string _type;
 };
 
 #endif // AMATERIA_H

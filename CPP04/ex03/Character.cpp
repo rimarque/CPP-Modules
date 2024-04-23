@@ -69,16 +69,19 @@ void Character::equip(AMateria* m)
     if (_inventory[i])
         delete _inventory[i];
     _inventory[i] = m;
-    std::cout << "A Materia was equiped with " << m->getType() << std::endl;
+    std::cout << "Inventory was equiped with " << m->getType() << std::endl;
 }
 
 void Character::unequip(int idx){
     if (idx < 0 || idx > 3)
         return ;
-    this->_inventory[idx]->setType("Left on the flor"); 
+    this->_inventory[idx] == NULL;
+    std::cout << "Inventory was unequiped at index " << idx << std::endl;
 }
 
-void use(int idx, ICharacter& target);
+void Character::use(int idx, ICharacter& target){
+    target._inventory[]
+}
 
 Character::~Character() {
     std::cout << WHITE << "Character" << RESET 
