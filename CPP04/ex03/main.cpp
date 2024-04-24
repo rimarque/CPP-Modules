@@ -1,6 +1,6 @@
-#include "includes/Cure.hpp"
+#include "includes/Character.hpp"
 
-int main()
+/* int main()
 {
     //AMateria a;
     Cure    b;
@@ -21,6 +21,21 @@ int main()
 
     delete d;
     delete e;
+} */
+
+int main()
+{
+    ICharacter* me = new Character("me");
+    ICharacter* bob = new Character("bob");
+    Cure    *b = new Cure;
+    Ice     *c = new Ice;
+    me->equip(b);
+    me->equip(c);
+    me->use(0, *bob);
+    me->use(1, *bob);
+    delete bob;
+    delete me;
+    return 0;
 }
 
 /* int main()

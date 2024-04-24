@@ -34,7 +34,7 @@ Cure* Cure::clone() const {
 
 void Cure::use(ICharacter& target){
     std::cout << BOLD_GREEN << "Cure" << RESET 
-    << "heals " << target._name << "'s wounds" << std::endl;
+    << "heals " << target.getName() << "'s wounds" << std::endl;
 }
 
 Cure::~Cure() {

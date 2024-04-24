@@ -4,6 +4,9 @@ Character::Character() {
     for(int i = 0; i < 4;i++){
         _inventory[i] = NULL;
     }
+    for(int i = 0; i < 4;i++){
+        _dropedInventory[i] = NULL;
+    }
     std::cout << WHITE << "Character" << RESET 
     << " default constructor called" << std::endl;
 }
@@ -59,31 +62,53 @@ void Character::equip(AMateria* m)
         return ;
     }
     int i = 0;
-    while(_inventory[i] == NULL)
+    //Se a AMateria ja estiver preenchida vai para proximo idx
+    while(_inventory[i] 
+        && _inventory[i]->getType().compare("Left on the floor")
+            && i < 4)
         i++;
-    if(i > 3)
+    //Se i = 4, o inventorio esta cheio
+    if(i == 4)
     {
         std::cout << "Inventory is full, nothing to do" << std::endl;
         return ;
     }
-    if (_inventory[i])
-        delete _inventory[i];
     _inventory[i] = m;
     std::cout << "Inventory was equiped with " << m->getType() << std::endl;
 }
 
 void Character::unequip(int idx){
-    if (idx < 0 || idx > 3)
+    if (idx < 0 || idx > 3){
+        std::cout << "Not a valid index, nothing to do" << std::endl;
         return ;
-    this->_inventory[idx] == NULL;
+    }
+    _dropedInventory[idx] = _inventory[idx];
+    _inventory[idx]->setType("Left on the floor");
     std::cout << "Inventory was unequiped at index " << idx << std::endl;
 }
 
 void Character::use(int idx, ICharacter& target){
-    target._inventory[]
+    if (idx < 0 || idx > 3)
+    {
+        std::cout << "Not a valid index, nothing to do" << std::endl;
+        return ;
+    }
+    if(_inventory[idx] == NULL){
+        std::cout << "Materia is NULL, nothing to do" << std::endl;
+        return ;
+    }
+    _inventory[idx]->use(target);
 }
 
 Character::~Character() {
+    for(int i = 0; i < 4;i++){
+        if (_inventory[i] && _inventory[i]->getType().compare("Left on the floor"))
+            delete _inventory[i];
+    }
+    for(int i = 0; i < 4;i++){
+        if (_dropedInventory[i])
+            delete _inventory[i];
+    }
     std::cout << WHITE << "Character" << RESET 
     << " destructor called" << std::endl;
 }

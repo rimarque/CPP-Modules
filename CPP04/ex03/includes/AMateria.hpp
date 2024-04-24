@@ -20,6 +20,8 @@
 # define BOLD_CYAN "\033[1;36m"
 # define RESET "\033[0m"
 
+# include "ICharacter.hpp"
+
 class AMateria {
     public:
         AMateria(); // Constructor
@@ -27,6 +29,7 @@ class AMateria {
         AMateria(const AMateria& copy);//Copy constructor
         AMateria& operator= (const AMateria& copy); //Copy assignment constructor
         std::string const & getType() const; //Returns the materia type
+        void    setType(std::string const &);
         virtual AMateria* clone() const = 0;
         virtual void use(ICharacter& target);
         virtual ~AMateria(); // Destructor

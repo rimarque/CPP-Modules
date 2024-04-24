@@ -33,7 +33,13 @@ std::string const & AMateria::getType() const {
     return(_type);
 }
 
+void AMateria::setType(std::string const &type) {
+    _type = type;
+}
+
 void AMateria::use(ICharacter& target){
+    std::cout << WHITE << "AMateria" << RESET 
+    << " use called for " << target << std::endl;
 }
 
 AMateria::~AMateria() {

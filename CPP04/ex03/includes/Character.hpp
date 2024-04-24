@@ -3,7 +3,8 @@
 
 # include "ICharacter.hpp"
 
-class Character {
+class Character: public ICharacter
+{
     public:
         Character(); // Constructor
         Character(std::string name); //Name constructor
@@ -16,7 +17,8 @@ class Character {
         ~Character(); // Destructor
 
     private:
-        AMateria* _inventory[4];
+        AMateria*   _inventory[4];
+        AMateria*   _dropedInventory[4];
         std::string _name;
 };
 

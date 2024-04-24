@@ -23,11 +23,11 @@ NAME 			= ex03
 INCLUDE			= includes
 OBJDIR			= obj
 
-_FILES 			= AMateria Cure Ice
+_FILES 			= AMateria Cure Ice ICharacter Character
 
 OBJ				= $(_FILES:%=%.o)
 TARGET			= $(addprefix $(OBJDIR)/, $(OBJ))
-_HEADERS		= AMateria.hpp Cure.hpp Ice.hpp
+_HEADERS		= AMateria.hpp Cure.hpp Ice.hpp ICharacter.hpp Character.hpp
 HDR				= $(addprefix $(INCLUDE)/, $(_HEADERS))
 
 #---------------------------------  RULES  --------------------------------------
