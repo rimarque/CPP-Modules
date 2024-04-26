@@ -66,14 +66,14 @@ private:
 #include "{includes_dir}/{class_name}.hpp"
 
 {class_name}::{class_name}() {{
-    std::cout << WHITE << "{class_name}" << RESET 
+    std::cout << BOLD_WHITE << "{class_name}" << RESET 
     << " default constructor called" << std::endl;
 }}
 
 // Copy constructor
 {class_name}::{class_name}(const {class_name}& copy) {{
     // Copy stuff
-    std::cout << WHITE << "{class_name}" << RESET 
+    std::cout << BOLD_WHITE << "{class_name}" << RESET 
     << " copy constructor called" << std::endl;
 }}
 
@@ -83,13 +83,13 @@ private:
     if (this == &copy)
         return *this;
     // Copy stuff
-    std::cout << WHITE << "{class_name}" << RESET 
+    std::cout << BOLD_WHITE << "{class_name}" << RESET 
     << " copy assignment operator overload" << std::endl;
     return *this;
 }}
 
 {class_name}::~{class_name}() {{
-    std::cout << WHITE << "{class_name}" << RESET 
+    std::cout << BOLD_WHITE << "{class_name}" << RESET 
     << " destructor called" << std::endl;
 }}
 """
