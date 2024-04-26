@@ -1,18 +1,19 @@
 #include "includes/Ice.hpp"
+#include "includes/ICharacter.hpp"
 
 Ice::Ice(): AMateria("ice"){
-    std::cout << WHITE << "Ice" << RESET 
+    std::cout << BOLD_CYAN << "Ice" << RESET 
     << " default constructor called" << std::endl;
 }
 
 // Copy constructor
 Ice::Ice(const Ice& copy): AMateria(copy){
-    std::cout << WHITE << "Ice" << RESET 
+    std::cout << BOLD_CYAN << "Ice" << RESET 
     << " copy constructor called" << std::endl;
 }
 
 /* Ice::Ice(const AMateria& copy): AMateria(copy){
-    std::cout << WHITE << "Ice-Amateria" << RESET 
+    std::cout << BOLD_CYAN << "Ice-Amateria" << RESET 
     << " copy constructor called" << std::endl;
 } */
 
@@ -22,7 +23,7 @@ Ice& Ice::operator= (const Ice& copy) {
     if (this == &copy)
         return *this;
     // Copy stuff
-    std::cout << WHITE << "Ice" << RESET 
+    std::cout << BOLD_CYAN << "Ice" << RESET 
     << " copy assignment operator overload" << std::endl;
     return *this;
 }
@@ -34,10 +35,10 @@ Ice* Ice::clone() const {
 
 void Ice::use(ICharacter& target){
     std::cout << BOLD_CYAN << "Ice" << RESET 
-    << " shoots an ice bolt at" << target._name << std::endl;
+    << " shoots an ice bolt at " << target.getName() << std::endl;
 }
 
 Ice::~Ice() {
-    std::cout << WHITE << "Ice" << RESET 
+    std::cout << BOLD_CYAN << "Ice" << RESET 
     << " destructor called" << std::endl;
 }

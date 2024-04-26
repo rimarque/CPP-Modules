@@ -20,7 +20,7 @@
 # define BOLD_CYAN "\033[1;36m"
 # define RESET "\033[0m"
 
-# include "ICharacter.hpp"
+class ICharacter;
 
 class AMateria {
     public:

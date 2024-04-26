@@ -1,18 +1,19 @@
 #include "includes/Cure.hpp"
+#include "includes/ICharacter.hpp"
 
 Cure::Cure(): AMateria("cure") {
-    std::cout << WHITE << "Cure" << RESET 
+    std::cout << BOLD_GREEN << "Cure" << RESET 
     << " default constructor called" << std::endl;
 }
 
 // Copy constructor
 Cure::Cure(const Cure& copy): AMateria(copy) {
-    std::cout << WHITE << "Cure" << RESET 
+    std::cout << BOLD_GREEN << "Cure" << RESET 
     << " copy constructor called" << std::endl;
 }
 
 /* Cure::Cure(const AMateria& copy): AMateria(copy){
-     std::cout << WHITE << "Cure-Amateria" << RESET 
+     std::cout << BOLD_GREEN << "Cure-Amateria" << RESET 
     << " copy constructor called" << std::endl;
 } */
 
@@ -22,7 +23,7 @@ Cure& Cure::operator= (const Cure& copy){
     if (this == &copy)
         return *this;
     _type = copy._type;
-    std::cout << WHITE << "Cure" << RESET 
+    std::cout << BOLD_GREEN << "Cure" << RESET 
     << " copy assignment operator overload" << std::endl;
     return *this;
 }
@@ -33,11 +34,11 @@ Cure* Cure::clone() const {
 }
 
 void Cure::use(ICharacter& target){
-    std::cout << BOLD_GREEN << "Cure" << RESET 
+    std::cout << BOLD_GREEN << "Cure " << RESET 
     << "heals " << target.getName() << "'s wounds" << std::endl;
 }
 
 Cure::~Cure() {
-    std::cout << WHITE << "Cure" << RESET 
+    std::cout << BOLD_GREEN << "Cure" << RESET 
     << " destructor called" << std::endl;
 }

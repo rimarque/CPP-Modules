@@ -1,7 +1,7 @@
-#ifndef MATERIASOURCE_H
-# define MATERIASOURCE_H
+#ifndef IMATERIASOURCE_H
+# define IMATERIASOURCE_H
 
-# include "ICharacter.hpp"
+# include "AMateria.hpp"
 
 class IMateriaSource {
     public:

@@ -1,9 +1,10 @@
 #ifndef MATERIASOURCE_H
 # define MATERIASOURCE_H
 
-# include "ICharacter.hpp"
+# include "IMateriaSource.hpp"
 
-class MateriaSource {
+class MateriaSource: public IMateriaSource
+{
     public:
         MateriaSource(); // Constructor
         MateriaSource(const MateriaSource& copy);//Copy constructor
@@ -13,7 +14,7 @@ class MateriaSource {
         ~MateriaSource(); // Destructor
 
     private:
-        AMateria    *inventory[4];
+        AMateria    *_inventory[4];
 };
 
 #endif // MATERIASOURCE_H
