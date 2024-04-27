@@ -2,7 +2,7 @@
 #include "includes/Cure.hpp"
 #include "includes/MateriaSource.hpp"
 
-//Error handling - Materia Source
+//Error handling - Materia Source: works!
 /* int main()
 {
     std::cout << PURPLE << "-------Testing some MateriaSource error handling:" << RESET << std::endl;
@@ -31,19 +31,42 @@
     for(int i = 0; i < 8; i++){
         me->use(i, *bob);
     }
+    std::cout << RED << "-------Deleting ICharacter bob:" << std::endl; 
+    delete bob;
+    std::cout << RED << "-------Deleting ICharacter me:" << std::endl; 
+    delete me;
+    std::cout << RED << "-------Deleting IMateriaSource src:" << std::endl; 
+    delete src;
+    return 0;
 } */
 
-//Testing deep copys
+//Testing deep copys: works!
 /* int main()
 {
-    std::cout << PURPLE << "-------Testing copys:" << std::endl;
+    std::cout << GREEN << "-------Creating a MateriaSource src:" << std::endl;
+    MateriaSource src;
+    std::cout << YELLOW << "-------Src is learning Materias:" << std::endl;
+    src.learnMateria(new Ice());
+    src.learnMateria(new Cure());
+    std::cout << PURPLE << "-------Testing MateriaSource copys:" << std::endl;
+    std::cout << GREEN << "-------Creating MateriaSource copy a with assigment op:" << std::endl;
+    MateriaSource a;
+    a = src;
+    std::cout << GREEN << "-------Creating MateriaSource copy b with copy constructor:" << std::endl;
+    MateriaSource b(src);
     std::cout << std::endl;
     std::cout << GREEN << "-------Creating a Character rita:" << std::endl;
     Character rita("rita");
-    std::cout << YELLOW << "-------Equiping rita:" << RESET << std::endl;
-    rita.equip(cure);
-    rita.equip(ice);
+    std::cout << YELLOW << "-------Creating materia cure using MateriaSource a" << RESET << std::endl;
+    AMateria *tmp = a.createMateria("cure");
+    std::cout << YELLOW << "-------Equiping rita with cure:" << RESET << std::endl;
+    rita.equip(tmp);
+    std::cout << YELLOW << "-------Creating materia ice using MateriaSource b" << RESET << std::endl;
+    tmp = b.createMateria("ice");
+    std::cout << YELLOW << "-------Equiping rita with ice:" << RESET << std::endl;
+    rita.equip(tmp);
     std::cout << std::endl;
+    std::cout << PURPLE << "-------Testing Character copys:" << std::endl;
     std::cout << GREEN << "-------Creating a Character copy:" << std::endl;
     Character copy;
     std::cout << YELLOW << "-------Using rita to target rita:" << RESET << std::endl;
@@ -65,21 +88,12 @@
     copy1->use(0, *copy1);
     copy1->use(1, *copy1);
     std::cout << std::endl;
-    std::cout << RED << "-------Deleting ICharacter bob:" << std::endl; 
-    delete bob;
-    std::cout << RED << "-------Deleting ICharacter me:" << std::endl; 
-    delete me;
-    std::cout << RED << "-------Deleting AMateria cure:" << std::endl; 
-    delete cure;
-    std::cout << RED << "-------Deleting AMateria ice:" << std::endl; 
-    delete ice;
-    std::cout << RED << "-------Deleting Character copy1:" << std::endl;
     delete copy1;
     return 0;
 } */
 
-//Testing classes and their methods
-int main()
+//Testing classes and their methods: works!
+/* int main()
 {
     std::cout << GREEN << "-------Creating a pointer to an IMateriaSource src:" << std::endl;
     IMateriaSource* src = new MateriaSource();
@@ -134,13 +148,14 @@ int main()
     std::cout << RED << "-------Deleting IMateriaSource src:" << std::endl; 
     delete src;
     return 0;
-}
+} */
 
 //Subject main
-/* int main()
+int main()
 {
     std::cout << GREEN << "-------Creating a pointer to an IMateriaSource src:" << std::endl;
     IMateriaSource* src = new MateriaSource();
+    std::cout << YELLOW << "-------Src is learning Materias:" << std::endl;
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
     std::cout << GREEN << "-------Creating a pointer to an ICharacter me:" << std::endl;
@@ -158,9 +173,11 @@ int main()
     std::cout << YELLOW << "-------Using me to target bob:" << RESET << std::endl;
     me->use(0, *bob);
     me->use(1, *bob);
+    std::cout << RED << "-------Deleting ICharacter bob:" << std::endl; 
     delete bob;
+    std::cout << RED << "-------Deleting ICharacter me:" << std::endl; 
     delete me;
+    std::cout << RED << "-------Deleting IMateriaSource src:" << std::endl; 
     delete src;
     return 0;
 }
- */

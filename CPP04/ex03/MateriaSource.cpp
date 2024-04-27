@@ -39,7 +39,7 @@ MateriaSource& MateriaSource::operator= (const MateriaSource& copy) {
 }
 
 void            MateriaSource::learnMateria(AMateria* m){
-    std::cout << "Calling learnMateria.. ";
+    std::cout << "Calling learnMateria... ";
     int i = 0;
     if(m == NULL){
         std::cout << "Materia is NULL, nothing to do" << std::endl;
@@ -57,6 +57,8 @@ void            MateriaSource::learnMateria(AMateria* m){
         return ;
     }
     _inventory[i] = m;
+    std::cout << "MateriaSource learned the materia " << m->getType()
+    << " and stored it at index " << i << std::endl;
 }
 
 AMateria*       MateriaSource::createMateria(std::string const & type){
@@ -73,10 +75,8 @@ AMateria*       MateriaSource::createMateria(std::string const & type){
 }
 
 MateriaSource::~MateriaSource() {
-    for(int i = 0; i < _maxInv && _inventory[i];i++){
+    for(int i = 0; i < _maxInv && _inventory[i];i++)
             delete _inventory[i];
-            _inventory[i] = NULL;
-    }
     std::cout << BOLD_WHITE << "MateriaSource" << RESET 
     << " destructor called" << std::endl;
 }

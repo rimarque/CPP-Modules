@@ -110,7 +110,7 @@ void Character::unequip(int idx){
     while(_dropedInventory[i])
         i++;
     if (i >= _maxDropedInv){
-         std::cout << "Error: the trash is full! " << this->_name 
+         std::cout << RED << "Error: the trash is full! " << this->_name 
          << "'s inventory can't be unequiped" << std::endl;
          return ;
     }
@@ -128,19 +128,15 @@ void Character::use(int idx, ICharacter& target){
         std::cout << "No materia in inventory at index " << idx << std::endl;
         return ;
     }
-    std::cout << "Calling use for index " << idx << std::endl;
+    std::cout << "Calling use for index " << idx << ": ";
     _inventory[idx]->use(target);
 }
 
 Character::~Character() {
-    for(int i = 0; i < _maxInv && _inventory[i] && _inventory[i]->getType().compare("Left on the floor");i++){
+    for(int i = 0; i < _maxInv && _inventory[i] && _inventory[i]->getType().compare("Left on the floor");i++)
             delete _inventory[i];
-            _inventory[i] = NULL;
-    }
-    for(int i = 0; i < _maxDropedInv && _dropedInventory[i]; i++){
+    for(int i = 0; i < _maxDropedInv && _dropedInventory[i]; i++)
             delete _dropedInventory[i];
-            _dropedInventory[i] = NULL;
-        }
     std::cout << BOLD_YELLOW << "Character" << RESET 
     << " destructor called for " << _name <<std::endl;
 }
