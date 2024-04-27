@@ -14,7 +14,8 @@ class MateriaSource: public IMateriaSource
         ~MateriaSource(); // Destructor
 
     private:
-        AMateria    *_inventory[4];
+        static const int  _maxInv = 4;
+        AMateria    *_inventory[_maxInv];
 };
 
 #endif // MATERIASOURCE_H

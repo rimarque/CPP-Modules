@@ -17,8 +17,10 @@ class Character: public ICharacter
         ~Character(); // Destructor
 
     private:
-        AMateria*   _inventory[4];
-        AMateria*   _dropedInventory[4];
+        static const int  _maxInv = 4;
+        static const int  _maxDropedInv = 1000;
+        AMateria*   _inventory[_maxInv];
+        AMateria*   _dropedInventory[_maxDropedInv];
         std::string _name;
 };
 

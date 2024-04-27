@@ -2,26 +2,40 @@
 #include "includes/Cure.hpp"
 #include "includes/MateriaSource.hpp"
 
-//Testing AMateria and derived classes; ICharacter and Character --> use, equip and deep copys
+//Error handling - Materia Source
 /* int main()
 {
-    std::cout << GREEN << "-------Creating a pointer to a ICharacter me:" << std::endl;    
+    std::cout << PURPLE << "-------Testing some MateriaSource error handling:" << RESET << std::endl;
+    std::cout << GREEN << "-------Creating a pointer to an IMateriaSource src:" << std::endl;
+    IMateriaSource *src = new MateriaSource();
+    std::cout << GREEN << "-------Creating a pointer to an ICharacter me:" << std::endl;
     ICharacter* me = new Character("me");
-    std::cout << GREEN << "-------Creating a pointer to a ICharacter bob:" << std::endl; 
+    AMateria* tmp;
+    std::cout << GREEN << "-------Creating a pointer to a ICharacter bob:" << std::endl;
     ICharacter* bob = new Character("bob");
-    std::cout << GREEN << "-------Creating a pointer to AMateria cure:" << std::endl; 
-    AMateria    *cure = new Cure;
-    std::cout << GREEN << "-------Creating a pointer to AMateria Ice:" << std::endl; 
-    AMateria     *ice = new Ice;
-    std::cout << std::endl;
-    std::cout << YELLOW << "-------Equiping me:" << RESET << std::endl;
-    me->equip(cure);
-    me->equip(ice);
+    std::cout << YELLOW << "-------Learning creating materias and equiping me:" << RESET << std::endl;
+    for(int i = 0; i < 8; i++){
+       if(i % 2 == 0){
+            src->learnMateria(new Ice());
+            tmp = src->createMateria("");
+            me->equip(tmp);
+       }
+        else{
+            src->learnMateria(NULL);
+            tmp = src->createMateria("cure");
+            me->equip(tmp);
+        }
+    }
     std::cout << std::endl;
     std::cout << YELLOW << "-------Using me to target bob:" << RESET << std::endl;
-    me->use(0, *bob);
-    me->use(1, *bob);
-    std::cout << std::endl;
+    for(int i = 0; i < 8; i++){
+        me->use(i, *bob);
+    }
+} */
+
+//Testing deep copys
+/* int main()
+{
     std::cout << PURPLE << "-------Testing copys:" << std::endl;
     std::cout << std::endl;
     std::cout << GREEN << "-------Creating a Character rita:" << std::endl;
@@ -64,69 +78,68 @@
     return 0;
 } */
 
-//Testing Character functions (equip, use, unequip)
-/* int main()
+//Testing classes and their methods
+int main()
 {
-    std::cout << GREEN << "-------Creating a pointer to a ICharacter me:" << std::endl;    
+    std::cout << GREEN << "-------Creating a pointer to an IMateriaSource src:" << std::endl;
+    IMateriaSource* src = new MateriaSource();
+    std::cout << GREEN << "-------Creating a pointer to an ICharacter me:" << std::endl;
     ICharacter* me = new Character("me");
-    std::cout << GREEN << "-------Creating a pointer to a ICharacter bob:" << std::endl; 
+    AMateria* tmp;
+    std::cout << GREEN << "-------Creating a pointer to a ICharacter bob:" << std::endl;
     ICharacter* bob = new Character("bob");
-    std::cout << GREEN << "-------Creating a pointer to AMateria cure:" << std::endl; 
-    AMateria    *cure = new Cure;
-    std::cout << GREEN << "-------Creating a pointer to AMateria Ice:" << std::endl; 
-    AMateria     *ice = new Ice;
-    std::cout << std::endl;
+    std::cout << PURPLE << "-------Testing empty inventory:" << RESET << std::endl;
     std::cout << YELLOW << "-------Using me to target bob:" << RESET << std::endl;
     for(int i = 0; i < 8; i++){
         me->use(i, *bob);
     }
     std::cout << std::endl;
-    std::cout << YELLOW << "-------Equiping me:" << RESET << std::endl;
-    for(int i = 0; i < 8; i++){
-       if(i % 2 == 0)
-            me->equip(cure);
-        else
-            me->equip(ice);
+    std::cout << PURPLE << "-------Testing Equiping and Unequiping Materias:" << RESET << std::endl;
+    for(int j = 0; j < 8; j++){
+        std::cout << YELLOW << "-------Learning, creating materias and equiping me:" << RESET << std::endl;
+        for(int i = 0; i < 8; i++){
+        if(i % 2 == 0){
+                src->learnMateria(new Cure());
+                tmp = src->createMateria("cure");
+                me->equip(tmp);
+        }
+            else{
+                src->learnMateria(new Ice());
+                tmp = src->createMateria("ice");
+                me->equip(tmp);
+            }
+        }
+        std::cout << std::endl;
+        std::cout << YELLOW << "-------Using me to target bob:" << RESET << std::endl;
+        for(int i = 0; i < 8; i++){
+            me->use(i, *bob);
+        }
+        std::cout << std::endl;
+        std::cout << YELLOW << "-------Unequiping me:" << RESET << std::endl;
+        for(int i = 0; i < 8; i++){
+            me->unequip(i);
+        }
+        std::cout << std::endl;
+        std::cout << YELLOW << "-------Using me to target bob:" << RESET << std::endl;
+        for(int i = 0; i < 8; i++){
+            me->use(i, *bob);
+        }
     }
     std::cout << std::endl;
-    std::cout << YELLOW << "-------Using me to target bob:" << RESET << std::endl;
-    for(int i = 0; i < 8; i++){
-        me->use(i, *bob);
-    }
-    std::cout << std::endl;
-    std::cout << YELLOW << "-------Unequiping me:" << RESET << std::endl;
-    for(int i = 0; i < 8; i++){
-        me->unequip(i);
-    }
-    std::cout << std::endl;
-    std::cout << YELLOW << "-------Using me to target bob:" << RESET << std::endl;
-    for(int i = 0; i < 8; i++){
-        me->use(i, *bob);
-    }
-    std::cout << std::endl;
-    std::cout << YELLOW << "-------Equiping me:" << RESET << std::endl;
-    for(int i = 0; i < 8; i++){
-       if(i % 2 == 0)
-            me->equip(cure);
-        else
-            me->equip(ice);
-    }
     std::cout << std::endl;
     std::cout << RED << "-------Deleting ICharacter bob:" << std::endl; 
     delete bob;
     std::cout << RED << "-------Deleting ICharacter me:" << std::endl; 
     delete me;
-    std::cout << RED << "-------Deleting AMateria cure:" << std::endl; 
-    delete cure;
-    std::cout << RED << "-------Deleting AMateria ice:" << std::endl; 
-    delete ice;
+    std::cout << RED << "-------Deleting IMateriaSource src:" << std::endl; 
+    delete src;
     return 0;
-} */
+}
 
 //Subject main
-int main()
+/* int main()
 {
-    std::cout << GREEN << "-------Creating a pointer to an IMateriaSource me:" << std::endl;
+    std::cout << GREEN << "-------Creating a pointer to an IMateriaSource src:" << std::endl;
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
@@ -150,3 +163,4 @@ int main()
     delete src;
     return 0;
 }
+ */

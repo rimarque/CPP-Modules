@@ -1,10 +1,10 @@
 #include "includes/Character.hpp"
 
 Character::Character() {
-    for(int i = 0; i < 4;i++){
+    for(int i = 0; i < _maxInv;i++){
         _inventory[i] = NULL;
     }
-    for(int i = 0; i < 4;i++){
+    for(int i = 0; i < _maxDropedInv ;i++){
         _dropedInventory[i] = NULL;
     }
     std::cout << BOLD_YELLOW << "Character" << RESET 
@@ -12,26 +12,26 @@ Character::Character() {
 }
 
 Character::Character(std::string name): _name(name) {
-    for(int i = 0; i < 4;i++){
+    for(int i = 0; i < _maxInv;i++){
         _inventory[i] = NULL;
     }
-    for(int i = 0; i < 4;i++){
+    for(int i = 0; i < _maxDropedInv;i++){
         _dropedInventory[i] = NULL;
     }
-    std::cout << BOLD_YELLOW << "Character" << RESET 
+    std::cout << BOLD_YELLOW << "Character" << RESET
     << " name constructor called for " << name << std::endl;
 }
 
 // Copy constructor
 Character::Character(const Character& copy) {
     _name = copy._name;
-    for(int i = 0; i < 4;i++){
+    for(int i = 0; i < _maxInv;i++){
         if(copy._inventory[i])
             _inventory[i] = copy._inventory[i]->clone();
         else
             _inventory[i] = NULL;
     }
-    for(int i = 0; i < 4;i++){
+    for(int i = 0; i < _maxDropedInv;i++){
         if(copy._dropedInventory[i])
             _dropedInventory[i] = copy._dropedInventory[i]->clone();
         else
@@ -47,7 +47,7 @@ Character& Character::operator= (const Character& copy) {
     if (this == &copy)
         return *this;
     _name = copy._name;
-    for(int i = 0; i < 4;i++){
+    for(int i = 0; i < _maxInv;i++){
             if (_inventory[i])
                 delete _inventory[i];
             if(copy._inventory[i])
@@ -55,7 +55,7 @@ Character& Character::operator= (const Character& copy) {
             else
                 _inventory[i] = NULL;
     }
-    for(int i = 0; i < 4;i++){
+    for(int i = 0; i < _maxDropedInv;i++){
         if (_dropedInventory[i])
             delete _dropedInventory[i];
         if(copy._dropedInventory[i])
@@ -82,13 +82,13 @@ void Character::equip(AMateria* m)
     }
     int i = 0;
     //Se a AMateria ja estiver preenchida vai para proximo idx
-    while(_inventory[i] 
-        && _inventory[i]->getType().compare("Left on the floor")
-            && i < 4)
+    while(i < _maxInv && _inventory[i] 
+        && _inventory[i]->getType().compare("Left on the floor"))
         i++;
     //Se i = 4, o inventorio esta cheio
-    if(i == 4)
+    if(i == _maxInv)
     {
+        delete m;
         std::cout << "Inventory is full, nothing to do" << std::endl;
         return ;
     }
@@ -98,7 +98,7 @@ void Character::equip(AMateria* m)
 }
 //Falta testar
 void Character::unequip(int idx){
-    if (idx < 0 || idx > 3){
+    if (idx < 0 || idx >= _maxInv){
         std::cout << "Not a valid index, nothing to do" << std::endl;
         return ;
     }
@@ -106,14 +106,21 @@ void Character::unequip(int idx){
         std::cout << "Materia is NULL, nothing to do" << std::endl;
         return ;
     }
-    _dropedInventory[idx] = _inventory[idx];
-    _inventory[idx]->setType("Left on the floor");
+    int i = 0;
+    while(_dropedInventory[i])
+        i++;
+    if (i >= _maxDropedInv){
+         std::cout << "Error: the trash is full! " << this->_name 
+         << "'s inventory can't be unequiped" << std::endl;
+         return ;
+    }
+    _dropedInventory[i] = _inventory[idx];
+    _inventory[idx]->setType("Left on the floor");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
     std::cout << "Inventory was unequiped at index " << idx << std::endl;
 }
 
 void Character::use(int idx, ICharacter& target){
-    if (idx < 0 || idx > 3)
-    {
+    if (idx < 0 || idx >= _maxInv){
         std::cout << "Not a valid index, nothing to do" << std::endl;
         return ;
     }
@@ -126,16 +133,14 @@ void Character::use(int idx, ICharacter& target){
 }
 
 Character::~Character() {
-    for(int i = 0; i < 4;i++){
-        if (_inventory[i] && _inventory[i]->getType().compare("Left on the floor")) {
+    for(int i = 0; i < _maxInv && _inventory[i] && _inventory[i]->getType().compare("Left on the floor");i++){
             delete _inventory[i];
-        }
+            _inventory[i] = NULL;
     }
-    for(int i = 0; i < 4;i++){
-        if (_dropedInventory[i]) {
+    for(int i = 0; i < _maxDropedInv && _dropedInventory[i]; i++){
             delete _dropedInventory[i];
+            _dropedInventory[i] = NULL;
         }
-    }
     std::cout << BOLD_YELLOW << "Character" << RESET 
     << " destructor called for " << _name <<std::endl;
 }

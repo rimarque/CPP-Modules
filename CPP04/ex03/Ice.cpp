@@ -30,7 +30,7 @@ Ice& Ice::operator= (const Ice& copy) {
 
 //Returns a clone of the class
 Ice* Ice::clone() const {
-    return(new Ice(*this)); 
+    return new Ice(*this); 
 }
 
 void Ice::use(ICharacter& target){
