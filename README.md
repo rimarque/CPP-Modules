@@ -67,3 +67,5 @@ $ ./executable
 [Polymorphism](https://www.geeksforgeeks.org/cpp-polymorphism/)
 
 [Virtual functions and runtime polymorphism](https://www.geeksforgeeks.org/virtual-functions-and-runtime-polymorphism-in-cpp/)
+
+[Abstract Class vs Interface Equivalence in C++](https://blog.devgenius.io/what-is-the-difference-between-interface-and-abstract-class-1b76277f2659)
