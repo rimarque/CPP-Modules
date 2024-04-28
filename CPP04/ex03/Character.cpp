@@ -88,8 +88,8 @@ void Character::equip(AMateria* m)
     //Se i = 4, o inventorio esta cheio
     if(i == _maxInv)
     {
+        std::cout << "Character inventory is full, nothing to do" << std::endl;
         delete m;
-        std::cout << "Inventory is full, nothing to do" << std::endl;
         return ;
     }
     _inventory[i] = m;

@@ -15,7 +15,7 @@ CXX				= c++
 RM 				= rm -rf
 
 #-----------------------------------  FLAGS  -----------------------------------
-CXXFLAGS		= -Wall -Wextra #-Werror -std=c++98
+CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 NPD				= --no-print-directory
 
 #--------------------------------- FILES  ---------------------------------------
@@ -36,10 +36,11 @@ all: $(NAME)
 
 $(NAME): $(OBJDIR) $(TARGET) main.cpp
 	$(CXX) $(CXXFLAGS) main.cpp  $(TARGET) -I $(INCLUDE) -o $(NAME)
+	echo "[$(CYAN)Compiling$(RESET)] $(CXX) $(CXXFLAGS) main.cpp $(RESET)"
 	echo "[$(GREEN)Success$(RESET)] $(NAME) created!$(BOLD)$(RESET)"
 
 $(OBJDIR)/%.o : %.cpp $(HDR)
-	echo "[$(CYAN)Compiling$(RESET)] $(CXXFLAGS) $<$(RESET)"
+	echo "[$(CYAN)Compiling$(RESET)] $(CXX) $(CXXFLAGS) $<$(RESET)"
 	$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(INCLUDE)
 
 $(OBJDIR):

@@ -4,7 +4,7 @@ MateriaSource::MateriaSource() {
     for(int i = 0; i < _maxInv;i++){
         _inventory[i] = NULL;
     }
-    std::cout << BOLD_WHITE << "MateriaSource" << RESET 
+    std::cout << BOLD_YELLOW << "MateriaSource" << RESET 
     << " default constructor called" << std::endl;
 }
 
@@ -16,7 +16,7 @@ MateriaSource::MateriaSource(const MateriaSource& copy) {
         else
             _inventory[i] = NULL;
     }
-    std::cout << BOLD_WHITE << "MateriaSource" << RESET 
+    std::cout << BOLD_YELLOW << "MateriaSource" << RESET 
     << " copy constructor called" << std::endl;
 }
 
@@ -33,7 +33,7 @@ MateriaSource& MateriaSource::operator= (const MateriaSource& copy) {
             else
                 _inventory[i] = NULL;
     }
-    std::cout << BOLD_WHITE << "MateriaSource" << RESET 
+    std::cout << BOLD_YELLOW << "MateriaSource" << RESET 
     << " copy assignment operator overload" << std::endl;
     return *this;
 }
@@ -52,8 +52,8 @@ void            MateriaSource::learnMateria(AMateria* m){
     //Se i = _maxInv, o inventorio esta cheio
     if(i == _maxInv)
     {
+        std::cout << "MateriaSource inventory is full, nothing to do" << std::endl;
         delete m;
-        std::cout << "Inventory is full, nothing to do" << std::endl;
         return ;
     }
     _inventory[i] = m;
@@ -77,6 +77,6 @@ AMateria*       MateriaSource::createMateria(std::string const & type){
 MateriaSource::~MateriaSource() {
     for(int i = 0; i < _maxInv && _inventory[i];i++)
             delete _inventory[i];
-    std::cout << BOLD_WHITE << "MateriaSource" << RESET 
+    std::cout << BOLD_YELLOW << "MateriaSource" << RESET 
     << " destructor called" << std::endl;
 }
