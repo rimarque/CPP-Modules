@@ -2,11 +2,11 @@
 //Exceptions
 
 const char* Bureaucrat::GradeTooHighException::what() const throw(){
-    return "Grade to high!";
+    return "\033[1;31mGrade to high!\033[0m";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw(){
-    return "Grade to low!";
+    return "\033[1;31mGrade to low!\033[0m";
 }
 
 Bureaucrat::Bureaucrat()
@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat()
 }
 
 //atributes constructor
-Bureaucrat::Bureaucrat(std::string name, int grade)
+Bureaucrat::Bureaucrat(std::string& name, int grade)
     :   _name(name)
 {
     if(grade < 1)
@@ -37,17 +37,20 @@ Bureaucrat::Bureaucrat(const Bureaucrat& copy)
         _grade(copy._grade)
 {
     std::cout << BOLD_WHITE << "Bureaucrat" << RESET 
-    << " copy constructor called" << std::endl;
+    << " copy constructor called for " << _name 
+    << " with grade " << _grade << std::endl;
 }
 
 // Copy assignment operator overload
+//(as _name is const it's not modifiable, so it's not copyed) 
 Bureaucrat& Bureaucrat::operator= (const Bureaucrat& copy) {
     // Self-assignment check
     if (this == &copy)
         return *this;
     _grade = copy._grade;
     std::cout << BOLD_WHITE << "Bureaucrat" << RESET 
-    << " copy assignment operator overload" << std::endl;
+    << " copy constructor called for " << _name
+    << " with grade " << _grade << std::endl;
     return *this;
 }
 
@@ -83,6 +86,6 @@ Bureaucrat::~Bureaucrat() {
 //overload do << operator
 std::ostream&       operator<<(std::ostream& out, Bureaucrat src)
 {
-    out << src.getName() << " bureaucrat grade " << src.getGrade();
+    out << src.getName() << ", bureaucrat grade " << src.getGrade();
     return(out);
 }

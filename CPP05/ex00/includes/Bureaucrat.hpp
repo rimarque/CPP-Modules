@@ -32,7 +32,7 @@ public:
             virtual const char* what() const throw();
     };
     Bureaucrat(); // Constructor
-    Bureaucrat(std::string name, int grade); //atributes constructor
+    Bureaucrat(std::string& name, int grade); //atributes constructor
     Bureaucrat(const Bureaucrat& copy);//Copy constructor
     Bureaucrat&         operator= (const Bureaucrat& copy); //Copy assignment constructor
     //Getters:
