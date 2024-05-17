@@ -12,7 +12,7 @@
 git clone git@github.com:rimarque/CPP-Modules.git
 ```
 
-## 💎 **Modules concluded so far**
+## 💎 **Modules concluded**
 ### **Module** 0️⃣0️⃣
 ```
 - Namespaces
@@ -47,6 +47,13 @@ git clone git@github.com:rimarque/CPP-Modules.git
 - Polymorphism
 ```
 
+## 🌐 **Resources**
+[Polymorphism](https://www.geeksforgeeks.org/cpp-polymorphism/)
+
+[Virtual functions and runtime polymorphism](https://www.geeksforgeeks.org/virtual-functions-and-runtime-polymorphism-in-cpp/)
+
+[Abstract Class vs Interface Equivalence in C++](https://blog.devgenius.io/what-is-the-difference-between-interface-and-abstract-class-1b76277f2659)
+
 ## :link: **Compilation**
 
 Choose the module and the exercise you want to compile, for example:
@@ -62,10 +69,3 @@ This rule will generate an executable file. To launch the executable you should 
 ```sh
 $ ./executable
 ```
-
-## 🌐 **Resources**
-[Polymorphism](https://www.geeksforgeeks.org/cpp-polymorphism/)
-
-[Virtual functions and runtime polymorphism](https://www.geeksforgeeks.org/virtual-functions-and-runtime-polymorphism-in-cpp/)
-
-[Abstract Class vs Interface Equivalence in C++](https://blog.devgenius.io/what-is-the-difference-between-interface-and-abstract-class-1b76277f2659)
