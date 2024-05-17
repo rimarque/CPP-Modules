@@ -23,7 +23,7 @@ public:
     int                 getGradeToSign() const;
     int                 getGradeToExecute() const;
     bool                isSigned() const;
-    void                Form::beSigned(Bureaucrat bureaucrat);
+    void                beSigned(Bureaucrat& bureaucrat);
     ~Form(); // Destructor
 
 private:
@@ -32,5 +32,7 @@ private:
     const int           _gradeToSign;
     const int           _gradeToExecute;
 };
+
+std::ostream&       operator<<(std::ostream& out, Form& src);
 
 #endif // FORM_H

@@ -1,6 +1,6 @@
 #include "includes/Bureaucrat.hpp"
+#include "includes/Form.hpp"
 //Exceptions
-
 const char* Bureaucrat::GradeTooHighException::what() const throw(){
     return "\033[1;31mGrade to high!\033[0m";
 }
@@ -77,6 +77,14 @@ void                Bureaucrat::decrementGrade() {
     _grade++;
 }
 
+void                Bureaucrat::signForm(Form& form) const {
+    if(_grade <= form.getGradeToSign()){
+        std::cout << "bureaucrat " << _name << " sign form "
+        << form.getName() <<std::endl;
+    }
+    else
+        throw GradeTooLowException();
+}
 
 Bureaucrat::~Bureaucrat() {
     std::cout << BOLD_YELLOW << "Bureaucrat" << RESET 
@@ -84,7 +92,7 @@ Bureaucrat::~Bureaucrat() {
 }
 
 //overload do << operator
-std::ostream&       operator<<(std::ostream& out, Bureaucrat src)
+std::ostream&       operator<<(std::ostream& out, Bureaucrat& src)
 {
     out << src.getName() << ", bureaucrat grade " << src.getGrade();
     return(out);

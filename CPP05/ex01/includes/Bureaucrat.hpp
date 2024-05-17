@@ -7,6 +7,7 @@
 # include <cstdlib>
 # include <ctime>
 # include <stdexcept>
+#include <limits>
 # define RED "\033[31m"
 # define GREEN "\033[32m"
 # define PURPLE "\033[35m"
@@ -20,6 +21,8 @@
 # define BOLD_WHITE 	"\033[1;37m"
 # define BOLD_CYAN "\033[1;36m"
 # define RESET "\033[0m"
+
+class Form;
 
 class Bureaucrat {
 public:
@@ -41,6 +44,8 @@ public:
     //Increment/decrement grade
     void                incrementGrade();
     void                decrementGrade();
+    //signForm
+    void                signForm(Form& form) const;
     ~Bureaucrat(); // Destructor
 
 private:
@@ -48,6 +53,6 @@ private:
     int                 _grade;
 };
 
-    std::ostream&       operator<<(std::ostream& out, Bureaucrat src);
+std::ostream&       operator<<(std::ostream& out, Bureaucrat& src);
 
 #endif // BUREAUCRAT_H
