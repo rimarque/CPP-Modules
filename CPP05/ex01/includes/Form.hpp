@@ -13,6 +13,10 @@ public:
         public:
             virtual const char* what() const throw();
     };
+    class FormIsSignedException: public std::exception {
+        public:
+            virtual const char* what() const throw();
+    };
     Form(); // Constructor
     Form(std::string& name); //Name constructor
     Form(std::string& name, int gradeToSign, int gradeToExecute); //Atributes constructor
@@ -23,7 +27,7 @@ public:
     int                 getGradeToSign() const;
     int                 getGradeToExecute() const;
     bool                isSigned() const;
-    void                beSigned(Bureaucrat& bureaucrat);
+    void                beSigned(const Bureaucrat& bureaucrat);
     ~Form(); // Destructor
 
 private:

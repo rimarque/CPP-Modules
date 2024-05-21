@@ -41,6 +41,8 @@ public:
     //Getters:
     const std::string&  getName() const;
     int                 getGrade() const;
+    //Setters:
+    
     //Increment/decrement grade
     void                incrementGrade();
     void                decrementGrade();

@@ -9,6 +9,10 @@ const char* Form::GradeTooLowException::what() const throw(){
     return "\033[1;31mGrade to low!\033[0m";
 }
 
+const char* Form::FormIsSignedException::what() const throw(){
+    return "\033[1;31mForm already signed!\033[0m";
+}
+
 Form::Form()
     :   _name("default"),
         _signed(false),
@@ -96,20 +100,13 @@ bool                 Form::isSigned() const {
 }
 
 //Sign form
-void               Form::beSigned(Bureaucrat& b)
+void               Form::beSigned(const Bureaucrat& b)
 {
-    if(_signed){
-        std::cout << "The form " << _name
-        << " his already signed" << std::endl;
-        return;
-    }
-    if(b.getGrade() <= _gradeToSign) {
-        _signed = true;
-        std::cout << "The form " << _name
-        << " was signed by bureaucrat " << b.getName() << std::endl;
-        return;
-    }
-    throw GradeTooLowException();
+    if(_signed)
+        throw FormIsSignedException();
+    if(b.getGrade() > _gradeToSign)
+        throw GradeTooLowException();
+    _signed = true;
 }
 
 Form::~Form() {

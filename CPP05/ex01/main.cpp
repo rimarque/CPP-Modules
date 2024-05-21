@@ -38,99 +38,49 @@ void    set_input(std::string *bName, std::string *fName, int *bGrade, int *fGra
     std::system("clear");
 }
 
-void    test_const_copy(Form& form)
+void    testForm(Bureaucrat& bure, Form& form)
 {
-    std::cout << GREEN << std::endl << "-------Creating a copy of the form, using copy constructor" << RESET << std::endl;
-    Form    copy1(form);
-    std::cout << GREEN << std::endl << "-------Creating a form, using default constructor" << RESET << std::endl;
-    Form    copy2;
-    std::cout << std::endl << CYAN << "-------Testing atributes constructor" << RESET << std::endl;
-    std::cout << form << std::endl;
-    std::cout << std::endl << CYAN << "-------Testing copy constructor" << RESET << std::endl;
-    std::cout << copy1 << std::endl;
-    std::cout << std::endl << CYAN << "-------Testing default constructor" << RESET << std::endl;
-    std::cout << copy2 << std::endl;
-    std::cout << std::endl << CYAN << "-------Testing copy assigment operator (copying copy to default)" << RESET << std::endl;
-    copy2 = copy1;
-    std::cout << copy2 << std::endl;
-}
-void    test_beSigned(Form& form, Form form2, Bureaucrat bure, Bureaucrat newBure)
-{
-    std::cout << std::endl << CYAN << "-------Testing beSigned: " << RESET << std::endl;
-    std::cout << std::endl << CYAN << "-------Form1, Bureaucrat1: " << RESET;
-    form.beSigned(bure);
-    std::cout << std::endl << CYAN << "-------Form1, Bureaucrat1: " << RESET;
-    form.beSigned(bure);
-    std::cout << std::endl << CYAN << "-------Form2, Bureaucrat2: " << RESET;
-    form2.beSigned(newBure);
-    std::cout << std::endl;
-}
+  std::string rita = "rita";
 
-void    test_signForm(Form& form, Form form2, Bureaucrat bure, Bureaucrat newBure)
-{
-    std::cout << std::endl << CYAN << "-------Testing beSigned: " << RESET << std::endl;
-    std::cout << std::endl << CYAN << "-------Form1, Bureaucrat1: " << RESET;
-    bure.signForm(form);
-    std::cout << std::endl << CYAN << "-------Form1, Bureaucrat1: " << RESET;
-    bure.signForm(form);
-    std::cout << std::endl << CYAN << "-------Form2, Bureaucrat2: " << RESET;
-    form2.beSigned(newBure);
-    std::cout << std::endl;
-
-}
-
-void    test_form(Bureaucrat& bure, Form& form, int test) {
-    std::string formName2("form2");
-    std::string formName3("form3");
-
-    std::cout << GREEN << std::endl << "-------Creating bureaucrat2" << RESET << std::endl;
-    Bureaucrat    newBure;
-    std::cout << GREEN << std::endl << "-------Creating form2" << RESET << std::endl;
-    Form    form2(formName2);
-    std::cout << GREEN << std::endl << "-------Creating form 3" << RESET << std::endl;
-    Form    form3(formName3);
-    std::cout << std::endl;
-
-    std::cout << CYAN << std::endl << "-------Display bureaucrat2" << RESET << std::endl;
-    std::cout << newBure << std::endl;
-    std::cout << CYAN << std::endl << "-------Display form2" << RESET << std::endl;
-    std::cout << form2 << std::endl;
-    std::cout << CYAN << std::endl << "-------Display form3" << RESET << std::endl;
-    std::cout << form3 << std::endl;
-    std::cout << std::endl;
-    
-    if(test == 1)
-        test_beSigned();
-    if(test == 2)
-        test_signForm();
-    std::cout << std::endl << CYAN << "-------Testing signForm: " << RESET << std::endl;
-    std::cout << std::endl << CYAN << "-------Form1, Bureaucrat1" << RESET;
-    bure.signForm(form);
-    std::cout << std::endl << CYAN << "-------Form2, Bureaucrat1" << RESET;
-    bure.signForm(form2);
-    std::cout << std::endl << CYAN << "-------Form3, Bureaucrat2: " << RESET;
-    newBure.signForm(form3);
-    std::cout << std::endl;
+  std::cout << GREEN << std::endl << "-------Creating a copy of the form, using copy constructor" << RESET << std::endl;
+  Form    copy1(form);
+  std::cout << GREEN << std::endl << "-------Creating a form, using default constructor" << RESET << std::endl;
+  Form    copy2;
+  std::cout << std::endl << CYAN << "-------Testing atributes constructor" << RESET << std::endl;
+  std::cout << form << std::endl;
+  std::cout << std::endl << CYAN << "-------Testing copy constructor" << RESET << std::endl;
+  std::cout << copy1 << std::endl;
+  std::cout << std::endl << CYAN << "-------Testing default constructor" << RESET << std::endl;
+  std::cout << copy2 << std::endl;
+  std::cout << std::endl << CYAN << "-------Testing sign form: " << RESET << std::endl;
+  bure.signForm(form);
+  std::cout << std::endl << CYAN << "-------Displaying form" << RESET << std::endl;
+  std::cout << form << std::endl;
+  std::cout << std::endl << CYAN << "-------Testing copy assigment operator (copying form to default)" 
+  << std::endl << "[only copies bool signed, because other atributes are constante]" << RESET << std::endl;
+  copy2 = form;
+  std::cout << copy2 << std::endl;
+  std::cout << std::endl << CYAN << "-------Testing sign form: " << RESET << std::endl;
+  bure.signForm(form);
 }
 
 int main()
 {
-    std::string bName;
-    std::string fName;
-    int         bGrade;
-    int         fGradeSign;
-    int         fGradeExec;
+  std::string bName;
+  std::string fName;
+  int         bGrade;
+  int         fGradeSign;
+  int         fGradeExec;
 
-    set_input(&bName, &fName, &bGrade, &fGradeSign, &fGradeExec);
-    try{
-        std::cout << GREEN << std::endl << "-------Creating a Bureaucrat, using atributes constructor" << RESET << std::endl;
-        Bureaucrat bure(bName, bGrade);
-        std::cout << GREEN << std::endl << "-------Creating a Form, using atributes constructor" << RESET << std::endl;
-        Form       form(fName, fGradeSign, fGradeExec);
-        test_const_copy(form);
-        test_form(bure, form);
-    }
-    catch (const std::exception& e) {
-            std::cerr << std::endl << e.what() << std::endl << std::endl;
-    }
+  set_input(&bName, &fName, &bGrade, &fGradeSign, &fGradeExec);
+  try{
+    std::cout << GREEN << std::endl << "-------Creating a Bureaucrat, using atributes constructor" << RESET << std::endl;
+    Bureaucrat bure(bName, bGrade);
+    std::cout << GREEN << std::endl << "-------Creating a Form, using atributes constructor" << RESET << std::endl;
+    Form       form(fName, fGradeSign, fGradeExec);
+    testForm(bure, form);
+  }
+  catch (const std::exception& e) {
+    std::cerr << std::endl << e.what() << std::endl << std::endl;
+  }
 }
