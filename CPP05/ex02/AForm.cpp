@@ -13,6 +13,10 @@ const char* AForm::FormIsSignedException::what() const throw(){
     return "\033[1;31mForm already signed!\033[0m";
 }
 
+const char* AForm::FormNotSignedException::what() const throw(){
+    return "\033[1;31mForm not signed!\033[0m";
+}
+
 AForm::AForm()
     :   _name("default"),
         _signed(false),
@@ -41,7 +45,7 @@ AForm::AForm(std::string& name)
 }
 
 //Atributes constructor
-AForm::AForm(std::string& name, int gradeToSign, int gradeToExecute)
+AForm::AForm(std::string name, int gradeToSign, int gradeToExecute)
     :   _name(name),
         _signed(false),
         _gradeToSign(gradeToSign),
@@ -99,6 +103,11 @@ bool                 AForm::isSigned() const {
     return _signed;
 }
 
+//Setters
+void                AForm::setSigned(bool s){
+    _signed = s;
+}
+
 //Sign AForm
 void               AForm::beSigned(const Bureaucrat& b)
 {
@@ -109,7 +118,28 @@ void               AForm::beSigned(const Bureaucrat& b)
     _signed = true;
 }
 
+
+/* You have to check that the form is signed and that the grade of the bureaucrat
+attempting to execute the form is high enough. */
+void                AForm::execute(Bureaucrat const& executor) const
+{
+    if(!_signed)
+        throw FormNotSignedException();
+    if(executor.getGrade() > _gradeToExecute)
+        throw GradeTooLowException();
+}
+
 AForm::~AForm() {
     std::cout << BOLD_PURPLE << "AForm" << RESET 
     << " destructor called" << std::endl;
+}
+
+//overload do << operator
+std::ostream&       operator<<(std::ostream& out, AForm& src)
+{
+    out << "Name: " << src.getName() << std::endl; 
+    out << "The form is signed: " << std::boolalpha << src.isSigned() << std::endl;
+    out << "Grade required to sign: " << src.getGradeToSign() << std::endl;
+    out << "Grade required to execute: " << src.getGradeToExecute() << std::endl;
+    return(out);
 }

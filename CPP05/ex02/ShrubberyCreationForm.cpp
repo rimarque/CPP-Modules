@@ -1,38 +1,29 @@
 #include "includes/ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-    :   _target("default"),
-        _signed(false),
-        _gradeToSign(75),
-        _gradeToExecute(50)
+    :   AForm("ShrubberyCreation", 245, 137), _target("default")
 {
     std::cout << BOLD_PURPLE << "ShrubberyCreationForm" << RESET 
     << " default constructor called "
-    << " with grade required to sign equal to " << _gradeToSign 
-    << " and grade required to execute equal to " << _gradeToExecute 
+    << " with grade required to sign equal to " << this->getGradeToSign() 
+    << " and grade required to execute equal to " << this->getGradeToSign() 
     << std::endl;
 }
 
 //target constructor
-ShrubberyCreationForm::ShrubberyCreationForm(std::string& target)
-    :   _target(target),
-        _signed(false),
-        _gradeToSign(75),
-        _gradeToExecute(50)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
+    :   AForm("ShrubberyCreation", 245, 137), _target(target)
 {
     std::cout << BOLD_PURPLE << "ShrubberyCreationForm" << RESET 
-    << " default constructor called for " << _target
-    << " with grade required to sign equal to " << _gradeToSign 
-    << " and grade required to execute equal to " << _gradeToExecute 
+    << " target constructor called for " << _target
+    << " with grade required to sign equal to " << this->getGradeToSign()
+    << " and grade required to execute equal to " << this->getGradeToExecute()
     << std::endl;
 }
 
 // Copy constructor
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy)
-    :   _target(copy._target),
-        _signed(copy._signed),
-        _gradeToSign(copy._gradeToSign),
-        _gradeToExecute(copy._gradeToExecute)
+    :  AForm(copy), _target(copy._target),
 {
     std::cout << BOLD_PURPLE << "ShrubberyCreationForm" << RESET 
     << " copy constructor called for " 
@@ -44,7 +35,8 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator= (const ShrubberyCreation
     // Self-assignment check
     if (this == &copy)
         return *this;
-    _signed = copy._signed;
+    _target = copy._target;
+    this->setSigned(copy.isSigned());
     std::cout << BOLD_PURPLE << "ShrubberyCreationForm" << RESET 
     << " copy assignment operator overload called for " 
     << _target << std::endl;
@@ -52,30 +44,25 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator= (const ShrubberyCreation
 }
 
 //Getters:
-const std::string&  ShrubberyCreationForm::getTarget() const {
+std::string  ShrubberyCreationForm::getTarget() const {
     return _target;
 }
 
-const int             ShrubberyCreationForm::getGradeToSign() const {
-    return _gradeToSign;
+//Getters:
+void        ShrubberyCreationForm::setTarget(std::string target) {
+    _target = target;
 }
 
-const int            ShrubberyCreationForm::getGradeToExecute() const {
-    return _gradeToExecute;
-}
-
-bool                 ShrubberyCreationForm::isSigned() const {
-    return _signed;
-}
-
-//Sign ShrubberyCreationForm
-void               ShrubberyCreationForm::beSigned(const Bureaucrat& b)
+//Execute ShrubberyCreationForm
+void        ShrubberyCreationForm::executeAction(const Bureaucrat& executer) const
 {
-    if(_signed)
-        throw FormIsSignedException();
-    if(b.getGrade() > _gradeToSign)
-        throw GradeTooLowException();
-    _signed = true;
+    try{
+        this->execute(executer);
+        //write code of execution
+    }
+    catch(const std::exception& e){
+        std::cerr << e.what() << std::endl;
+    }
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
@@ -84,9 +71,9 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 }
 
 //overload do << operator
-std::ostream&       operator<<(std::ostream& out, Form& src)
+std::ostream&       operator<<(std::ostream& out, ShrubberyCreationForm& src)
 {
-    out << "target: " << src.getTarget() << std::endl; 
+    out << "Target: " << src.getTarget() << std::endl; 
     out << "The form is signed: " << std::boolalpha << src.isSigned() << std::endl;
     out << "Grade required to sign: " << src.getGradeToSign() << std::endl;
     out << "Grade required to execute: " << src.getGradeToExecute() << std::endl;

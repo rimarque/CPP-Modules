@@ -17,18 +17,26 @@ public:
         public:
             virtual const char* what() const throw();
     };
+    class FormNotSignedException: public std::exception {
+        public:
+            virtual const char* what() const throw();
+    };
     AForm(); // Constructor
     AForm(std::string& name); //Name constructor
-    AForm(std::string& name, int gradeToSign, int gradeToExecute); //Atributes constructor
+    AForm(std::string name, int gradeToSign, int gradeToExecute); //Atributes constructor
     AForm(const AForm& copy);//Copy constructor
-    virtual AForm& operator= (const AForm& copy); //Copy assignment constructor
+    AForm& operator= (const AForm& copy); //Copy assignment constructor
     //Getters:
-    virtual const std::string&  getName() const;
-    virtual const int           getGradeToSign() const;
-    virtual const int           getGradeToExecute() const;
-    virtual bool                isSigned() const;
-    virtual void                beSigned(const Bureaucrat& bureaucrat);
-    virtual void                execute(Bureaucrat const& executor) = 0;
+    const std::string&  getName() const;
+    const int           getGradeToSign() const;
+    const int           getGradeToExecute() const;
+    bool                isSigned() const;
+    //Setters:
+    void                setSigned(bool);
+    //My functions
+    void                beSigned(const Bureaucrat& bureaucrat);
+    void                execute(Bureaucrat const& executor) const;
+    virtual void        executeAction(const Bureaucrat& executer) const = 0;
     ~AForm(); // Destructor
 
 private:
@@ -37,5 +45,7 @@ private:
     const int           _gradeToSign;
     const int           _gradeToExecute;
 };
+
+std::ostream&       operator<<(std::ostream& out, AForm& src);
 
 #endif // FORM_H

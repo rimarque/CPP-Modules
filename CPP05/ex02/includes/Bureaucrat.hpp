@@ -41,13 +41,13 @@ public:
     //Getters:
     const std::string&  getName() const;
     int                 getGrade() const;
-    //Setters:
-    
     //Increment/decrement grade
     void                incrementGrade();
     void                decrementGrade();
     //signForm
-    void                signForm(Form& form) const;
+    void                signForm(AForm& form) const;
+    //executeForm
+    void                executeForm(AForm const & form);
     ~Bureaucrat(); // Destructor
 
 private:
