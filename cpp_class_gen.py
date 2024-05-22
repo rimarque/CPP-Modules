@@ -99,7 +99,7 @@ private:
         # Prepare file names and content
         header_filename = os.path.join(output_dir, "includes", f"{class_name}.hpp")
         cpp_filename = os.path.join(output_dir, f"{class_name}.cpp")
-        guard_name = f"{class_name.upper()}_H"  # Header guard name
+        guard_name = f"{class_name.upper()}_HPP"  # Header guard name
 
         if index == 0:
             header_content = first_template_hpp.format(class_name=class_name, guard=guard_name)
