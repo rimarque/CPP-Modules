@@ -6,10 +6,14 @@
 class ShrubberyCreationForm: public AForm 
 {
 public:
+    class FileUnableToOpenException: public std::exception {
+        public:
+            virtual const char* what(std::string filename) const throw();
+    };
     ShrubberyCreationForm(); // Constructor
     ShrubberyCreationForm(std::string target); //Name constructor
     ShrubberyCreationForm(const ShrubberyCreationForm& copy);//Copy constructor
-    ShrubberyCreationForm& operator= (const ShrubberyCreationForm& copy); //Copy assignment constructor
+    ShrubberyCreationForm& operator= (const ShrubberyCreationForm& copy); //Copy assignment op
     //Getters:
     std::string getTarget() const;
     //Setters:

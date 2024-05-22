@@ -109,11 +109,11 @@ void                AForm::setSigned(bool s){
 }
 
 //Sign AForm
-void               AForm::beSigned(const Bureaucrat& b)
+void               AForm::beSigned(const Bureaucrat& signer)
 {
     if(_signed)
         throw FormIsSignedException();
-    if(b.getGrade() > _gradeToSign)
+    if(signer.getGrade() > _gradeToSign)
         throw GradeTooLowException();
     _signed = true;
 }

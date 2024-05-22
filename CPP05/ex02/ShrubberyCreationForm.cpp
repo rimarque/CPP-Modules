@@ -1,5 +1,12 @@
 #include "includes/ShrubberyCreationForm.hpp"
 
+//Exceptions
+const char* ShrubberyCreationForm::FileUnableToOpenException::what(std::string filename) const throw(){
+    std::string result = "\033[1;31mUnable to open file ";
+    result.append(filename);
+    return result.c_str();
+}
+
 ShrubberyCreationForm::ShrubberyCreationForm()
     :   AForm("ShrubberyCreation", 245, 137), _target("default")
 {
@@ -23,7 +30,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
 
 // Copy constructor
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy)
-    :  AForm(copy), _target(copy._target),
+    :  AForm(copy), _target(copy._target)
 {
     std::cout << BOLD_PURPLE << "ShrubberyCreationForm" << RESET 
     << " copy constructor called for " 
@@ -58,10 +65,27 @@ void        ShrubberyCreationForm::executeAction(const Bureaucrat& executer) con
 {
     try{
         this->execute(executer);
-        //write code of execution
+        std::string filename = _target + "_shrubbery";
+        std::ofstream file(filename.c_str());
+        if (!file.is_open())
+            throw FileUnableToOpenException();
+        std::string asciiTree = 
+        "      ccee88oo\n"
+        " C8O8O8Q8PoOb o8oo\n"
+        "dOB69QO8PdUOpugoO9bD\n"
+        "CgggbU8OU qOp qOdoUOdcb\n"
+        "     6OuU  /p u gcoUodpP\n"
+        "       \\\\//  /douUP\n"
+        "         \\\\\\//&/\n"
+        "          |||/\\\\\n"
+        "          |||\\\\/\n"
+        "          |||||\n"
+        "    .....//||||\\\\....\n";
+        file << asciiTree;
+        file.close();
     }
     catch(const std::exception& e){
-        std::cerr << e.what() << std::endl;
+        std::cerr << e.what() << RESET << std::endl;
     }
 }
 

@@ -1,7 +1,8 @@
-#ifndef BUREAUCRAT_H
-# define BUREAUCRAT_H
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
 
 # include <iostream>
+# include <fstream>
 # include <string.h>
 # include <unistd.h>
 # include <cstdlib>
@@ -22,7 +23,7 @@
 # define BOLD_CYAN "\033[1;36m"
 # define RESET "\033[0m"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 public:
