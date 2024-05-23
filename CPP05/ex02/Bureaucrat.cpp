@@ -14,7 +14,7 @@ Bureaucrat::Bureaucrat()
     :   _name("default"),
         _grade(150)
 {
-    std::cout << BOLD_YELLOW << "Bureaucrat" << RESET 
+    std::cout << BOLD_CYAN << "Bureaucrat" << RESET 
     << " default constructor called" << std::endl;
 }
 
@@ -27,7 +27,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
     if(grade > 150)
         throw GradeTooLowException();
     _grade = grade;
-    std::cout << BOLD_YELLOW << "Bureaucrat" << RESET 
+    std::cout << BOLD_CYAN << "Bureaucrat" << RESET 
     << " atributes constructor called for " << name 
     << " with grade " << grade << std::endl;
 }
@@ -37,7 +37,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& copy)
     :   _name(copy._name),
         _grade(copy._grade)
 {
-    std::cout << BOLD_YELLOW << "Bureaucrat" << RESET 
+    std::cout << BOLD_CYAN << "Bureaucrat" << RESET 
     << " copy constructor called for " << _name 
     << " with grade " << _grade << std::endl;
 }
@@ -49,7 +49,7 @@ Bureaucrat& Bureaucrat::operator= (const Bureaucrat& copy) {
     if (this == &copy)
         return *this;
     _grade = copy._grade;
-    std::cout << BOLD_YELLOW << "Bureaucrat" << RESET 
+    std::cout << BOLD_CYAN << "Bureaucrat" << RESET 
     << " copy constructor called for " << _name
     << " with grade " << _grade << std::endl;
     return *this;
@@ -81,11 +81,11 @@ void                Bureaucrat::decrementGrade() {
 void                Bureaucrat::signForm(AForm& form) const {
     try{
         form.beSigned(*this);
-        std::cout << "Bureaucrat " << _name 
+        std::cout << BOLD_CYAN << "Bureaucrat: " << RESET << _name 
         << " signed form " << form.getName() << std::endl;
     }
     catch (const std::exception& e) {
-            std::cerr << "Bureaucrat " << _name 
+            std::cerr << BOLD_CYAN << "Bureaucrat " << RESET << _name 
             << " couldn't sign form " << form.getName() << " because " 
             << e.what() << std::endl;
     }
@@ -94,18 +94,18 @@ void                Bureaucrat::signForm(AForm& form) const {
 void                Bureaucrat::executeForm(AForm const & form){
     try{
         form.executeAction(*this);
-        std::cout << "Bureaucrat " << _name 
+        std::cout << BOLD_CYAN << "Bureaucrat " << RESET << _name 
         << " executed " << form.getName() << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << std::endl;
+        std::cerr << BOLD_CYAN << "Bureaucrat: " << RESET << e.what() << std::endl;
     }
     
 }
 
 Bureaucrat::~Bureaucrat() {
-    std::cout << BOLD_YELLOW << "Bureaucrat" << RESET 
+    std::cout << BOLD_CYAN << "Bureaucrat" << RESET 
     << " destructor called" << std::endl;
 }
 

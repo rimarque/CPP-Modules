@@ -23,7 +23,7 @@ AForm::AForm()
         _gradeToSign(75),
         _gradeToExecute(50)
 {
-    std::cout << BOLD_PURPLE << "AForm" << RESET 
+    std::cout << BOLD_WHITE << "AForm" << RESET 
     << " default constructor called "
     << " with grade required to sign equal to " << _gradeToSign 
     << " and grade required to execute equal to " << _gradeToExecute 
@@ -37,7 +37,7 @@ AForm::AForm(std::string& name)
         _gradeToSign(75),
         _gradeToExecute(50)
 {
-    std::cout << BOLD_PURPLE << "AForm" << RESET 
+    std::cout << BOLD_WHITE << "AForm" << RESET 
     << " default constructor called for " << _name
     << " with grade required to sign equal to " << _gradeToSign 
     << " and grade required to execute equal to " << _gradeToExecute 
@@ -55,7 +55,7 @@ AForm::AForm(std::string name, int gradeToSign, int gradeToExecute)
         throw GradeTooHighException();
     if(gradeToSign > 150 || gradeToExecute > 150)
         throw GradeTooLowException();
-    std::cout << BOLD_PURPLE << "AForm" << RESET 
+    std::cout << BOLD_WHITE << "AForm" << RESET 
     << " atributes constructor called for " << _name 
     << " with grade required to sign equal to " << _gradeToSign 
     << " and grade required to execute equal to " << _gradeToExecute 
@@ -69,7 +69,7 @@ AForm::AForm(const AForm& copy)
         _gradeToSign(copy._gradeToSign),
         _gradeToExecute(copy._gradeToExecute)
 {
-    std::cout << BOLD_PURPLE << "AForm" << RESET 
+    std::cout << BOLD_WHITE << "AForm" << RESET 
     << " copy constructor called for " 
     << _name << std::endl;
 }
@@ -80,7 +80,7 @@ AForm& AForm::operator= (const AForm& copy) {
     if (this == &copy)
         return *this;
     _signed = copy._signed;
-    std::cout << BOLD_PURPLE << "AForm" << RESET 
+    std::cout << BOLD_WHITE << "AForm" << RESET 
     << " copy assignment operator overload called for " 
     << _name << std::endl;
     return *this;
@@ -130,7 +130,7 @@ void                AForm::execute(Bureaucrat const& executor) const
 }
 
 AForm::~AForm() {
-    std::cout << BOLD_PURPLE << "AForm" << RESET 
+    std::cout << BOLD_WHITE << "AForm" << RESET 
     << " destructor called" << std::endl;
 }
 

@@ -23,5 +23,6 @@ private:
 };
 
 std::ostream&       operator<<(std::ostream& out, PresidentialPardonForm& src);
+void                testPresidentialPardonForm();
 
 #endif // FORM_H

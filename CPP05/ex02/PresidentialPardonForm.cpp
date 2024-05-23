@@ -5,8 +5,6 @@ PresidentialPardonForm::PresidentialPardonForm()
 {
     std::cout << BOLD_PURPLE << "PresidentialPardonForm" << RESET 
     << " default constructor called "
-    << " with grade required to sign equal to " << this->getGradeToSign() 
-    << " and grade required to execute equal to " << this->getGradeToSign() 
     << std::endl;
 }
 
@@ -15,9 +13,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target)
     :   AForm("ShrubberyCreation", 25, 5), _target(target)
 {
     std::cout << BOLD_PURPLE << "PresidentialPardonForm" << RESET 
-    << " target constructor called for " << _target
-    << " with grade required to sign equal to " << this->getGradeToSign()
-    << " and grade required to execute equal to " << this->getGradeToExecute()
+    << " constructor called with target " << _target
     << std::endl;
 }
 
@@ -26,7 +22,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& cop
     :  AForm(copy), _target(copy._target)
 {
     std::cout << BOLD_PURPLE << "PresidentialPardonForm" << RESET 
-    << " copy constructor called for " 
+    << " copy constructor called with target " 
     << _target << std::endl;
 }
 

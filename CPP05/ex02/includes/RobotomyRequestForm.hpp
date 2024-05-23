@@ -27,5 +27,6 @@ private:
 };
 
 std::ostream&       operator<<(std::ostream& out, RobotomyRequestForm& src);
+void                testRobotomyRequestForm();
 
 #endif // FORM_H

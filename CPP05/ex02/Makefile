@@ -23,11 +23,14 @@ NAME 			= ex02
 INCLUDE			= includes
 OBJDIR			= obj
 
-_FILES 			= Bureaucrat AForm PresidentialPardonForm RobotomyRequestForm ShrubberyCreationForm
+_FILES 			= Bureaucrat AForm PresidentialPardonForm RobotomyRequestForm ShrubberyCreationForm \
+					TestPresidentialPardonForm TestRobotomyRequestForm TestShrubberyCreationForm \
+					InvalidOptionException
 
 OBJ				= $(_FILES:%=%.o)
 TARGET			= $(addprefix $(OBJDIR)/, $(OBJ))
-_HEADERS		= Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp
+_HEADERS		= Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp \
+					ShrubberyCreationForm.hpp InvalidOptionException.hpp
 HDR				= $(addprefix $(INCLUDE)/, $(_HEADERS))
 
 #---------------------------------  RULES  --------------------------------------

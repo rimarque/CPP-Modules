@@ -6,23 +6,18 @@ const char* ShrubberyCreationForm::FileUnableToOpenException::what() const throw
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-    :   AForm("ShrubberyCreation", 245, 137), _target("default")
+    :   AForm("ShrubberyCreation", 145, 137), _target("default")
 {
     std::cout << BOLD_PURPLE << "ShrubberyCreationForm" << RESET 
-    << " default constructor called "
-    << " with grade required to sign equal to " << this->getGradeToSign() 
-    << " and grade required to execute equal to " << this->getGradeToSign() 
-    << std::endl;
+    << " default constructor called " << std::endl;
 }
 
 //target constructor
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
-    :   AForm("ShrubberyCreation", 245, 137), _target(target)
+    :   AForm("ShrubberyCreation", 145, 137), _target(target)
 {
     std::cout << BOLD_PURPLE << "ShrubberyCreationForm" << RESET 
-    << " target constructor called for " << _target
-    << " with grade required to sign equal to " << this->getGradeToSign()
-    << " and grade required to execute equal to " << this->getGradeToExecute()
+    << " constructor called with target " << _target
     << std::endl;
 }
 
@@ -31,7 +26,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy)
     :  AForm(copy), _target(copy._target)
 {
     std::cout << BOLD_PURPLE << "ShrubberyCreationForm" << RESET 
-    << " copy constructor called for " 
+    << " copy constructor called with target " 
     << _target << std::endl;
 }
 

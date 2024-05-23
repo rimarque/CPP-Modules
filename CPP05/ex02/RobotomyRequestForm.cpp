@@ -10,8 +10,6 @@ RobotomyRequestForm::RobotomyRequestForm()
 {
     std::cout << BOLD_PURPLE << "RobotomyRequestForm" << RESET 
     << " default constructor called "
-    << " with grade required to sign equal to " << this->getGradeToSign() 
-    << " and grade required to execute equal to " << this->getGradeToSign() 
     << std::endl;
 }
 
@@ -20,9 +18,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target)
     :   AForm("ShrubberyCreation", 72, 45), _target(target)
 {
     std::cout << BOLD_PURPLE << "RobotomyRequestForm" << RESET 
-    << " target constructor called for " << _target
-    << " with grade required to sign equal to " << this->getGradeToSign()
-    << " and grade required to execute equal to " << this->getGradeToExecute()
+    << " constructor called with target " << _target
     << std::endl;
 }
 
@@ -31,7 +27,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy)
     :  AForm(copy), _target(copy._target)
 {
     std::cout << BOLD_PURPLE << "RobotomyRequestForm" << RESET 
-    << " copy constructor called for " 
+    << " copy constructor called with target " 
     << _target << std::endl;
 }
 
