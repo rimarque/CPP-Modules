@@ -12,7 +12,7 @@ void  testSignForm(ShrubberyCreationForm& targetForm, ShrubberyCreationForm& def
   Executer.signForm(targetForm);
   std::cout << std::endl << YELLOW << "-------" << Signer.getName() << " signing copied form: " << RESET << std::endl;
   Signer.signForm(copiedForm);
-  std::cout << std::endl << YELLOW << "-------" << Failure.getName() << " signing default form: " << RESET << std::endl;
+  std::cout << std::endl << YELLOW << "-------" << Failure.getName() << " signing default form (grade too low): " << RESET << std::endl;
   Failure.signForm(defaultForm);
 }
 
@@ -32,11 +32,11 @@ void  testForm(ShrubberyCreationForm& targetForm, ShrubberyCreationForm& default
 {
   std::cout << CYAN << std::endl << "-------CREATING BUREAUCRATS" << RESET << std::endl;
   std::cout << GREEN << std::endl << "-------Creating a Beaurucrat with grade to execute" << RESET << std::endl;
-  Bureaucrat  Executer("Executer", 5);
+  Bureaucrat  Executer("Executer", 137);
   std::cout << GREEN << std::endl << "-------Creating a Beaurucrat with grade to sign" << RESET << std::endl;
-  Bureaucrat  Signer("Signer", 25);
+  Bureaucrat  Signer("Signer", 145);
   std::cout << GREEN << std::endl << "-------Creating a Beaurucrat with grade too low" << RESET << std::endl;
-  Bureaucrat  Failure("Failure", 50);
+  Bureaucrat  Failure("Failure", 150);
   testSignForm(targetForm, defaultForm, copiedForm, Executer, Signer, Failure);
   testExecuteForm(targetForm, defaultForm, copiedForm, Executer, Signer);
   std::cout << std::endl;
@@ -49,7 +49,7 @@ void    testShrubberyCreationForm()
 
   std::cout << CYAN << std::endl << "-------CREATING FORMS" << RESET << std::endl;
   std::cout << GREEN << std::endl << "-------Creating a form, using target constructor" << RESET << std::endl;
-  ShrubberyCreationForm  targetForm("rita");
+  ShrubberyCreationForm  targetForm("Yard");
   std::cout << GREEN << std::endl << "-------Creating a form, using default constructor" << RESET << std::endl;
   ShrubberyCreationForm defaultForm;
   std::cout << GREEN << std::endl << "-------Creating a copy of the form, using copy constructor" << RESET << std::endl;

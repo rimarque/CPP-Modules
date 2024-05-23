@@ -12,7 +12,7 @@ void  testSignForm(PresidentialPardonForm& targetForm, PresidentialPardonForm& d
   Executer.signForm(targetForm);
   std::cout << std::endl << YELLOW << "-------" << Signer.getName() << " signing copied form: " << RESET << std::endl;
   Signer.signForm(copiedForm);
-  std::cout << std::endl << YELLOW << "-------" << Failure.getName() << " signing default form: " << RESET << std::endl;
+  std::cout << std::endl << YELLOW << "-------" << Failure.getName() << " signing default form (grade too low): " << RESET << std::endl;
   Failure.signForm(defaultForm);
 }
 
@@ -49,7 +49,7 @@ void    testPresidentialPardonForm()
 
   std::cout << CYAN << std::endl << "-------CREATING FORMS" << RESET << std::endl;
   std::cout << GREEN << std::endl << "-------Creating a form, using target constructor" << RESET << std::endl;
-  PresidentialPardonForm  targetForm("rita");
+  PresidentialPardonForm  targetForm("Rita");
   std::cout << GREEN << std::endl << "-------Creating a form, using default constructor" << RESET << std::endl;
   PresidentialPardonForm defaultForm;
   std::cout << GREEN << std::endl << "-------Creating a copy of the form, using copy constructor" << RESET << std::endl;

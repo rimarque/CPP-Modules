@@ -1,7 +1,7 @@
 #include "includes/PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm()
-    :   AForm("ShrubberyCreation", 25, 5), _target("default")
+    :   AForm("PresidentialPardon", 25, 5), _target("default")
 {
     std::cout << BOLD_PURPLE << "PresidentialPardonForm" << RESET 
     << " default constructor called "
@@ -10,7 +10,7 @@ PresidentialPardonForm::PresidentialPardonForm()
 
 //target constructor
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
-    :   AForm("ShrubberyCreation", 25, 5), _target(target)
+    :   AForm("PresidentialPardon", 25, 5), _target(target)
 {
     std::cout << BOLD_PURPLE << "PresidentialPardonForm" << RESET 
     << " constructor called with target " << _target
@@ -53,7 +53,8 @@ void        PresidentialPardonForm::setTarget(std::string target) {
 void        PresidentialPardonForm::executeAction(const Bureaucrat& executer) const
 {
     this->execute(executer);
-    std::cout << _target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+    std::cout << BOLD_PURPLE << "PresidentialPardonForm: " << RESET << "Target " 
+    << _target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm() {

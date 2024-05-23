@@ -1,5 +1,5 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
-# define ROBOTOMYREQUESTFORM__HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
 # include "AForm.hpp"
 

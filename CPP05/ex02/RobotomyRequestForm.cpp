@@ -2,11 +2,11 @@
 
 //Exceptions
 const char* RobotomyRequestForm::RobotomyFailedException::what() const throw(){
-    return "\033[1;31mRobotomy failed!\033[0m";
+    return "\033[1;33mRobotomy failed!\033[0m";
 }
 
 RobotomyRequestForm::RobotomyRequestForm()
-    :   AForm("ShrubberyCreation", 72, 45), _target("default")
+    :   AForm("RobotomyRequest", 72, 45), _target("default")
 {
     std::cout << BOLD_PURPLE << "RobotomyRequestForm" << RESET 
     << " default constructor called "
@@ -15,7 +15,7 @@ RobotomyRequestForm::RobotomyRequestForm()
 
 //target constructor
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
-    :   AForm("ShrubberyCreation", 72, 45), _target(target)
+    :   AForm("RobotomyRequest", 72, 45), _target(target)
 {
     std::cout << BOLD_PURPLE << "RobotomyRequestForm" << RESET 
     << " constructor called with target " << _target
@@ -58,12 +58,19 @@ void        RobotomyRequestForm::setTarget(std::string target) {
 void        RobotomyRequestForm::executeAction(const Bureaucrat& executer) const
 {
     this->execute(executer);
-    std::cout << "Drilling noises...\n";
-    std::srand((unsigned int)(std::time(0)));
-    bool success = rand() % 2;
-    if (!success)
-        throw RobotomyFailedException();
-    std::cout << _target << " has been robotomized successfully" << std::endl;
+    try{
+        std::cout << BOLD_PURPLE << "RobotomyRequestForm: " << RESET << "Drilling noises...\n";
+        std::srand((unsigned int)(std::time(0)));
+        bool success = rand() % 2;
+        if (!success)
+            throw RobotomyFailedException();
+        std::cout << BOLD_PURPLE << "RobotomyRequestForm: " << RESET << "Target " 
+        << _target << " has been robotomized successfully" << std::endl;
+    }
+    catch (const std::exception& e){
+        std::cerr << BOLD_PURPLE << "RobotomyRequestForm: " << RESET << " Target " 
+        <<_target << "'s "<< e.what() << std::endl;
+    }
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {

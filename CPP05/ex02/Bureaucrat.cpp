@@ -81,7 +81,7 @@ void                Bureaucrat::decrementGrade() {
 void                Bureaucrat::signForm(AForm& form) const {
     try{
         form.beSigned(*this);
-        std::cout << BOLD_CYAN << "Bureaucrat: " << RESET << _name 
+        std::cout << BOLD_CYAN << "Bureaucrat " << RESET << _name 
         << " signed form " << form.getName() << std::endl;
     }
     catch (const std::exception& e) {
@@ -99,7 +99,7 @@ void                Bureaucrat::executeForm(AForm const & form){
     }
     catch(const std::exception& e)
     {
-        std::cerr << BOLD_CYAN << "Bureaucrat: " << RESET << e.what() << std::endl;
+        std::cerr << BOLD_CYAN << "Bureaucrat " << RESET << _name << ": " << e.what() << std::endl;
     }
     
 }
