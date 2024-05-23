@@ -91,11 +91,11 @@ const std::string&  AForm::getName() const {
     return _name;
 }
 
-const int             AForm::getGradeToSign() const {
+int             AForm::getGradeToSign() const {
     return _gradeToSign;
 }
 
-const int            AForm::getGradeToExecute() const {
+int            AForm::getGradeToExecute() const {
     return _gradeToExecute;
 }
 

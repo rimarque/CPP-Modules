@@ -1,10 +1,8 @@
 #include "includes/ShrubberyCreationForm.hpp"
 
 //Exceptions
-const char* ShrubberyCreationForm::FileUnableToOpenException::what(std::string filename) const throw(){
-    std::string result = "\033[1;31mUnable to open file ";
-    result.append(filename);
-    return result.c_str();
+const char* ShrubberyCreationForm::FileUnableToOpenException::what() const throw(){
+    return "\033[1;31mUnable to open file\033[0m";
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm()
@@ -63,30 +61,25 @@ void        ShrubberyCreationForm::setTarget(std::string target) {
 //Execute ShrubberyCreationForm
 void        ShrubberyCreationForm::executeAction(const Bureaucrat& executer) const
 {
-    try{
-        this->execute(executer);
-        std::string filename = _target + "_shrubbery";
-        std::ofstream file(filename.c_str());
-        if (!file.is_open())
+    this->execute(executer);
+    std::string filename = _target + "_shrubbery";
+    std::ofstream file(filename.c_str());
+    if (!file.is_open())
             throw FileUnableToOpenException();
-        std::string asciiTree = 
-        "      ccee88oo\n"
-        " C8O8O8Q8PoOb o8oo\n"
-        "dOB69QO8PdUOpugoO9bD\n"
-        "CgggbU8OU qOp qOdoUOdcb\n"
-        "     6OuU  /p u gcoUodpP\n"
-        "       \\\\//  /douUP\n"
-        "         \\\\\\//&/\n"
-        "          |||/\\\\\n"
-        "          |||\\\\/\n"
-        "          |||||\n"
-        "    .....//||||\\\\....\n";
-        file << asciiTree;
-        file.close();
-    }
-    catch(const std::exception& e){
-        std::cerr << e.what() << RESET << std::endl;
-    }
+    std::string asciiTree = 
+    "      ccee88oo\n"
+    " C8O8O8Q8PoOb o8oo\n"
+    "dOB69QO8PdUOpugoO9bD\n"
+    "CgggbU8OU qOp qOdoUOdcb\n"
+    "     6OuU  /p u gcoUodpP\n"
+    "       \\\\//  /douUP\n"
+    "         \\\\\\//&/\n"
+    "          |||/\\\\\n"
+    "          |||\\\\/\n"
+    "          |||||\n"
+    "    .....//||||\\\\....\n";
+    file << asciiTree;
+    file.close();
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
@@ -97,6 +90,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 //overload do << operator
 std::ostream&       operator<<(std::ostream& out, ShrubberyCreationForm& src)
 {
+    out << "Name: " << src.getName() << std::endl; 
     out << "Target: " << src.getTarget() << std::endl; 
     out << "The form is signed: " << std::boolalpha << src.isSigned() << std::endl;
     out << "Grade required to sign: " << src.getGradeToSign() << std::endl;

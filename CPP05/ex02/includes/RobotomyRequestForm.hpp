@@ -26,4 +26,6 @@ private:
     std::string   _target;
 };
 
+std::ostream&       operator<<(std::ostream& out, RobotomyRequestForm& src);
+
 #endif // FORM_H

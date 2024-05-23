@@ -48,7 +48,7 @@ std::string  PresidentialPardonForm::getTarget() const {
     return _target;
 }
 
-//Getters:
+//Setters:
 void        PresidentialPardonForm::setTarget(std::string target) {
     _target = target;
 }
@@ -56,12 +56,8 @@ void        PresidentialPardonForm::setTarget(std::string target) {
 //Execute PresidentialPardonForm
 void        PresidentialPardonForm::executeAction(const Bureaucrat& executer) const
 {
-    try{
-        this->execute(executer);
-    }
-    catch(const std::exception& e){
-        std::cerr << e.what() << std::endl;
-    }
+    this->execute(executer);
+    std::cout << _target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm() {
@@ -72,6 +68,7 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 //overload do << operator
 std::ostream&       operator<<(std::ostream& out, PresidentialPardonForm& src)
 {
+    out << "Name: " << src.getName() << std::endl; 
     out << "Target: " << src.getTarget() << std::endl; 
     out << "The form is signed: " << std::boolalpha << src.isSigned() << std::endl;
     out << "Grade required to sign: " << src.getGradeToSign() << std::endl;

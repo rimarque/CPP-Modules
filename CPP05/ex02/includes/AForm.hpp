@@ -28,8 +28,8 @@ public:
     AForm& operator= (const AForm& copy); //Copy assignment constructor
     //Getters:
     const std::string&  getName() const;
-    const int           getGradeToSign() const;
-    const int           getGradeToExecute() const;
+    int           getGradeToSign() const;
+    int           getGradeToExecute() const;
     bool                isSigned() const;
     //Setters:
     void                setSigned(bool);

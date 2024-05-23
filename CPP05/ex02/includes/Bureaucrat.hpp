@@ -8,7 +8,7 @@
 # include <cstdlib>
 # include <ctime>
 # include <stdexcept>
-#include <limits>
+#include  <limits>
 # define RED "\033[31m"
 # define GREEN "\033[32m"
 # define PURPLE "\033[35m"
@@ -36,7 +36,7 @@ public:
             virtual const char* what() const throw();
     };
     Bureaucrat(); // Constructor
-    Bureaucrat(std::string& name, int grade); //atributes constructor
+    Bureaucrat(std::string name, int grade); //atributes constructor
     Bureaucrat(const Bureaucrat& copy);//Copy constructor
     Bureaucrat&         operator= (const Bureaucrat& copy); //Copy assignment constructor
     //Getters:

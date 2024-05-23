@@ -23,11 +23,11 @@ NAME 			= ex02
 INCLUDE			= includes
 OBJDIR			= obj
 
-_FILES 			= Bureaucrat AForm
+_FILES 			= Bureaucrat AForm PresidentialPardonForm RobotomyRequestForm ShrubberyCreationForm
 
 OBJ				= $(_FILES:%=%.o)
 TARGET			= $(addprefix $(OBJDIR)/, $(OBJ))
-_HEADERS		= Bureaucrat.hpp AForm.hpp
+_HEADERS		= Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp
 HDR				= $(addprefix $(INCLUDE)/, $(_HEADERS))
 
 #---------------------------------  RULES  --------------------------------------

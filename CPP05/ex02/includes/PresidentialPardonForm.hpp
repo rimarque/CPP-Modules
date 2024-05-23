@@ -22,4 +22,6 @@ private:
     std::string   _target;
 };
 
+std::ostream&       operator<<(std::ostream& out, PresidentialPardonForm& src);
+
 #endif // FORM_H

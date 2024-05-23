@@ -61,18 +61,13 @@ void        RobotomyRequestForm::setTarget(std::string target) {
 //Execute RobotomyRequestForm
 void        RobotomyRequestForm::executeAction(const Bureaucrat& executer) const
 {
-    try{
-        this->execute(executer);
-        std::cout << "Drilling noises...\n";
-        std::srand((unsigned int)(std::time(0)));
-        bool success = rand() % 2;
-        if (!success)
-            throw RobotomyFailedException();
-        std::cout << _target << " has been robotomized successfully" << std::endl;
-    }
-    catch(const std::exception& e){
-        std::cerr << e.what() << std::endl;
-    }
+    this->execute(executer);
+    std::cout << "Drilling noises...\n";
+    std::srand((unsigned int)(std::time(0)));
+    bool success = rand() % 2;
+    if (!success)
+        throw RobotomyFailedException();
+    std::cout << _target << " has been robotomized successfully" << std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {
@@ -83,6 +78,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 //overload do << operator
 std::ostream&       operator<<(std::ostream& out, RobotomyRequestForm& src)
 {
+    out << "Name: " << src.getName() << std::endl; 
     out << "Target: " << src.getTarget() << std::endl; 
     out << "The form is signed: " << std::boolalpha << src.isSigned() << std::endl;
     out << "Grade required to sign: " << src.getGradeToSign() << std::endl;
