@@ -1,5 +1,25 @@
 #include "includes/Bureaucrat.hpp"
 
+bool  hasNonNumericChar(std::string str)
+{
+  for (std::string::const_iterator i = str.begin(); i != str.end(); ++i) {
+        if (!std::isdigit(*i))
+            return true;
+  }
+  return false;
+}
+
+bool  isNumber(std::string str){
+  int i = 0;
+  while(std::isspace(str[i]))
+    i++;
+  if(str[i] == '-' || str[i] == '+')
+    i++;
+  if(hasNonNumericChar(str.substr(i)))
+    return false;
+  return true;
+}
+
 void    set_input(std::string *name, std::string *input, int *grade, int *rounds){
     std::cout << "What should be the name of our Bureaucrat?" << std::endl;
     std::getline(std::cin, *name);
@@ -10,10 +30,18 @@ void    set_input(std::string *name, std::string *input, int *grade, int *rounds
     std::cin >> *input;
     if(std::cin.eof())
 		exit(0);
+    if(!isNumber(*input)){
+        std::cerr << RED << "Not a number!" << RESET << std::endl;
+        exit(1);
+    }
     *grade = std::atoi(input->c_str());
     std::cout << "To test the incresing and decresing of the Bureaucrat's grades, let's make a loop. " 
     << "How many rounds of tests would you like to do?" << std::endl << "Pick a number between 1 and 150" << std::endl;
     std::cin >> *input;
+    if(!isNumber(*input)){
+        std::cerr << RED << "Not a number!" << RESET << std::endl;
+        exit(1);
+    }
     if(std::cin.eof())
 		exit(0);
     *rounds = std::atoi(input->c_str());
@@ -28,7 +56,7 @@ void    set_input(std::string *name, std::string *input, int *grade, int *rounds
 		exit(0);
 }
 
-void    testing_const_copy(Bureaucrat a, Bureaucrat b, Bureaucrat c)
+void    testing_const_copy(Bureaucrat& a, Bureaucrat& b, Bureaucrat& c)
 {
     std::cout << std::endl << CYAN << "a: -------Testing atributes constructor" << RESET << std::endl;
     std::cout << a << std::endl;
@@ -41,7 +69,7 @@ void    testing_const_copy(Bureaucrat a, Bureaucrat b, Bureaucrat c)
     std::cout << c << std::endl;
 }
 
-void    testing_inc_dec(Bureaucrat a, Bureaucrat b, Bureaucrat c, int n) {
+void    testing_inc_dec(Bureaucrat& a, Bureaucrat& b, Bureaucrat& c, int n) {
     std::cout << std::endl << "-------" << GREEN << "Incrementing a and c" << RESET "," 
     << RED << " decrementing b" << RESET <<":"<< std::endl;
     for(int i = 0; i < n; i++) {

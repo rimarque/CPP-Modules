@@ -82,7 +82,7 @@ Form& Form::operator= (const Form& copy) {
     return *this;
 }
 
-//Getters:
+//Accessors:
 const std::string&  Form::getName() const {
     return _name;
 }
@@ -104,8 +104,11 @@ void               Form::beSigned(const Bureaucrat& b)
 {
     if(_signed)
         throw FormIsSignedException();
+    //If the grade is too low, throw a Form::GradeTooLowException
     if(b.getGrade() > _gradeToSign)
         throw GradeTooLowException();
+    //It changes the form status to signed if the bureaucrat’s grade is high enough
+    //(higher or equal to the required one)
     _signed = true;
 }
 

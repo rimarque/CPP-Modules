@@ -74,7 +74,7 @@ private:
 {class_name}::{class_name}(const {class_name}& copy) {{
     // Copy stuff
     std::cout << BOLD_WHITE << "{class_name}" << RESET 
-    << " copy constructor called" << std::endl;
+    << " copy assigment operator called" << std::endl;
 }}
 
 // Copy assignment operator overload

@@ -15,7 +15,7 @@ CXX				= c++
 RM 				= rm -rf
 
 #-----------------------------------  FLAGS  -----------------------------------
-CXXFLAGS		= -Wall -Wextra #-Werror -std=c++98
+CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 NPD				= --no-print-directory
 
 #--------------------------------- FILES  ---------------------------------------

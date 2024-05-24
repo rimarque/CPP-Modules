@@ -42,14 +42,14 @@ Bureaucrat::Bureaucrat(const Bureaucrat& copy)
 }
 
 // Copy assignment operator overload
-//(as _name is const it's not modifiable, so it's not copyed) 
+//(as _name is const it's not modifiable, so it's not copied) 
 Bureaucrat& Bureaucrat::operator= (const Bureaucrat& copy) {
     // Self-assignment check
     if (this == &copy)
         return *this;
     _grade = copy._grade;
     std::cout << BOLD_WHITE << "Bureaucrat" << RESET 
-    << " copy constructor called for " << _name
+    << " copy assigment operator called for " << _name
     << " with grade " << _grade << std::endl;
     return *this;
 }
@@ -84,7 +84,7 @@ Bureaucrat::~Bureaucrat() {
 }
 
 //overload do << operator
-std::ostream&       operator<<(std::ostream& out, Bureaucrat src)
+std::ostream&       operator<<(std::ostream& out, Bureaucrat& src)
 {
     out << src.getName() << ", bureaucrat grade " << src.getGrade();
     return(out);

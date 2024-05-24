@@ -48,6 +48,6 @@ private:
     int                 _grade;
 };
 
-    std::ostream&       operator<<(std::ostream& out, Bureaucrat src);
+std::ostream&       operator<<(std::ostream& out, Bureaucrat& src);
 
 #endif // BUREAUCRAT_H
