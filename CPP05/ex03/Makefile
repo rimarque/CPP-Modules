@@ -24,12 +24,12 @@ INCLUDE			= includes
 OBJDIR			= obj
 
 _FILES 			= Bureaucrat AForm PresidentialPardonForm RobotomyRequestForm ShrubberyCreationForm \
-					TestForms InvalidOptionException Intern
+					TestForms InvalidException Intern
 
 OBJ				= $(_FILES:%=%.o)
 TARGET			= $(addprefix $(OBJDIR)/, $(OBJ))
 _HEADERS		= Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp \
-					ShrubberyCreationForm.hpp InvalidOptionException.hpp Intern.hpp
+					ShrubberyCreationForm.hpp InvalidException.hpp Intern.hpp
 HDR				= $(addprefix $(INCLUDE)/, $(_HEADERS))
 
 #---------------------------------  RULES  --------------------------------------

@@ -19,7 +19,7 @@ public:
     //Setters:
     void        setTarget(std::string);
     //My methods:
-    void        executeAction(const Bureaucrat& executer) const;
+    void        executeAction() const;
     ~RobotomyRequestForm(); // Destructor
 
 private:
@@ -27,5 +27,6 @@ private:
 };
 
 std::ostream&       operator<<(std::ostream& out, RobotomyRequestForm& src);
+void                testRobotomyRequestForm();
 
 #endif // FORM_H

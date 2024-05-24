@@ -54,9 +54,8 @@ void        ShrubberyCreationForm::setTarget(std::string target) {
 }
 
 //Execute ShrubberyCreationForm
-void        ShrubberyCreationForm::executeAction(const Bureaucrat& executer) const
+void        ShrubberyCreationForm::executeAction() const
 {
-    this->execute(executer);
     std::string filename = _target + "_shrubbery";
     std::ofstream file(filename.c_str());
     if (!file.is_open())

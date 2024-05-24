@@ -50,9 +50,8 @@ void        PresidentialPardonForm::setTarget(std::string target) {
 }
 
 //Execute PresidentialPardonForm
-void        PresidentialPardonForm::executeAction(const Bureaucrat& executer) const
+void        PresidentialPardonForm::executeAction() const
 {
-    this->execute(executer);
     std::cout << BOLD_PURPLE << "PresidentialPardonForm: " << RESET << "Target " 
     << _target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

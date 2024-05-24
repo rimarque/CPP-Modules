@@ -36,7 +36,7 @@ public:
     //My functions
     void                beSigned(const Bureaucrat& bureaucrat);
     void                execute(Bureaucrat const& executor) const;
-    virtual void        executeAction(const Bureaucrat& executer) const = 0;
+    virtual void        executeAction() const = 0;
     virtual ~AForm(); // Destructor
 
 private:
@@ -47,10 +47,5 @@ private:
 };
 
 std::ostream&       operator<<(std::ostream& out, AForm& src);
-void                testForm(AForm *form1, AForm *form2, AForm *form3);
-void                testExecuteForm(AForm *form1, AForm *form2, AForm *form3,
-                        Bureaucrat& Executer, Bureaucrat& Signer);
-void                testSignForm(AForm *form1, AForm *form2, AForm *form3,
-                        Bureaucrat& Executer, Bureaucrat& Signer, Bureaucrat& Failure);
 
 #endif // FORM_H

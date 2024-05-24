@@ -57,5 +57,6 @@ private:
 };
 
 std::ostream&       operator<<(std::ostream& out, Bureaucrat& src);
+void  testForm(AForm *form1, AForm *form2, AForm *form3);
 
 #endif // BUREAUCRAT_H

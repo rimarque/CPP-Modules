@@ -93,15 +93,14 @@ void                Bureaucrat::signForm(AForm& form) const {
 
 void                Bureaucrat::executeForm(AForm const & form){
     try{
-        form.executeAction(*this);
+        form.execute(*this);
         std::cout << BOLD_CYAN << "Bureaucrat " << RESET << _name 
-        << " executed " << form.getName() << std::endl;
+        << " executed form " << form.getName() << std::endl;
     }
     catch(const std::exception& e)
     {
         std::cerr << BOLD_CYAN << "Bureaucrat " << RESET << _name << ": " << e.what() << std::endl;
     }
-    
 }
 
 Bureaucrat::~Bureaucrat() {

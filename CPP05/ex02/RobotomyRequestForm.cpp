@@ -55,9 +55,8 @@ void        RobotomyRequestForm::setTarget(std::string target) {
 }
 
 //Execute RobotomyRequestForm
-void        RobotomyRequestForm::executeAction(const Bureaucrat& executer) const
+void        RobotomyRequestForm::executeAction() const
 {
-    this->execute(executer);
     try{
         std::cout << BOLD_PURPLE << "RobotomyRequestForm: " << RESET << "Drilling noises...\n";
         std::srand((unsigned int)(std::time(0)));

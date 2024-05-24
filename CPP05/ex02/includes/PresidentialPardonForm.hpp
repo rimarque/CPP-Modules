@@ -15,7 +15,7 @@ public:
     //Setters:
     void        setTarget(std::string);
     //My methods:
-    void        executeAction(const Bureaucrat& executer) const;
+    void        executeAction() const;
     ~PresidentialPardonForm(); // Destructor
 
 private:

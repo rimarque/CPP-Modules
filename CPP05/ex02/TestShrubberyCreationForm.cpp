@@ -67,8 +67,7 @@ void    testShrubberyCreationForm()
   testForm(targetForm, defaultForm, copiedForm);
 
   std::cout << CYAN << std::endl << std::endl << "-------TESTING COPY ASSIGMENT OPERATOR" << RESET << std::endl;
-  std::cout << std::endl << YELLOW << "-------Copying form to Default" 
-  << std::endl << "[only copies bool signed and target, because other atributes are constant]" << RESET << std::endl;
+  std::cout << std::endl << YELLOW << "-------Copying form to Default" << RESET << std::endl;
   defaultForm = targetForm;
   std::cout << std::endl << YELLOW << "-------Displaying copied form" << RESET << std::endl;
   std::cout << defaultForm << std::endl;

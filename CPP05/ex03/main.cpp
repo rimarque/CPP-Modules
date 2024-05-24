@@ -1,7 +1,7 @@
 #include "includes/PresidentialPardonForm.hpp"
 #include "includes/RobotomyRequestForm.hpp"
 #include "includes/ShrubberyCreationForm.hpp"
-#include "includes/InvalidOptionException.hpp"
+#include "includes/InvalidException.hpp"
 #include "includes/Intern.hpp"
 
 void    testPresidentialPardonForm()
@@ -46,9 +46,9 @@ void    testShrubberyCreationForm()
   std::cout << CYAN << std::endl << "-------CREATING INTERN" << RESET << std::endl;
   Intern  someRandomIntern;
   std::cout << CYAN << std::endl << "-------INTERN CREATING FORMS" << RESET << std::endl;
-  AForm *form1 = someRandomIntern.makeForm("shrubbery creation", "rita");
-  AForm *form2 = someRandomIntern.makeForm("shrubbery creation", "xico");
-  AForm *form3 = someRandomIntern.makeForm("shrubbery creation", "jenny");
+  AForm *form1 = someRandomIntern.makeForm("shrubbery creation", "yard");
+  AForm *form2 = someRandomIntern.makeForm("shrubbery creation", "school");
+  AForm *form3 = someRandomIntern.makeForm("shrubbery creation", "city");
   testForm(form1, form2, form3);
   delete form1;
   delete form2;
@@ -67,25 +67,48 @@ void  testNonExistingForm(){
   testForm(form1, form2, form3);
 }
 
+bool  hasNonNumericChar(std::string str)
+{
+  for (std::string::const_iterator i = str.begin(); i != str.end(); ++i) {
+        if (!std::isdigit(*i))
+            return true;
+  }
+  return false;
+}
+
+bool  isNumber(std::string str){
+  int i = 0;
+  while(std::isspace(str[i]))
+    i++;
+  if(str[i] == '-' || str[i] == '+')
+    i++;
+  if(hasNonNumericChar(str.substr(i)))
+    return false;
+  return true;
+}
+
 int main()
 {
   std::string input;
   try{
     std::cout << "What form should we test?" << std::endl 
-    << "1: Presidential Pardon Form\n2: Robotomy Request Form\n3: ShrubberyCreationForm\n4: NonExistingForm\n5: All forms\n.:";
+    << "0: All forms\n1: Presidential Pardon Form\n2: Robotomy Request Form\n3: ShrubberyCreationForm\n4: NonExistingForm\n.:";
     std::cin >> input;
+    if(!isNumber(input)){
+        throw InvalidOptionException();
+    }
     if(std::cin.eof())
 	    exit(0);
-    int option = std::atoll(input.c_str()) > 5 || std::atoll(input.c_str()) < 1 ? -1 : std::atoi(input.c_str());
+    int option = std::atoll(input.c_str()) > 4 || std::atoll(input.c_str()) < 0 ? -1 : std::atoi(input.c_str());
     if (option == -1)
       throw InvalidOptionException();
-    if(option == 1 || option == 5)
+    if(option == 1 || option == 0)
       testPresidentialPardonForm();
-    if(option == 2 || option == 5)
+    if(option == 2 || option == 0)
       testRobotomyRequestForm();
-    if(option == 3 || option == 5)
+    if(option == 3 || option == 0)
       testShrubberyCreationForm();
-    if(option == 4 || option == 5){
+    if(option == 4 || option == 0){
       testNonExistingForm();
     }
   }

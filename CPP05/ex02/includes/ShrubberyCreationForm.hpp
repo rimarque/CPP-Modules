@@ -19,7 +19,7 @@ class ShrubberyCreationForm: public AForm
         //Setters:
         void        setTarget(std::string);
         //My methods:
-        void        executeAction(const Bureaucrat& executer) const;
+        void        executeAction() const;
         ~ShrubberyCreationForm(); // Destructor
 
     private:

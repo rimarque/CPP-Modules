@@ -118,7 +118,6 @@ void               AForm::beSigned(const Bureaucrat& signer)
     _signed = true;
 }
 
-
 /* You have to check that the form is signed and that the grade of the bureaucrat
 attempting to execute the form is high enough. */
 void                AForm::execute(Bureaucrat const& executor) const
@@ -127,6 +126,7 @@ void                AForm::execute(Bureaucrat const& executor) const
         throw FormNotSignedException();
     if(executor.getGrade() > _gradeToExecute)
         throw GradeTooLowException();
+    this->executeAction();
 }
 
 AForm::~AForm() {

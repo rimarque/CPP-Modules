@@ -1,5 +1,5 @@
 #include "includes/Intern.hpp"
-#include "includes/InvalidOptionException.hpp"
+#include "includes/InvalidException.hpp"
 
 Intern::Intern() {
     std::cout << BOLD_WHITE << "Intern" << RESET 
@@ -22,17 +22,6 @@ Intern& Intern::operator= (const Intern& copy) {
     << " copy assignment operator overload" << std::endl;
     return *this;
 }
-
-
-/* void    Harl::complain(std::string level){
-    void (Harl::*p[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    std::string levels[4] = {"debug", "info", "warning", "error"};
-
-    for(int i = 0; i < 4;i++){
-        if(!levels[i].compare(level))
-            (this->*p[i])();
-    }
-} */
 
 AForm*	Intern::createShrubberyCreation(const std::string& target)
 {
@@ -58,11 +47,11 @@ AForm*    Intern::makeForm(std::string name, std::string target) {
         for (int i = 0; i < 3; i++) {
             if(!forms[i].compare(name)){
                 form = (this->*p[i])(target);
-                std::cout << "Intern creates " << name << std::endl;
+                std::cout << "Intern creates form " << name << std::endl;
                 return(form);
             }
         }
-        throw InvalidOptionException();
+        throw InvalidFormException();
     }
     catch(const std::exception& e) {
         std::cerr << e.what() << std::endl;

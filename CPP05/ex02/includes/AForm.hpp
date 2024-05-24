@@ -36,7 +36,7 @@ public:
     //My functions
     void                beSigned(const Bureaucrat& bureaucrat);
     void                execute(Bureaucrat const& executor) const;
-    virtual void        executeAction(const Bureaucrat& executer) const = 0;
+    virtual void        executeAction() const = 0;
     virtual ~AForm(); // Destructor
 
 private:
