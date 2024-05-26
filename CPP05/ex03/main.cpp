@@ -12,8 +12,11 @@ void    testPresidentialPardonForm()
   std::cout << CYAN << std::endl << "-------CREATING INTERN" << RESET << std::endl;
   Intern  someRandomIntern;
   std::cout << CYAN << std::endl << "-------INTERN CREATING FORMS" << RESET << std::endl;
+  std::cout << GREEN << std::endl << "-------Creating a Form with target rita" << RESET << std::endl;
   AForm *form1 = someRandomIntern.makeForm("presidential pardon", "rita");
+  std::cout << GREEN << std::endl << "-------Creating a Form with target xico" << RESET << std::endl;
   AForm *form2 = someRandomIntern.makeForm("presidential pardon", "xico");
+  std::cout << GREEN << std::endl << "-------Creating a Form with target jenny" << RESET << std::endl;
   AForm *form3 = someRandomIntern.makeForm("presidential pardon", "jenny");
   testForm(form1, form2, form3);
   delete form1;
@@ -29,8 +32,11 @@ void    testRobotomyRequestForm()
   std::cout << CYAN << std::endl << "-------CREATING INTERN" << RESET << std::endl;
   Intern  someRandomIntern;
   std::cout << CYAN << std::endl << "-------INTERN CREATING FORMS" << RESET << std::endl;
+  std::cout << GREEN << std::endl << "-------Creating a Form with target rita" << RESET << std::endl;
   AForm *form1 = someRandomIntern.makeForm("robotomy request", "rita");
+  std::cout << GREEN << std::endl << "-------Creating a Form with target xico" << RESET << std::endl;
   AForm *form2 = someRandomIntern.makeForm("robotomy request", "xico");
+  std::cout << GREEN << std::endl << "-------Creating a Form with target jenny" << RESET << std::endl;
   AForm *form3 = someRandomIntern.makeForm("robotomy request", "jenny");
   testForm(form1, form2, form3);
   delete form1;
@@ -46,8 +52,11 @@ void    testShrubberyCreationForm()
   std::cout << CYAN << std::endl << "-------CREATING INTERN" << RESET << std::endl;
   Intern  someRandomIntern;
   std::cout << CYAN << std::endl << "-------INTERN CREATING FORMS" << RESET << std::endl;
+  std::cout << GREEN << std::endl << "-------Creating a Form with target yard" << RESET << std::endl;
   AForm *form1 = someRandomIntern.makeForm("shrubbery creation", "yard");
+  std::cout << GREEN << std::endl << "-------Creating a Form with target school" << RESET << std::endl;
   AForm *form2 = someRandomIntern.makeForm("shrubbery creation", "school");
+  std::cout << GREEN << std::endl << "-------Creating a Form with target city" << RESET << std::endl;
   AForm *form3 = someRandomIntern.makeForm("shrubbery creation", "city");
   testForm(form1, form2, form3);
   delete form1;
@@ -61,8 +70,11 @@ void  testNonExistingForm(){
   std::cout << CYAN << std::endl << "-------CREATING INTERN" << RESET << std::endl;
   Intern      someRandomIntern;
   std::cout << CYAN << std::endl << "-------INTERN CREATING FORM" << RESET << std::endl;
+  std::cout << GREEN << std::endl << "-------Creating a Form with target rita" << RESET << std::endl;
   AForm *form1 = someRandomIntern.makeForm("non existing form", "rita");
+  std::cout << GREEN << std::endl << "-------Creating a Form with target xico" << RESET << std::endl;
   AForm *form2 = someRandomIntern.makeForm("non existing form", "xico");
+  std::cout << GREEN << std::endl << "-------Creating a Form with target jenny" << RESET << std::endl;
   AForm *form3 = someRandomIntern.makeForm("non existing form", "jenny");
   testForm(form1, form2, form3);
 }
