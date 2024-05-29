@@ -23,11 +23,11 @@ NAME 			= ex00
 INCLUDE			= includes
 OBJDIR			= obj
 
-_FILES 			= ScalarConverter MyException
+_FILES 			= ScalarConverter MyException ScalarType DetectType DetectTypeAux ConvertToType PrintType
 
 OBJ				= $(_FILES:%=%.o)
 TARGET			= $(addprefix $(OBJDIR)/, $(OBJ))
-_HEADERS		= ScalarConverter.hpp MyException.hpp
+_HEADERS		= ScalarConverter.hpp MyException.hpp ScalarType.hpp
 HDR				= $(addprefix $(INCLUDE)/, $(_HEADERS))
 
 #---------------------------------  RULES  --------------------------------------
