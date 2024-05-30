@@ -8,7 +8,7 @@ bool    ScalarType::isChar() {
     char c = _str[0];
     if (std::isdigit(c) || !std::isprint(c))
         return false;
-    std::cout << "is char!" << std::endl;
+    std::cout << "Type: char" << std::endl;
     return true;
 }
 
@@ -19,32 +19,64 @@ bool ScalarType::isInt(){
     long long int lnum = std::atoll(_str);
     if(lnum < INT_MIN || lnum > INT_MAX)
         return false;
-    std::cout << "is int!" << std::endl;
+    std::cout << "Type: int" << std::endl;
     return true;
 }
 
 bool ScalarType::isFloat(){
     std::string str = getBeginNumber(_str);
-    if(!checkFloatCriteria(str))
+    if(!checkFloatCriteria(str)){
         return false;
+    }
     double dnum = atof(_str);
-    if(dnum < FLT_MIN || dnum > FLT_MAX)
+    if(dnum < -FLT_MAX || dnum > FLT_MAX){
         return false;
-    std::cout << "is float!" << std::endl;
+    }
+    std::cout << "Type: float" << std::endl;
     return true;
 }
 
 bool ScalarType::isDouble(){
-    (void)_str;
-    //std::cout << "is double: " << str << std::endl;
-    return(false);
+    std::string str = getBeginNumber(_str);
+    if(!checkDoubleCriteria(str)){
+        return false;
+    }
+    long double ldnum = strtold(_str, NULL);
+    if(ldnum < -DBL_MAX || ldnum > DBL_MAX){
+        return false;
+    }
+    std::cout << "Type: double" << std::endl;
+    return true;
+}
+
+/*-inff, +inff, nanf; */
+bool    ScalarType::isPseudoLiteralFloat(){
+    std::string str = _str;
+    std::string pseudoLiterals[3] = {"nanf", "+inff", "-inff"};
+    for(int i = 0; i < 3; i++){
+        if(!str.compare(pseudoLiterals[i]))
+            return true;
+    }
+    return false;
+}
+
+/*-inf, +inf, nan; */
+bool    ScalarType::isPseudoLiteral(){
+    std::string str = _str;
+    std::string pseudoLiterals[3] = {"nan", "+inf", "-inf"};
+    for(int i = 0; i < 3; i++){
+        if(!str.compare(pseudoLiterals[i]))
+            return true;
+    }
+    return false;
 }
 
 int ScalarType::detectType() {
     bool (ScalarType::*isType[])() = 
         {&ScalarType::isChar, &ScalarType::isInt, 
-            &ScalarType::isFloat, &ScalarType::isDouble};
-    for(int i = 0; i < 4; i++) {
+            &ScalarType::isFloat, &ScalarType::isDouble, 
+                &ScalarType::isPseudoLiteralFloat, &ScalarType::isPseudoLiteral};
+    for(int i = 0; i < _conversions; i++) {
         if((this->*isType[i])())
                 return i;
     }

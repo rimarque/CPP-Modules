@@ -1,14 +1,16 @@
 #include "includes/ScalarType.hpp"
 
-ScalarType::ScalarType(): _str(NULL), _type(-1), _precision(0) {
-    std::cout << BOLD_WHITE << "ScalarType" << RESET 
-    << " default constructor called" << std::endl;
+ScalarType::ScalarType(): _str(NULL), _type(-1), _precision(1), _conversions(6){
+/*     std::cout << BOLD_WHITE << "ScalarType" << RESET 
+    << " default constructor called" << std::endl; */
 }
 
-ScalarType::ScalarType(char *str): _str(str), _precision(0) {
+ScalarType::ScalarType(char *str): _str(str), _precision(1), _conversions(6){
+    /* std::cout << BOLD_WHITE << "ScalarType" << RESET 
+    << " constructor called for str " << _str << std::endl; */
+    if(!str || str[0] == 0)
+        throw MyException("Empty string");
     _type = this->detectType();
-    std::cout << BOLD_WHITE << "ScalarType" << RESET 
-    << " default constructor called" << std::endl;
 }
 
 //!Copy constructor
@@ -43,7 +45,11 @@ int         ScalarType::getPrecision() const{
     return _precision;
 }
 
+int         ScalarType::getConversions() const{
+    return _conversions;
+}
+
 ScalarType::~ScalarType() {
-    std::cout << BOLD_WHITE << "ScalarType" << RESET 
-    << " destructor called" << std::endl;
+    /* std::cout << BOLD_WHITE << "ScalarType" << RESET 
+    << " destructor called" << std::endl; */
 }

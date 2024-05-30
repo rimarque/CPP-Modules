@@ -1,11 +1,11 @@
 #include "includes/ScalarConverter.hpp"
 
-int main(int argv, char **argc)
+int main(int argc, char **argv)
 {
   try{
-    if(argv > 2 || argv == 1)
+    if(argc > 2 || argc == 1)
       throw MyException("Usage: ./ex00 data_to_convert");
-    ScalarConverter::convert(argc[1]);
+    ScalarConverter::convert(argv[1]);
   }
   catch(const std::exception& e){
     std::cerr << e.what() << std::endl;
