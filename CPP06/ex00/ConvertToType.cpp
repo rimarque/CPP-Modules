@@ -12,7 +12,7 @@ void    ScalarType::convertToChar(){
 
 void    ScalarType::convertToInt(){
     std::cout << "2: convert to int: \n";
-    int num = atoi(_str);
+    int num = atoi(_str.c_str());
     checkLimitsPrintChar(num);
     std::cout << "int: " << num << std::endl;
     std::cout << "float: " << std::fixed << std::setprecision(_precision)
@@ -22,18 +22,18 @@ void    ScalarType::convertToInt(){
 
 void    ScalarType::convertToFloat(){
     std::cout << "3: convert to float: \n";
-    float fnum = atof(_str);
+    float fnum = atof(_str.c_str());
 
     checkLimitsPrintChar(static_cast<int>(fnum));
     checkLimitsPrintInt(static_cast<long long int>(fnum));
     std::cout << "float: " << std::fixed << std::setprecision(_precision)
-        << fnum << _str[strlen(_str) - 1] << std::endl;
+        << fnum << _str[strlen(_str.c_str()) - 1] << std::endl;
     std::cout << "double: " << static_cast<double>(fnum) << std::endl;
 }
 
 void    ScalarType::convertToDouble(){
     std::cout << "4: convert to double: \n";
-    double dnum = strtod(_str, NULL);
+    double dnum = strtod(_str.c_str(), NULL);
     checkLimitsPrintChar(static_cast<int>(dnum));
     checkLimitsPrintInt(static_cast<long long int>(dnum));
     checkLimitsPrintFloat(dnum, _precision);

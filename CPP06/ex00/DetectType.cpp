@@ -2,70 +2,62 @@
 /* To make things simple, please note that non displayable characters shouldn’t be used as
 inputs */
 bool    ScalarType::isChar() {
-    if (std::strlen(_str) > 1){
+    if (_str.length() > 1){
         return false;
     }
     char c = _str[0];
     if (std::isdigit(c) || !std::isprint(c))
         return false;
-    std::cout << "Type: char" << std::endl;
     return true;
 }
 
 bool ScalarType::isInt(){
-    std::string str = getBeginNumber(_str);
+    std::string str = getBeginNumber();
     if(hasNonNumericChar(str))
         return false;
-    long long int lnum = std::atoll(_str);
+    long long int lnum = std::atoll(_str.c_str());
     if(lnum < INT_MIN || lnum > INT_MAX)
         return false;
-    std::cout << "Type: int" << std::endl;
     return true;
 }
 
 bool ScalarType::isFloat(){
-    std::string str = getBeginNumber(_str);
+    std::string str = getBeginNumber();
     if(!checkFloatCriteria(str)){
         return false;
     }
-    double dnum = atof(_str);
+    double dnum = atof(_str.c_str());
     if(dnum < -FLT_MAX || dnum > FLT_MAX){
         return false;
     }
-    std::cout << "Type: float" << std::endl;
     return true;
 }
 
 bool ScalarType::isDouble(){
-    std::string str = getBeginNumber(_str);
+    std::string str = getBeginNumber();
     if(!checkDoubleCriteria(str)){
         return false;
     }
-    long double ldnum = strtold(_str, NULL);
+    long double ldnum = strtold(_str.c_str(), NULL);
     if(ldnum < -DBL_MAX || ldnum > DBL_MAX){
         return false;
     }
-    std::cout << "Type: double" << std::endl;
     return true;
 }
 
-/*-inff, +inff, nanf; */
 bool    ScalarType::isPseudoLiteralFloat(){
-    std::string str = _str;
     std::string pseudoLiterals[3] = {"nanf", "+inff", "-inff"};
     for(int i = 0; i < 3; i++){
-        if(!str.compare(pseudoLiterals[i]))
+        if(!_str.compare(pseudoLiterals[i]))
             return true;
     }
     return false;
 }
 
-/*-inf, +inf, nan; */
 bool    ScalarType::isPseudoLiteral(){
-    std::string str = _str;
     std::string pseudoLiterals[3] = {"nan", "+inf", "-inf"};
     for(int i = 0; i < 3; i++){
-        if(!str.compare(pseudoLiterals[i]))
+        if(!_str.compare(pseudoLiterals[i]))
             return true;
     }
     return false;

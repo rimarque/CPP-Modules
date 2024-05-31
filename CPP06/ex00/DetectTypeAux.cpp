@@ -1,12 +1,12 @@
 #include "includes/ScalarType.hpp"
 
-std::string ScalarType::getBeginNumber(std::string str){
+std::string ScalarType::getBeginNumber(){
     int i = 0;
     while(std::isspace(_str[i]))
         i++;
     if(_str[i] == '-' || _str[i] == '+')
         i++;
-    return str.substr(i);
+    return _str.substr(i);
 }
 
 bool    ScalarType::hasNonNumericChar(std::string str)
@@ -24,7 +24,6 @@ int getMaxValue(int a, int b){
     return(b);
 }
 
-/* -inff, +inff, nanf;*/
 bool  ScalarType::checkFloatCriteria(std::string str)
 {
     std::string::const_iterator i = str.begin();

@@ -37,7 +37,7 @@ public:
     ScalarType& operator= (const ScalarType& copy); //Copy assignment constructor
 
     //Auxiliar to Detect type
-    std::string getBeginNumber(std::string str);
+    std::string getBeginNumber();
     bool        hasNonNumericChar(std::string str);
     bool        checkFloatCriteria(std::string str);
     bool        checkDoubleCriteria(std::string str);
@@ -52,7 +52,7 @@ public:
     bool        isPseudoLiteral();
 
     //Getters
-    char        *getStr() const;
+    std::string getStr() const;
     int         getType() const;
     int         getPrecision() const;
     int         getConversions() const;
@@ -69,10 +69,10 @@ public:
     static void        checkLimitsPrintChar(int num);
     static void        checkLimitsPrintInt(long long int num);
     static void        checkLimitsPrintFloat(double num, int precision);
-    ~ScalarType(); // Destructor
+    ~ScalarType();      // Destructor
 
 private:
-    char        *_str;
+    std::string _str;
     int         _type;
     int         _precision;
     int         _conversions;
