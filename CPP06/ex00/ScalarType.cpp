@@ -2,13 +2,13 @@
 
 ScalarType::ScalarType(): _str(NULL), _type(-1), _precision(1), _conversions(6){}
 
-ScalarType::ScalarType(char *str): _str(str), _precision(1), _conversions(6){
-    if(!str || str[0] == 0)
+ScalarType::ScalarType(std::string str): _str(str), _precision(1), _conversions(6){
+    if(str.empty())
         throw MyException("Empty string");
     _type = this->detectType();
 }
 
-//!Copy constructor
+//Copy constructor
 ScalarType::ScalarType(const ScalarType& copy)
     :   _str(copy._str), 
         _type(copy._type), 
@@ -16,7 +16,7 @@ ScalarType::ScalarType(const ScalarType& copy)
         _conversions(copy._conversions) {}
 
 
-//!Copy assignment operator overload
+//Copy assignment operator overload
 ScalarType& ScalarType::operator= (const ScalarType& copy) {
     if (this == &copy)
         return *this;

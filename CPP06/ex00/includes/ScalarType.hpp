@@ -32,7 +32,7 @@
 class ScalarType {
 public:
     ScalarType(); // Constructor
-    ScalarType(char *str); // String Constructor
+    ScalarType(std::string str); // String Constructor
     ScalarType(const ScalarType& copy);//Copy constructor
     ScalarType& operator= (const ScalarType& copy); //Copy assignment constructor
 
