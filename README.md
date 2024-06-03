@@ -47,12 +47,12 @@ git clone git@github.com:rimarque/CPP-Modules.git
 - Polymorphism
 ```
 
-### **Module** 0️⃣:five:
+### **Module** 0️⃣5️⃣
 ```
 - Exceptions
 ```
 
-### **Module** 0️⃣:six:
+### **Module** 0️⃣6️⃣
 ```
 - Type casting
 ```
