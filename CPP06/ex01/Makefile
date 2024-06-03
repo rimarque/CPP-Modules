@@ -19,15 +19,15 @@ CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 NPD				= --no-print-directory
 
 #--------------------------------- FILES  ---------------------------------------
-NAME 			= ex00
+NAME 			= ex01
 INCLUDE			= includes
 OBJDIR			= obj
 
-_FILES 			= ScalarConverter MyException ScalarType DetectType DetectTypeAux ConvertToType PrintType
+_FILES 			= Serializer MyException
 
 OBJ				= $(_FILES:%=%.o)
 TARGET			= $(addprefix $(OBJDIR)/, $(OBJ))
-_HEADERS		= ScalarConverter.hpp MyException.hpp ScalarType.hpp
+_HEADERS		= Serializer.hpp MyException.hpp
 HDR				= $(addprefix $(INCLUDE)/, $(_HEADERS))
 
 #---------------------------------  RULES  --------------------------------------

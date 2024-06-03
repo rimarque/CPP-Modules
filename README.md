@@ -47,12 +47,24 @@ git clone git@github.com:rimarque/CPP-Modules.git
 - Polymorphism
 ```
 
+### **Module** 0️⃣:five:
+```
+- Exceptions
+```
+
+### **Module** 0️⃣:six:
+```
+- Type casting
+```
+
 ## 🌐 **Resources**
 [Polymorphism](https://www.geeksforgeeks.org/cpp-polymorphism/)
 
 [Virtual functions and runtime polymorphism](https://www.geeksforgeeks.org/virtual-functions-and-runtime-polymorphism-in-cpp/)
 
 [Abstract Class vs Interface Equivalence in C++](https://blog.devgenius.io/what-is-the-difference-between-interface-and-abstract-class-1b76277f2659)
+
+[Type casting](https://cplusplus.com/doc/oldtutorial/typecasting/)
 
 ## :link: **Compilation**
 
