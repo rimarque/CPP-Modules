@@ -19,15 +19,15 @@ CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 NPD				= --no-print-directory
 
 #--------------------------------- FILES  ---------------------------------------
-NAME 			= ex01
+NAME 			= ex02
 INCLUDE			= includes
 OBJDIR			= obj
 
-_FILES 			= Serializer 
+_FILES 			= Base A B C
 
 OBJ				= $(_FILES:%=%.o)
 TARGET			= $(addprefix $(OBJDIR)/, $(OBJ))
-_HEADERS		= Serializer.hpp
+_HEADERS		= Base.hpp A.hpp B.hpp C.hpp
 HDR				= $(addprefix $(INCLUDE)/, $(_HEADERS))
 
 #---------------------------------  RULES  --------------------------------------

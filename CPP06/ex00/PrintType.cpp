@@ -22,5 +22,5 @@ void    ScalarType::checkLimitsPrintFloat(double dnum, int precision){
         << static_cast<float>(dnum) << "f" << std::endl;
     }
     else
-        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: impossible" << std::endl;
 }

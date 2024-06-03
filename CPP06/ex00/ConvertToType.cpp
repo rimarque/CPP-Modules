@@ -1,5 +1,6 @@
 #include "includes/ScalarType.hpp"
 
+//*Using static cast 
 void    ScalarType::convertToChar(){
     std::cout << "1: convert to char: \n";
     char c = _str[0];

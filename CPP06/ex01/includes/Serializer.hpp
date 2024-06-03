@@ -21,6 +21,8 @@
 # define BOLD_CYAN "\033[1;36m"
 # define RESET "\033[0m"
 
+# define ARRAY_SIZE(arr) (sizeof(arr) / sizeof(arr[0]))
+
 typedef struct Data{
     int data;
 } Data;

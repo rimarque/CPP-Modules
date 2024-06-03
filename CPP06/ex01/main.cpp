@@ -1,5 +1,4 @@
 #include "includes/Serializer.hpp"
-#include "includes/MyException.hpp"
 
 int    null_data_test(bool detail){
     Data        *expected_result = NULL;
@@ -18,7 +17,7 @@ int    null_data_test(bool detail){
         return 0;
     }
     if (detail == true){
-        std::cout << RED << "Null data test: Wrong output!\n";
+        std::cout << RED << "Null data test: Wrong output!\n" << RESET;
         std::cout << std::endl << "<---------------------------------------------->\n\n";
     }
     return 1;
@@ -42,7 +41,7 @@ int    new_data_test(bool detail){
         return 0;
     }
     if(detail == true){
-        std::cout << RED << "New data test: Wrong output!\n";
+        std::cout << RED << "New data test: Wrong output!\n" << RESET;
         std::cout << std::endl << "<---------------------------------------------->\n\n";
     }
     delete expected_result;
@@ -70,7 +69,7 @@ int    init_data_test(bool detail){
         return 0;
     }
     if(detail == true){
-        std::cout << RED << "Init data test: Wrong output!\n";
+        std::cout << RED << "Init data test: Wrong output!\n" << RESET;
         std::cout << std::endl << "<---------------------------------------------->\n\n";
     }
     delete expected_result;
@@ -98,7 +97,7 @@ int    bigint_data_test(bool detail){
         return 0;
     }
     if( detail == true){
-        std::cout << RED << "Big int data test: Wrong output!\n";
+        std::cout << RED << "Big int data test: Wrong output!\n" << RESET;
         std::cout << std::endl << "<---------------------------------------------->\n\n";
     }
     delete expected_result;
@@ -119,16 +118,18 @@ int main(int argc, char **argv){
     }
     else
         detail = false;
-    int number_of_tests = 4;
     int (*tests[])(bool) = {&null_data_test, &new_data_test, &init_data_test, &bigint_data_test};
+    int number_of_tests = ARRAY_SIZE(tests);
     int fail = 0;
     for(int i = 0; i < number_of_tests; i++){
         if(tests[i](detail))
             fail++;
     }
+    int success = number_of_tests - fail;
     if(fail)
-        std::cout << RED << "Failure: " << number_of_tests << " tests performed, " << fail << " fails" << RESET << std::endl;
+        std::cout << RED << "Failure: ";
     else
-        std::cout << GREEN << "Sucess: " << number_of_tests << " tests performed, 0 fails" 
-        << RESET << " (run with -d to see tests in detail)" << std::endl;
+        std::cout << GREEN << "Success: ";
+    std::cout << number_of_tests << " tests performed, " 
+    << success << " successes, " << fail << " fails" << RESET << std::endl;
 }

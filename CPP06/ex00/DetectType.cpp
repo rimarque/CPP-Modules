@@ -2,9 +2,8 @@
 /* To make things simple, please note that non displayable characters shouldn’t be used as
 inputs */
 bool    ScalarType::isChar() {
-    if (_str.length() > 1){
+    if (_str.length() > 1)
         return false;
-    }
     char c = _str[0];
     if (std::isdigit(c) || !std::isprint(c))
         return false;
@@ -23,25 +22,21 @@ bool ScalarType::isInt(){
 
 bool ScalarType::isFloat(){
     std::string str = getBeginNumber();
-    if(!checkFloatCriteria(str)){
+    if(!checkFloatCriteria(str))
         return false;
-    }
     double dnum = atof(_str.c_str());
-    if(dnum < -FLT_MAX || dnum > FLT_MAX){
+    if(dnum < -FLT_MAX || dnum > FLT_MAX)
         return false;
-    }
     return true;
 }
 
 bool ScalarType::isDouble(){
     std::string str = getBeginNumber();
-    if(!checkDoubleCriteria(str)){
+    if(!checkDoubleCriteria(str))
         return false;
-    }
     long double ldnum = strtold(_str.c_str(), NULL);
-    if(ldnum < -DBL_MAX || ldnum > DBL_MAX){
+    if(ldnum < -DBL_MAX || ldnum > DBL_MAX)
         return false;
-    }
     return true;
 }
 
