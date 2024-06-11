@@ -33,15 +33,14 @@ class Array{
             }
             return *this;
         };
-        T   operator[](unsigned int i) const{ //read only
+        const T&  operator[](unsigned int i) const{ //read only
             std::cout << "read only op called\n";
             if(i >= _size)
                 throw std::out_of_range("Index out of bounds");
             return _array[i];
         };
         T&    operator[](unsigned int i){ //modify
-            //std::cout << "modify op called\n";
-            //std::cout << i << ", " << _size << std::endl;
+            //std::cout << "read/modilfy op called\n";
             if(i >= _size)
                 throw std::out_of_range("Index out of bounds");
             return _array[i];
@@ -49,6 +48,7 @@ class Array{
         int size() const{
             return _size;
         };
+        T *getArray() const {return _array;};
         ~Array() { delete[] _array;};
     private:
         T           *_array;
