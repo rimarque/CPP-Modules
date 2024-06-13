@@ -45,6 +45,13 @@ void    Span::addNumber(int n){
         _vec.push_back(n);
 } //add a single number to the span
 
+void    Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+    if (_vec.size() + std::distance(begin, end) > _maxN) {
+            throw std::overflow_error("The container will be full");
+    }
+        _vec.insert(_vec.end(), begin, end);
+}
+
 int     Span::shortestSpan() const{
     if (_vec.size() < 2){
         throw std::logic_error("Not enough numbers to find a span");

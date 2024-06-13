@@ -40,13 +40,7 @@ public:
     std::vector<int> getVec() const;
     //Metods
     void addNumber(int n);
-    template <typename Iterator>
-    void    addNumber(Iterator begin, Iterator end) {
-        if (_vec.size() + std::distance(begin, end) > _maxN) {
-            throw std::overflow_error("The container will be full");
-        }
-        _vec.insert(_vec.end(), begin, end);
-    }
+    void addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
     int shortestSpan() const;//diferença mais pequena entre 2 numeros
     int longestSpan() const;//diferença maior entre 2 numeros
     
