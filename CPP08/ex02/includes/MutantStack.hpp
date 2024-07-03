@@ -63,6 +63,8 @@ public:
     const_reverse_iterator rbegin() const { return this->c.rbegin(); }
     
     const_reverse_iterator rend() const { return this->c.rend(); }
+
+    ~MutantStack() {}
 };
 
 #endif // MUTANTSTACK_HPP
