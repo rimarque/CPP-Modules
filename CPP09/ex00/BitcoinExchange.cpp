@@ -1,8 +1,5 @@
 #include "includes/BitcoinExchange.hpp"
 
-/*If the date used in the input does not exist in your DB then you
-must use the closest date contained in your DB. Be careful to use the
-lower date and not the upper one.*/
 
 MyException::MyException(const std::string& msg): _msg(msg) {}
 
@@ -30,10 +27,23 @@ BitcoinExchange& BitcoinExchange::operator= (const BitcoinExchange& copy) {
     return *this;
 }
 
+/*If the date used in the input does not exist in your DB then you
+must use the closest date contained in your DB. Be careful to use the
+lower date and not the upper one.*/
+
+//!data menor:
+// if(_exchange_rate.lower_bound(key) == _exchange_rate.begin())
+    //    return _exchange_rate.begin()->second * value;
+//data maior retorna end
+float BitcoinExchange::convert(std::string key, float value){
+    std::map<std::string, float>::iterator it = _exchange_rate.lower_bound(key);
+    if(it == _exchange_rate.begin())
+        return it->second * value;
+    return (--_exchange_rate.upper_bound(key))->second * value;
+}
+
 BitcoinExchange::~BitcoinExchange() {}
 
-//ano entre 2009 e 2024 (talvez o 2024 está mal pk devia ser até ao último ano na fase de dados), 
-//mês entre 1 e 12, dias entre o x de dias para cada mês e tendo em conta os anos bissextos
 bool isSpace(std::string &str){
     bool space;
     int i = 0;
@@ -58,7 +68,7 @@ bool    hasNonNumericChar(std::string str)
   return false;
 }
 
-bool  isDouble(std::string str)
+bool  isFloat(std::string str)
 {
     bool    point = false;
     for (std::string::const_iterator i = str.begin(); i != str.end(); ++i){
@@ -77,25 +87,34 @@ bool  isDouble(std::string str)
 }
 
 bool isNumber(std::string str){
-    if(str.empty() || (hasNonNumericChar(str) == true && isDouble(str) == false))
+    if(str.empty() || (hasNonNumericChar(str) == true && isFloat(str) == false))
+        return false;
+    int number = atoi(str.c_str());
+    if(number < -FLT_MAX || number > FLT_MAX)
         return false;
     return true;
 }
 
 bool valid_year(std::string str, int& year){
-    if(!isNumber(str))
+    if(str.empty())
         return false;
-    int year = atoi(str.c_str());
+    if(hasNonNumericChar(str))
+        return false;
+    year = atoi(str.c_str());
     if (year <  2009)
         return false;
     return true;
 }
 
 bool valid_month(std::string str, int& month){
-    if(!isNumber(str))
+    if(str.empty())
         return false;
-    int nmonth = atoi(str.c_str());
-    if (nmonth > 12 || nmonth < 0)
+    if(hasNonNumericChar(str))
+        return false;
+    if(str.length() != 2)
+        return false;
+    month = atoi(str.c_str());
+    if (month > 12 || month < 0)
         return false;
     return true;
 }
@@ -111,11 +130,13 @@ bool valid_day(std::string str, const char& delimiter, int year, int month){
         return false;
     if(delimiter == '|'){
         if(str[str.length() - 1] == ' ')
-            str = str.substr(0, str.length() - 2);
+            str = str.substr(0, str.length() - 1);
         else
             return false;
     }
-    if(!isNumber(str))
+    if(hasNonNumericChar(str))
+        return false;
+    if(str.length() != 2)
         return false;
     int day = atoi(str.c_str());
     if(month == 2){
@@ -136,6 +157,7 @@ bool valid_day(std::string str, const char& delimiter, int year, int month){
         if(month % 2 != 0 && day < 1 && day > 30)
             return false;
     }
+    return true;
 }
 
 bool valid_date(const std::string& date, const char& delimiter){
@@ -158,34 +180,36 @@ bool valid_date(const std::string& date, const char& delimiter){
     return true;
 }
 
-
 float getvalue(std::string value, std::string line, const char& delimiter){
     std::string original_value = value;
-    if(delimiter == '|' && isSpace(value) == false){
-        std::cout << "entra aqui\n";
+
+    if(delimiter == '|' && isSpace(value) == false)
         throw MyException ("Error: bad input => " + line);
-    }
     if(delimiter == ',' && isSpace(value) == true)
             throw MyException ("Error: bad input => " + line);
-    if(isNumber(value) == false){
-        std::cout << "entra aqui 2\n";
+    if(isNumber(value) == false)
         throw MyException ("Error: bad input => " + line);
-    }
     float number = std::atof(original_value.c_str());
-    if(number < 0)
+    if(delimiter == '|' && number < 0)
         throw MyException ("Error: not a positive number.");
-    if(number > INT_MAX)
-        throw MyException ("Error: not a positive number.");
+    if(delimiter == '|' && number > 1000)
+        throw MyException ("Error: too large a number.");
     return number;
 }
 
 std::map<std::string, float> file_to_map(const std::string& file, const char& delimiter){
-    std::map<std::string, float> result_map;
     std::ifstream input_file(file.c_str());
     if (!input_file.is_open())
         throw MyException("Error opening file: " + file);
+
     std::string line;
     std::getline(input_file, line); // Skip header //!validate header
+    if(input_file.eof()){
+        input_file.close();
+        throw MyException("Error: empty file => " + file);
+    }
+
+    std::map<std::string, float> result_map;
     while (std::getline(input_file, line)) {
         std::istringstream input_line(line);
         std::string key, value;
@@ -210,7 +234,6 @@ std::map<std::string, float> file_to_map(const std::string& file, const char& de
         }
     }
     input_file.close();
-    std::cout << "\n\n";
-    print_map(result_map);
+    //print_map(result_map);
     return result_map;
 }

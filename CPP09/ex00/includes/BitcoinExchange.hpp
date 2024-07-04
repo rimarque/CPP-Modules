@@ -11,6 +11,7 @@
 # include <sstream>
 # include <climits>
 # include <stdexcept>
+# include <cfloat>
 # define RED "\033[31m"
 # define GREEN "\033[32m"
 # define PURPLE "\033[35m"
@@ -40,6 +41,7 @@ public:
     BitcoinExchange(const std::string& file);
     BitcoinExchange(const BitcoinExchange& copy);//Copy constructor
     BitcoinExchange& operator= (const BitcoinExchange& copy); //Copy assignment constructor
+    float convert(std::string date, float value);
     ~BitcoinExchange(); // Destructor
 
 private:
@@ -49,10 +51,16 @@ private:
 template <typename K, typename V>
 void print_map(const std::map<K, V>& map) {
     for (typename std::map<K, V>::const_iterator it = map.begin(); it != map.end(); ++it) {
-        std::cout << it->first << " => " << it->second << std::endl;
+        std::cout << it->first << ". => " << it->second << std::endl;
     }
 }
 
 std::map<std::string, float> file_to_map(const std::string& file, const char& delimiter);
+
+bool isNumber(std::string str);
+
+bool valid_date(const std::string& date, const char& delimiter);
+
+float getvalue(std::string value, std::string line, const char& delimiter);
 
 #endif // BITCOINEXCHANGE_HPP
