@@ -30,16 +30,11 @@ BitcoinExchange& BitcoinExchange::operator= (const BitcoinExchange& copy) {
 /*If the date used in the input does not exist in your DB then you
 must use the closest date contained in your DB. Be careful to use the
 lower date and not the upper one.*/
-
-//!data menor:
-// if(_exchange_rate.lower_bound(key) == _exchange_rate.begin())
-    //    return _exchange_rate.begin()->second * value;
-//data maior retorna end
 float BitcoinExchange::convert(std::string key, float value){
-    std::map<std::string, float>::iterator it = _exchange_rate.lower_bound(key);
+    std::map<std::string, float>::iterator it = _exchange_rate.upper_bound(key);
     if(it == _exchange_rate.begin())
         return it->second * value;
-    return (--_exchange_rate.upper_bound(key))->second * value;
+    return (--it)->second * value;
 }
 
 BitcoinExchange::~BitcoinExchange() {}
