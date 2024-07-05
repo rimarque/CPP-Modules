@@ -1,56 +1,57 @@
 Error Cases             database | input 
 
-bad header                  ok
-no header                   ok
-empty header line           ok
-empty line on top           ok
-empty line in midle         ok
-empty line end              ok
+bad header                  ok      ok
+no header                   ok      ok
+empty header line           ok      ok
+empty line on top           ok      ok
+empty line in midle         ok      ok
+empty line end              ok      ok
 
 KEY FORMAT (date)
-2020-10-8                   ok
-2020-0-08                   ok
-202-10-08                   ok
-21474836499999999-10-08     ok
-2147483649-10-08            ok
-2009-013-04                 ok
-2009--04                    ok
-200904                      ok
-2009-12-0                   ok
-nothing before,             ok
-2009-03--31                 ok
---31                        ok
-2009-03-31a                 ok
-2009-a3-31                  ok
-2009-0.3-31                 ok 
-2009.03-31                  ok
-2009-03--7                  ok
+2020-10-8                   ok      ok
+2020-0-08                   ok      ok
+202-10-08                   ok      ok
+21474836499999999-10-08     ok      ok
+2147483649-10-08            ok      ok
+2009-013-04                 ok      ok
+2009--04                    ok      ok
+200904                      ok      ok
+2009-12-0                   ok      ok
+nothing before,             ok      ok
+2009-03--31                 ok      ok
+--31                        ok      ok
+2009-03-31a                 ok      ok
+2009-a3-31                  ok      ok
+2009-0.3-31                 ok      ok
+2009.03-31                  ok      ok
+2009-03--7                  ok      ok
 
 NON EXISTING DATES          
-2009-11-31                  ok 
-2009-02-30                  ok
-2009-03-47                  ok
-2009-10-32                  ok
-2009-02-29                  ok
-2012-02-30                  ok
-2014-02-29                  ok
-2009-13-04                  ok
-2016-209-13                 ok
+2009-11-31                  ok      ok
+2009-02-30                  ok      ok
+2009-03-47                  ok      ok
+2009-10-32                  ok      ok
+2009-02-29                  ok      ok
+2012-02-30                  ok      ok
+2014-02-29                  ok      ok
+2009-13-04                  ok      ok
+2016-209-13                 ok      ok
 
 VALUE
-235.59a                     ok
-non existing                ok
-224.99 1 2                  ok
--224.99                     ----
-22455555.99                 ----
-2245555588888.99            ok
-1001                        ----
--1                          ----
-a vida e bela               ok
-a
+235.59a                     ok      ok
+non existing                ok      ok
+224.99 1 2                  ok      ok
+-224.99                     ----    ok
+22455555.99                 ----    ok
+2245555588888.99            ok      ok
+1001                        ----    ok
+-1                          ----    ok
+a vida e bela               ok      ok
+a                           ok      ok
+
 
 GENERAL FORMAT
-espaço no final             ok
+espaço no final             ok      ok
 2015-06-07, 224.99          ok      ---
 2015-06-07 , 224.99         ok      ---
 2015-06-07 ,224.99          ok      ---    
@@ -59,23 +60,32 @@ espaço no final             ok
 2015-06-07,|                ok      ---
 2015-06-07|                 ok      ---
 ,2015-06-07,224.99          ok      ---
+2012-01-11                  ok      ok
+13                          ok      ok
+2015-06-07| 224.99          ---     ok
+2015-06-07 |224.99          ---     ok  
+2015-06-07|224|99           ---     ok
+2015-06-07||                ---     ok
+|2015-06-07 224.99          ---     ok
+ 2015-06-07 | 224.99        ---     ok
+
 
 
 Working Cases           database | input
 DATE FORMAT
-288888-10-08                ok
-2009-12-31                  ok
-2009-03-31                  ok
-2009-11-30                  ok
-2009-10-31                  ok
-2009-02-28                  ok
-2012-02-28                  ok
-2012-02-29
-2016-02-29
+288888-10-08                ok      ok
+2009-12-31                  ok      ok
+2009-03-31                  ok      ok
+2009-11-30                  ok      ok
+2009-10-31                  ok      ok
+2009-02-28                  ok      ok
+2012-02-28                  ok      ok
+2012-02-29                  ok      ok
+2016-02-29                  ok      ok
 
 VALUE
--224.99                     ok
-22455555.99                 ok
--1                          ok
-1000                        ok
-1001                        ok
+-224.99                     ok      ----
+22455555.99                 ok      ----
+-1                          ok      ----
+1000                        ok      ok
+1001                        ok      ----
