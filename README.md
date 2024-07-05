@@ -66,6 +66,14 @@ git clone git@github.com:rimarque/CPP-Modules.git
 
 [Type casting](https://cplusplus.com/doc/oldtutorial/typecasting/)
 
+[Reverse Polish Notation Calculator](https://paodayag.dev/reverse-polish-notation-js-parser/)
+
+[Reverse Polish Notation](https://www.wallstreetmojo.com/reverse-polish-notation/#h-frequently-asked-questions-faqs)
+
+[Stack](https://www.geeksforgeeks.org/stack-in-cpp-stl/?ref=lbp)
+
+[Queue](https://www.geeksforgeeks.org/queue-cpp-stl/)
+
 ## :link: **Compilation**
 
 Choose the module and the exercise you want to compile, for example:
