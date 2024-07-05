@@ -45,4 +45,6 @@ private:
     std::stack<float> _stack;
 };
 
+void showq(std::queue<int> gq);
+
 #endif // RPN_HPP

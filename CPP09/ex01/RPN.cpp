@@ -8,16 +8,11 @@ const char* MyException::what() const throw(){
 
 MyException::~MyException() throw() {}
 
-RPN::RPN() {
-    std::cout << BOLD_WHITE << "RPN" << RESET 
-    << " default constructor called" << std::endl;
-}
+RPN::RPN() {}
 
 // Copy constructor
 RPN::RPN(const RPN& copy) {
     _stack = copy._stack;
-    std::cout << BOLD_WHITE << "RPN" << RESET 
-    << " copy constructor called" << std::endl;
 }
 
 // Copy assignment operator overload
@@ -26,8 +21,6 @@ RPN& RPN::operator= (const RPN& copy) {
     if (this == &copy)
         return *this;
     _stack = copy._stack;
-    std::cout << BOLD_WHITE << "RPN" << RESET 
-    << " copy assignment operator overload" << std::endl;
     return *this;
 }
 
@@ -59,49 +52,63 @@ float math_op(float first_op, float second_op, int op){
     }
 }
 
-//invalid, sem operador para a quatidade de numeros
+// Print the stack
+void shows(std::stack<float> st)
+{
+    std::stack<float> s = st;
+    while (!s.empty()) {
+        std::cout << s.top() << " "; 
+        s.pop();
+    }
+    std::cout << '\n';
+}
+
+// Print the queue
+void showq(std::queue<int> gq)
+{
+    std::queue<int> g = gq;
+    while (!g.empty()) {
+        std::cout << g.front() << " "; 
+        g.pop();
+    }
+    std::cout << '\n';
+}
+
 float RPN::calculate(std::queue<int> q){
     //The first two elements must be numbers
-    if(q.front() < 10){
-        _stack.push(q.front());
-        q.pop();
+    for(int i = 0; i < 2; ++i){
+        if(q.front() < 10){
+            _stack.push(q.front());
+            q.pop();
+        }
+        else
+            throw MyException("Invalid expression");
     }
-    else
-        throw MyException("Invalid expression 1");
-    if(q.front() < 10){
-        _stack.push(q.front());
-        q.pop();
-    }
-    else
-        throw MyException("Invalid expression 2");;
     if(q.empty())
-        throw MyException("Invalid expression 3");
+        throw MyException("Invalid expression");
+    
     float result;
     while(!q.empty()){
         //When we find an operator in front of the queue we do the math
         if(q.front() > 10){
             float second_operand = _stack.top();
             _stack.pop();
-            //There is only 1 operand, so no math_op is possible =>  4 5 + -
+            //There is only 1 operand, so no math_op is possible =>  4 5 + - (to many operators for the operands)
             if(_stack.empty())
-                throw MyException("Invalid expression 4");
+                throw MyException("Invalid expression");
             result = math_op(_stack.top(), second_operand, q.front());
             _stack.pop();
-            if(!_stack.empty())
-                _stack.push(result);
+            _stack.push(result);
         }
         //If it's a number we add it to the stack
         else
             _stack.push(q.front());
         q.pop();
     }
-    //In case there are still numbers in the stack => 1 7 3 5 + * 
-    if(!_stack.empty())
-        throw MyException("Invalid expression 5");
+    //In case there are numbers other then the last result in the stack => 1 7 3  + * (to many operands for the operators)
+    if(_stack.size() > 1)
+        throw MyException("Invalid expression");
     return result;
 }
 
-RPN::~RPN() {
-    std::cout << BOLD_WHITE << "RPN" << RESET 
-    << " destructor called" << std::endl;
-}
+RPN::~RPN() {}

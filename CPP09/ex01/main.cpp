@@ -1,15 +1,4 @@
 #include "includes/RPN.hpp"
-
-// Print the queue
-void showq(std::queue<int> gq)
-{
-    std::queue<int> g = gq;
-    while (!g.empty()) {
-        std::cout << g.front() << " "; 
-        g.pop();
-    }
-    std::cout << '\n';
-}
  
 
 std::queue<int> str_to_queue(const std::string& str){
@@ -36,7 +25,6 @@ int main(int argc, char **argv){
         if(argc != 2)
             throw MyException("Usage: ./RPN \"mathematical expression\"");
         std::queue<int> q = str_to_queue(argv[1]);
-        showq(q);
         RPN calculator;
         std::cout << calculator.calculate(q) << std::endl;
     }
