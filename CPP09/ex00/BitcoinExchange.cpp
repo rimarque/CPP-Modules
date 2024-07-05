@@ -84,16 +84,23 @@ bool  isFloat(std::string str)
 bool isNumber(std::string str){
     if(str.empty() || (hasNonNumericChar(str) == true && isFloat(str) == false))
         return false;
-    int number = atoi(str.c_str());
-    if(number < -FLT_MAX || number > FLT_MAX)
+    float number = atof(str.c_str());
+    if(number < INT_MIN || number > INT_MAX)
+        return false;
+    return true;
+}
+
+bool isInt(std::string str){
+    if(str.empty() || (hasNonNumericChar(str) == true))
+        return false;
+    float number = atof(str.c_str());
+    if(number < INT_MIN || number > INT_MAX)
         return false;
     return true;
 }
 
 bool valid_year(std::string str, int& year){
-    if(str.empty())
-        return false;
-    if(hasNonNumericChar(str))
+    if(!isInt(str))
         return false;
     year = atoi(str.c_str());
     if (year <  2009)
@@ -102,9 +109,7 @@ bool valid_year(std::string str, int& year){
 }
 
 bool valid_month(std::string str, int& month){
-    if(str.empty())
-        return false;
-    if(hasNonNumericChar(str))
+    if(!isInt(str))
         return false;
     if(str.length() != 2)
         return false;
@@ -121,35 +126,33 @@ bool is_leap_year(int year){
 }
 
 bool valid_day(std::string str, const char& delimiter, int year, int month){
-    if(str.empty())
-        return false;
     if(delimiter == '|'){
         if(str[str.length() - 1] == ' ')
             str = str.substr(0, str.length() - 1);
         else
             return false;
     }
-    if(hasNonNumericChar(str))
+    if(!isInt(str))
         return false;
     if(str.length() != 2)
         return false;
     int day = atoi(str.c_str());
     if(month == 2){
-        if(is_leap_year(year) && day < 1 && day > 29)
+        if(is_leap_year(year) && (day < 1 || day > 29))
             return false;
-        if(!is_leap_year(year) && day < 1 && day > 28)
+        if(!is_leap_year(year) && (day < 1 || day > 28))
             return false;
     }
     else if(month < 8){
-        if(month % 2 == 0 && day < 1 && day > 30)
+        if(month % 2 == 0 && (day < 1 || day > 30))
             return false;
-        if(month % 2 != 0 && day < 1 && day > 31)
+        if(month % 2 != 0 && (day < 1 || day > 31))
             return false;
     }
     else{
-        if(month % 2 == 0 && day < 1 && day > 31)
+        if(month % 2 == 0 && (day < 1 || day > 31))
             return false;
-        if(month % 2 != 0 && day < 1 && day > 30)
+        if(month % 2 != 0 && (day < 1 || day > 30))
             return false;
     }
     return true;
@@ -167,7 +170,6 @@ bool valid_date(const std::string& date, const char& delimiter){
     std::getline(input_date, month, '-');
     if(valid_month(month, n_month) == false)
         return false;
-
     std::getline(input_date, day);
     if(valid_day(day, delimiter, n_year, n_month) == false)
         return false;
@@ -193,17 +195,24 @@ float getvalue(std::string value, std::string line, const char& delimiter){
 }
 
 std::map<std::string, float> file_to_map(const std::string& file, const char& delimiter){
+    //Abrir o ficheiro
     std::ifstream input_file(file.c_str());
     if (!input_file.is_open())
         throw MyException("Error opening file: " + file);
 
+    //Ver se o ficheiro está vazio e validar o header
     std::string line;
-    std::getline(input_file, line); // Skip header //!validate header
+    std::getline(input_file, line);
     if(input_file.eof()){
         input_file.close();
         throw MyException("Error: empty file => " + file);
     }
+    if(line != "date,exchange_rate"){
+            input_file.close();
+            throw MyException("Error: invalid header => " + file);
+    }
 
+    //Ler o ficheiro e guardar numa estrutura associativa (map<string, number>)
     std::map<std::string, float> result_map;
     while (std::getline(input_file, line)) {
         std::istringstream input_line(line);
@@ -216,10 +225,13 @@ std::map<std::string, float> file_to_map(const std::string& file, const char& de
         }
         std::getline(input_line, value);
         try{
+            //Nada após delimitador
             if(value.empty())
                 throw MyException ("Error: bad csv file => " + line);
+            //Validar data
             if(valid_date(key, delimiter) == false)
                 throw MyException ("Error: bad csv file => " + line);
+            //Validar valor
             float number = getvalue(value, line, delimiter);
             result_map[key] = number;
         }

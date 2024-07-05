@@ -14,12 +14,17 @@ int main(int argc, char **argv){
         if (!input_file.is_open())
             throw MyException("Error opening file: " + file);
 
+
         //Ver se o ficheiro está vazio e validar o header
         std::string line;
-        std::getline(input_file, line); // Skip header //!validate header
+        std::getline(input_file, line);
         if(input_file.eof()){
             input_file.close();
             throw MyException("Error: empty file => " + file);
+        }
+        if(line != "date | value"){
+            input_file.close();
+            throw MyException("Error: invalid header => " + file);
         }
 
         //Ler o ficheiro e imprimir o output
@@ -39,7 +44,7 @@ int main(int argc, char **argv){
                 continue;
             }
             //Validar data
-            if(valid_date(key, '|') == false){
+            if(!valid_date(key, '|')){
                 std::cerr << "Error: bad input => " + line << std::endl;
                 continue;
             }
