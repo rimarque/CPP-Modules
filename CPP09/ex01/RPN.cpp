@@ -46,7 +46,7 @@ float math_op(float first_op, float second_op, int op){
             if (second_op != 0)
                 return first_op / second_op;
             else
-                throw MyException("Invalid expression: division by zero not possible");
+                throw MyException("Invalid expression: division by zero");
         default:
             return 0;
     }
