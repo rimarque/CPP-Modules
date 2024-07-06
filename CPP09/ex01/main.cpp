@@ -11,7 +11,7 @@ std::queue<int> str_to_queue(const std::string& str){
             throw MyException("Error: mathematical expression may include digits (from 0 to 9) and operators (+ - / *) only");
         char c = *word.begin();
         if(std::isdigit(c))
-            q.push(atoi(word.c_str()));
+            q.push(c - 48);
         else if(c == '-' || c == '+' || c == '/' || c == '*')
             q.push(c);
         else
