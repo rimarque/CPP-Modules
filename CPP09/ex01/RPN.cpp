@@ -46,7 +46,7 @@ float math_op(float first_op, float second_op, int op){
             if (second_op != 0)
                 return first_op / second_op;
             else
-                return 0;
+                throw MyException("Invalid expression: division by zero not possible");
         default:
             return 0;
     }
@@ -75,6 +75,9 @@ void showq(std::queue<int> gq)
 }
 
 float RPN::calculate(std::queue<int> q){
+    //Must have 3 elements
+    if(q.size() < 3)
+        throw MyException("Invalid expression: must have at least two operands and one operator");
     //The first two elements must be numbers
     for(int i = 0; i < 2; ++i){
         if(q.front() < 10){
@@ -82,20 +85,17 @@ float RPN::calculate(std::queue<int> q){
             q.pop();
         }
         else
-            throw MyException("Invalid expression");
-    }
-    if(q.empty())
-        throw MyException("Invalid expression");
-    
+            throw MyException("Invalid expression: the first two elements must be operands");
+    }    
     float result;
     while(!q.empty()){
         //When we find an operator in front of the queue we do the math
         if(q.front() > 10){
             float second_operand = _stack.top();
             _stack.pop();
-            //There is only 1 operand, so no math_op is possible =>  4 5 + - (to many operators for the operands)
+            //There is only 1 operand, so no math_op is possible =>  4 5 + - (too many operators for the operands)
             if(_stack.empty())
-                throw MyException("Invalid expression");
+                throw MyException("Invalid expression: missing operand");
             result = math_op(_stack.top(), second_operand, q.front());
             _stack.pop();
             _stack.push(result);
@@ -105,9 +105,9 @@ float RPN::calculate(std::queue<int> q){
             _stack.push(q.front());
         q.pop();
     }
-    //In case there are numbers other then the last result in the stack => 1 7 3  + * (to many operands for the operators)
+    //In case there are numbers other then the last result in the stack => 1 7 3  + * (too many operands for the operators)
     if(_stack.size() > 1)
-        throw MyException("Invalid expression");
+        throw MyException("Invalid expression: missing operator");
     return result;
 }
 
