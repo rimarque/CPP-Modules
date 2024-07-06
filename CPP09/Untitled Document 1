@@ -1,0 +1,40 @@
+A inserção é feita a partir do inicio ate encontrares um numero maior:
+
+3, 7, 9
+
+Se quiseres inserir o 4 comecas do início e inseres antes do 7 porque é maior que o 4.
+
+Agora isso das distancias é assim:
+
+Em vez de inserires tudo seguido, vais inserir um grupos de numeros. Vamos supor, grupo 1, grupo 2, grupo 3...
+
+No entanto o tamanho de cada grupo pode variar, por exemplo o grupo 1 vai ter 2 numeros, o grupo 2 também vai ter 2 numeros, o grupo 3 vai ter 5 numeros,... etc
+
+Agora perguntas, mas como sabes quais sao os tamanhos dos grupos?! É a distância entre os numeros de jacobsthal 😁 
+
+Vou dar aqui um exemplo dos numeros iniciais
+
+1 3 5 11 21 33... (sabes isto certo? O número seguinte é o anterior e o anterior dele multiplicado por 2)
+
+1 - 3 5 11 21 33
+Se reparares a primeira distância é entre o 1 e 3, que é 2, porque contas duas vezes para ir do 1 ao 3.
+
+1 3 - 5 11 21 33
+
+Proximo grupo é entre o 3 e o 5. Que é  2 também. 
+
+1 3 5 - 11 21 33
+
+Agora o grupo 3 é  de 6 numeros.
+
+Grupo 4 de 10 números... acho que ja apanhaste a cena 😅 
+
+Agora para a parte mais complicada (mas afim ao cabo não é)
+
+No grupo 1 vais ter de inserir os numeros b2 e b3, no grupo 2 vais ter de inserir os numeros b4 e b5, no grupo 3 vais ter de inserir os numeros b6, b7, b8, b9, b10 e b11, no grupo 4 vais inserir os numeros b12, b13, b14... por aí adiante.
+
+MAS... NÃO VAIS INSERIR na ordem normal cada grupo! Vais inserir em ordem inversa 🤯
+
+Ou seja, no grupo 1, em vez de inserir o b2 e depois o b3, vais inserir primeiro o b3 e depois o b2. Grupo 2 vais inserir o b4 e depois o b5. Grupo 3 vais inserir o b11, b10, b9, b8, b7, b6. Grupo b21, b20 ...
+
+Fez sentido? Não consigo explicar melhor por mensagem

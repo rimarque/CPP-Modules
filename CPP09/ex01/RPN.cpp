@@ -86,10 +86,10 @@ float RPN::calculate(std::queue<int> q){
         }
         else
             throw MyException("Invalid expression: the first two elements must be operands");
-    }    
+    }
     float result;
     while(!q.empty()){
-        //When we find an operator in front of the queue we do the math
+        //When we find an operator in front of the queue we do the math and push the result on top of the stack
         if(q.front() > 10){
             float second_operand = _stack.top();
             _stack.pop();
