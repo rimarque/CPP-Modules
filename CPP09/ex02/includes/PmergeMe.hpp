@@ -10,6 +10,8 @@
 # include <deque>
 # include <iterator>
 # include <utility>  // Para std::pair e std::make_pair
+# include <cmath> //para o power of
+#include  <algorithm> //para o std::min
 # define RED "\033[31m"
 # define GREEN "\033[32m"
 # define PURPLE "\033[35m"
@@ -35,27 +37,28 @@ class MyException: public std::exception {
         std::string _msg;
 };
 
+//Transformar class em template
+template <typename T>
 class PmergeMe {
 public:
     PmergeMe(); // Constructor
-    PmergeMe(std::vector<int> vec);
+    PmergeMe(std::T<int> vec);
     PmergeMe(const PmergeMe& copy);//Copy constructor
     PmergeMe& operator= (const PmergeMe& copy); //Copy assignment constructor
     void    makePairs();
     void    sortPairs();
     void    insertion();
-    std::vector<int> fordJohnsonVec();
-    //std::vector<int> fordJohnsonDeq();
+    std::T<int> fordJohnson();
     ~PmergeMe(); // Destructor
 
 private:
-    std::vector<int>    _vec;
-    std::vector<std::pair<int, int> > _vecpairs;
-    std::vector<int>    _sortedvec;
-    std::deque<int>     _deq;
-    std::vector<std::pair<int, int> > _deqpairs;
-    std::vector<int>    _sortedeq;
+    std::T<int>                    _input;
+    std::T<std::pair<int, int> >   _pairs;
+    std::T<int>                    _sorted;
+    std::T<int>                    _pend;
 };
+
+#include "PmergeMe.cpp"
 
 template <typename T>
 void printContainer(const T& container) {

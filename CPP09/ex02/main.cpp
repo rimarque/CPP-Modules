@@ -19,7 +19,7 @@ double getTimeInMicroSec(timeval start, timeval end){
 }
 
 //Ja ta organizada
-//Numeros repetidos
+//Ver se ta organizada e se tem a mesma quantidade de numeros
 bool    hasNonNumericChar(std::string str)
 {
   for (std::string::const_iterator i = str.begin(); i != str.end(); ++i) {
@@ -44,6 +44,7 @@ std::vector<int> verify_input(char **argv){
     for(int i = 1; argv[i]; ++i) {
         std::cout << argv[i] << std::endl;
         if(isPosInt(argv[i]) == false){
+            std::cout << argv[i] << std::endl;
             throw MyException("Error: only positive intergers can be used as argument");
         }
         vec.push_back(atoi(argv[i]));
@@ -59,23 +60,29 @@ int main(int argc, char **argv){
         }
         gettimeofday(&start, NULL);
         std::vector<int> vec = verify_input(argv);
+        std::deque<int> deq(vec.begin(), vec.end());
         gettimeofday(&end, NULL);
         double data_managment_time = getTimeInMicroSec(start, end);
         std::cout << "Data managment time " << std::fixed << std::setprecision(2) 
         << data_managment_time << " us\n";
-        std::cout << "Before: ";
+        std::cout << "Before vec: ";
         printContainer(vec);
-        PmergeMe sort(vec);
+        std::cout << "Before deq: ";
+        printContainer(deq);
+        PmergeMe sortvec(vec);
         gettimeofday(&start, NULL);
-        std::vector<int> sorted_vec = sort.fordJohnsonVec();
+        std::vector<int> sorted_vec = sortvec.fordJohnson();
         gettimeofday(&end, NULL);
         double sorting_time_vec = getTimeInMicroSec(start, end);
-        /* gettimeofday(&start, NULL);
-        sort.fordJohnsonDeq();
+        /*PmergeMe sortdeq(deq);
+        gettimeofday(&start, NULL);
+        std::vector<int> sorted_deq = sortdeq.fordJohnson();
         gettimeofday(&end, NULL);
         double sorting_time_deq = getTimeInMicroSec(start, end); */
-        std::cout << "After: ";
+        std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAfter vec: ";
         printContainer(sorted_vec);
+/*         std::cout << "After deq: ";
+        printContainer(sorted_deq) */;
         std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: " 
         <<  sorting_time_vec + data_managment_time << " us\n";
         /*std::cout << "Time to process a range of " << vec.size() << " elements with std::deque: " 
