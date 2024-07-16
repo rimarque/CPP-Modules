@@ -1,4 +1,6 @@
 #include "includes/PmergeMe.hpp"
+
+#include "includes/PmergeMe.hpp"
 #include <sys/time.h>
 #include <bits/stdc++.h>
 
@@ -16,6 +18,8 @@ double getTimeInMicroSec(timeval start, timeval end){
         return ((seconds * 1000000.0) + microseconds);
 }
 
+//Ja ta organizada
+//Numeros repetidos
 bool    hasNonNumericChar(std::string str)
 {
   for (std::string::const_iterator i = str.begin(); i != str.end(); ++i) {
@@ -28,7 +32,7 @@ bool    hasNonNumericChar(std::string str)
 bool isPosInt(std::string str){
     if(str.empty() || (hasNonNumericChar(str) == true))
         return false;
-    float number = atof(str.c_str());
+    long number = atol(str.c_str());
     if(number < 1 || number > INT_MAX)
         return false;
     return true;
@@ -57,7 +61,7 @@ int main(int argc, char **argv){
         std::vector<int> vec = verify_input(argv);
         gettimeofday(&end, NULL);
         double data_managment_time = getTimeInMicroSec(start, end);
-        std::cout << "Data managment time " << std::fixed << std::setprecision(5) 
+        std::cout << "Data managment time " << std::fixed << std::setprecision(2) 
         << data_managment_time << " us\n";
         std::cout << "Before: ";
         printContainer(vec);

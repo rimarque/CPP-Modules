@@ -41,8 +41,9 @@ public:
     PmergeMe(std::vector<int> vec);
     PmergeMe(const PmergeMe& copy);//Copy constructor
     PmergeMe& operator= (const PmergeMe& copy); //Copy assignment constructor
-    void  makePairs();
-    void  sortPairs();
+    void    makePairs();
+    void    sortPairs();
+    void    insertion();
     std::vector<int> fordJohnsonVec();
     //std::vector<int> fordJohnsonDeq();
     ~PmergeMe(); // Destructor
@@ -50,8 +51,10 @@ public:
 private:
     std::vector<int>    _vec;
     std::vector<std::pair<int, int> > _vecpairs;
+    std::vector<int>    _sortedvec;
     std::deque<int>     _deq;
     std::vector<std::pair<int, int> > _deqpairs;
+    std::vector<int>    _sortedeq;
 };
 
 template <typename T>
