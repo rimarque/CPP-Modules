@@ -10,27 +10,30 @@ const char* MyException::what() const throw(){
 
 MyException::~MyException() throw() {}
 
-PmergeMe::PmergeMe() {
+template <typename T>
+PmergeMe<T>::PmergeMe() {
     std::cout << BOLD_WHITE << "PmergeMe" << RESET 
     << " default constructor called" << std::endl;
 }
 
 template <typename T>
-PmergeMe::PmergeMe(std::T<int> vec) {
-    _input = vec;
+PmergeMe<T>::PmergeMe(const T& input) {
+    _input = input;
     std::cout << BOLD_WHITE << "PmergeMe" << RESET 
     << " default constructor called" << std::endl;
 }
 
 // Copy constructor
-PmergeMe::PmergeMe(const PmergeMe& copy) {
+template <typename T>
+PmergeMe<T>::PmergeMe(const PmergeMe& copy) {
     _input = copy._input;
     std::cout << BOLD_WHITE << "PmergeMe" << RESET 
     << " copy constructor called" << std::endl;
 }
 
 // Copy assignment operator overload
-PmergeMe& PmergeMe::operator= (const PmergeMe& copy) {
+template <typename T>
+PmergeMe<T>& PmergeMe<T>::operator= (const PmergeMe<T>& copy) {
     // Self-assignment check
     if (this == &copy)
         return *this;
@@ -40,7 +43,8 @@ PmergeMe& PmergeMe::operator= (const PmergeMe& copy) {
     return *this;
 }
 
-void  PmergeMe::makePairs(){
+template <typename T>
+void  PmergeMe<T>::makePairs(){
     std::cout << "make pairs\n";
     for (std::vector<int>::iterator it = _input.begin(); it != _input.end(); ++it){
         if(it + 1 == _input.end())
@@ -52,7 +56,8 @@ void  PmergeMe::makePairs(){
     }
 }
 
-void  PmergeMe::sortPairs(){
+template <typename T>
+void  PmergeMe<T>::sortPairs(){
     std::cout << "sort pairs\n";
     for (std::vector<std::pair<int, int> >::iterator it = _pairs.begin(); it != _pairs.end() && it->first != 0; ++it){
         if(it->second > it->first) //zero means empty
@@ -63,33 +68,34 @@ void  PmergeMe::sortPairs(){
 
 //partition puts all numbers smaller then or equal to pivot to its left and bigger to its right
 //returns the index where pivot was placed
-int partition(std::vector<std::pair<int, int> >& vec, int low, int high) {
+int partition(other& vec, int low, int high) {
     int pivot = vec[high].first; // Escolhe o último elemento como pivô
     int i = low - 1;
 
     for (int j = low; j < high; ++j) {
         if (vec[j].first <= pivot) {
             ++i;
-            std::swap(vec[i], vec[j]);
+            std::swap(vec[i], vec[j]); // movendo elementos menores que o pivô para a esquerda
         }
     }
+    //Após completar o loop, troca o pivô com o elemento imediatamente após o último elemento menor que o pivô
     std::swap(vec[i + 1], vec[high]);
     return i + 1;
 }
 
-//quicksort_inputpair will sort the vecpair by the first of each pair (highest value of the pair)
+//quicksort_pair will sort the vecpair by the first of each pair (highest value of the pair)
 //It's a Divide and Conquer algorithm that picks the last element as a pivot and partitions 
 //the given vector around it by placing the pivot in its correct position in the sorted vec. 
-void quicksort_inputpair(std::vector<std::pair<int, int> >& vec, int low, int high) {
+void quicksort_pair(std::vector<std::pair<int, int> >& vec, int low, int high) {
     if (low < high) {
         int index_pivot = partition(vec, low, high);
 
-        quicksort_inputpair(vec, low, index_pivot - 1);
-        quicksort_inputpair(vec, index_pivot + 1, high);
+        quicksort_pair(vec, low, index_pivot - 1);
+        quicksort_pair(vec, index_pivot + 1, high);
     }
 }
 
-//gives you the next number in the jacobstal sequence, starting at 3
+//returns the next number in the jacobstal sequence, starting at 3
 int getJacobstalNumber(){
     static int before_number = 1;
     static int number = 1;
@@ -109,7 +115,8 @@ If all elements in the range are less than the specified value, it returns an it
 
 //starting index to insert = sequencia de jacobstal - 1; 
 //insertion area size = 2^x -1 (x comeca no 2, sequencia de jacobstal comeca no 3, ou seja starting index to insert comeca no 2)
-void PmergeMe::insertion(){
+template <typename T>
+void PmergeMe<T>::insertion(){
     for (std::vector<std::pair<int, int> >::iterator it = _pairs.begin(); it != _pairs.end() && it->first != 0; ++it){
         _sorted.push_back(it->first);
     }
@@ -134,24 +141,24 @@ void PmergeMe::insertion(){
     }
 }
 
-std::vector<int> PmergeMe::fordJohnson(){
+template <typename T>
+std::T<int> PmergeMe<T>::fordJohnson(){
     this->makePairs();
     printPairs(_pairs);
     this->sortPairs();
     printPairs(_pairs);
     std::cout << "quicksort vecpairs\n";
     if(_pairs[_pairs.size() - 1].first == 0)
-        quicksort_inputpair(_pairs, 0, _pairs.size() - 2);
+        quicksort_pair(_pairs, 0, _pairs.size() - 2);
     else
-        quicksort_inputpair(_pairs, 0, _pairs.size() - 1);
+        quicksort_pair(_pairs, 0, _pairs.size() - 1);
     printPairs(_pairs);
     this->insertion();
     return _sorted;
 }
 
 //std::vector<int> PmergeMe::fordJonhsonDeq(){}
-
-PmergeMe::~PmergeMe() {
+PmergeMe<T>::~PmergeMe() {
     std::cout << BOLD_WHITE << "PmergeMe" << RESET 
     << " destructor called" << std::endl;
 }

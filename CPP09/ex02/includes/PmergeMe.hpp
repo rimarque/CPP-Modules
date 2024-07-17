@@ -38,27 +38,27 @@ class MyException: public std::exception {
 };
 
 //Transformar class em template
-template <typename T>
+template <typename Container>
 class PmergeMe {
 public:
     PmergeMe(); // Constructor
-    PmergeMe(std::T<int> vec);
+    PmergeMe(const Container& input);
     PmergeMe(const PmergeMe& copy);//Copy constructor
     PmergeMe& operator= (const PmergeMe& copy); //Copy assignment constructor
     void    makePairs();
     void    sortPairs();
     void    insertion();
-    std::T<int> fordJohnson();
+    T       fordJohnson();
     ~PmergeMe(); // Destructor
 
 private:
-    std::T<int>                    _input;
-    std::T<std::pair<int, int> >   _pairs;
-    std::T<int>                    _sorted;
-    std::T<int>                    _pend;
+    Container                               _input;
+    typename Container::template rebind<std::pair<int, int>>::other _pairs;
+    Container                               _sorted;
+    Container                               _pend;
 };
 
-#include "PmergeMe.cpp"
+#include "../PmergeMe.cpp"
 
 template <typename T>
 void printContainer(const T& container) {
