@@ -1,17 +1,12 @@
 #include "includes/PmergeMe.hpp"
 
-#include "includes/PmergeMe.hpp"
-#include <sys/time.h>
-#include <bits/stdc++.h>
+//Vector vs Deque
+/* Contiguous Memory: std::vector stores elements contiguously, which can be more cache-friendly and efficient for random access. std::deque uses a segmented approach.
+Insertion/Deletion Efficiency: std::deque allows efficient insertion and deletion at both ends, while std::vector is more efficient for operations at the end.
+Random Access: Both std::vector and std::deque provide constant time random access, but std::vector benefits from contiguous memory layout.
+Memory Management: std::vector may involve reallocations and copying when resizing, while std::deque manages its capacity through segment management without the need for reallocation. 
+Deque provides a balanced approach between insertion efficiency and random access.*/
 
-//positive intergers
-//verify_input()
-/* Before: 3 5 9 7 4
-After: 3 4 5 7 9
-Time to process a range of 5 elements with std::[..] : 0.00031 us
-Time to process a range of 5 elements with std::[..] : 0.00014 us */
-
-//FUNÇÃO DO TEMPO ESTÁ MAL
 double getTimeInMicroSec(timeval start, timeval end){
         double seconds = end.tv_sec - start.tv_sec;
         double microseconds = end.tv_usec - start.tv_usec;
@@ -38,17 +33,26 @@ bool isPosInt(std::string str){
     return true;
 }
 
+template <typename T>
+bool isOrdered(T container){
+    for(int i = static_cast<int>(container.size() - 1); i > 0; --i){
+        if(container[i] < container[i - 1])
+            return false;
+    }
+    return true;
+}
+
 std::vector<int> verify_input(char **argv){
     std::vector <int> vec;
 
     for(int i = 1; argv[i]; ++i) {
-        std::cout << argv[i] << std::endl;
         if(isPosInt(argv[i]) == false){
-            std::cout << argv[i] << std::endl;
             throw MyException("Error: only positive intergers can be used as argument");
         }
         vec.push_back(atoi(argv[i]));
     }
+    if (isOrdered(vec))
+        throw MyException("Sequence is already sorted, try again");
     return vec;
 }
 
@@ -63,30 +67,28 @@ int main(int argc, char **argv){
         std::deque<int> deq(vec.begin(), vec.end());
         gettimeofday(&end, NULL);
         double data_managment_time = getTimeInMicroSec(start, end);
-        std::cout << "Data managment time " << std::fixed << std::setprecision(2) 
-        << data_managment_time << " us\n";
-        std::cout << "Before vec: ";
-        printContainer(vec);
-        std::cout << "Before deq: ";
-        printContainer(deq);
-        PmergeMe sortvec(vec);
+        PmergeMe<std::vector<int> > sortvec(vec);
         gettimeofday(&start, NULL);
-        std::vector<int> sorted_vec = sortvec.fordJohnson();
+        std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(true);
         gettimeofday(&end, NULL);
         double sorting_time_vec = getTimeInMicroSec(start, end);
-        /*PmergeMe sortdeq(deq);
+        if (isOrdered(sorted_vec) == false)
+            throw MyException("Error: sequence not sorted");
+        PmergeMe<std::deque<int> > sortdeq(deq);
         gettimeofday(&start, NULL);
-        std::vector<int> sorted_deq = sortdeq.fordJohnson();
+        std::deque<int> sorted_deq = sortdeq.fordJohnsonAlgorithm(false);
         gettimeofday(&end, NULL);
-        double sorting_time_deq = getTimeInMicroSec(start, end); */
-        std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAfter vec: ";
+        double sorting_time_deq = getTimeInMicroSec(start, end);
+        if (isOrdered(sorted_deq) == false)
+            throw MyException("Error: sequence not sorted");
+        std::cout << "\n\nBefore: ";
+        printContainer(vec);
+        std::cout << "After: ";
         printContainer(sorted_vec);
-/*         std::cout << "After deq: ";
-        printContainer(sorted_deq) */;
         std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: " 
         <<  sorting_time_vec + data_managment_time << " us\n";
-        /*std::cout << "Time to process a range of " << vec.size() << " elements with std::deque: " 
-        << sorting_time_deq + data_managment_time << " us\n"; */
+        std::cout << "Time to process a range of " << vec.size() << " elements with std::deque: " 
+        << sorting_time_deq + data_managment_time << " us\n";
     }
     catch(std::exception& e){
         std::cout << e.what() << std::endl;
