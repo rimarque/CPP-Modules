@@ -109,6 +109,5 @@ $ ./executable
 ```
 
 # **The Ford Johnson Algorithm**
-```
-- 
-```
+Step 1. Make random pairs (make pairs)
+Step 2. 
