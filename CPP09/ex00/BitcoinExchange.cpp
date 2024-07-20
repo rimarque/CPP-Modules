@@ -84,7 +84,7 @@ bool  isFloat(std::string str)
 bool isNumber(std::string str){
     if(str.empty() || (hasNonNumericChar(str) == true && isFloat(str) == false))
         return false;
-    float number = atof(str.c_str());
+    long number = atol(str.c_str());
     if(number < INT_MIN || number > INT_MAX)
         return false;
     return true;
@@ -93,7 +93,7 @@ bool isNumber(std::string str){
 bool isInt(std::string str){
     if(str.empty() || (hasNonNumericChar(str) == true))
         return false;
-    float number = atof(str.c_str());
+    long number = atol(str.c_str());
     if(number < INT_MIN || number > INT_MAX)
         return false;
     return true;
@@ -221,23 +221,23 @@ std::map<std::string, float> file_to_map(const std::string& file, const char& de
         //Linha sem delimitador
         if(input_line.eof() == true){
             input_file.close();
-            throw MyException("Error: bad csv file => " + key);
+            throw MyException("Error: bad data file => " + key);
         }
         std::getline(input_line, value);
         try{
             //Nada após delimitador
             if(value.empty())
-                throw MyException ("Error: bad csv file => " + line);
+                throw MyException ("Error: bad data file => " + line);
             //Validar data
             if(valid_date(key, delimiter) == false)
-                throw MyException ("Error: bad csv file => " + line);
+                throw MyException ("Error: bad data file => " + line);
             //Validar valor
             float number = getvalue(value, line, delimiter);
             result_map[key] = number;
         }
         catch(std::exception& e){
             input_file.close();
-            throw MyException("Error: bad csv file => " + line);
+            throw MyException("Error: bad data file => " + line);
         }
     }
     input_file.close();
