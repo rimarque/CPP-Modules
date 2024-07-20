@@ -57,6 +57,15 @@ git clone git@github.com:rimarque/CPP-Modules.git
 - Type casting
 ```
 
+### **Module** 0️⃣7️⃣
+```
+- Templates
+```
+### **Module** 0️⃣:
+```
+- Templates eight
+```
+
 ## 🌐 **Resources**
 [Polymorphism](https://www.geeksforgeeks.org/cpp-polymorphism/)
 
