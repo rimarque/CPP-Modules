@@ -67,6 +67,13 @@ git clone git@github.com:rimarque/CPP-Modules.git
 - Iterators
 - Algorithms
 ```
+### **Module** 0️⃣9️⃣
+```
+- STL (Standard Template Library)
+- Bitcoin value calculator
+- Reverse Polish Notation
+- Ford-Johnson algorithm
+```
 
 ## 🌐 **Resources**
 [Polymorphism](https://www.geeksforgeeks.org/cpp-polymorphism/)
