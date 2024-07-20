@@ -156,6 +156,7 @@ PmergeMe<Container>& PmergeMe<Container>::operator= (const PmergeMe<Container>& 
     return *this;
 }
 
+//makePairs creates a std::pair<int, int> container, paring random numbers from the original int container
 template <typename Container>
 void  PmergeMe<Container>::makePairs(){
     for (typename Container::iterator it = _input.begin(); it != _input.end(); ++it){
@@ -168,6 +169,7 @@ void  PmergeMe<Container>::makePairs(){
     }
 }
 
+//sortPairs puts the highest numner of each pair has the first of each pair
 template <typename Container>
 void  PmergeMe<Container>::sortPairs(){
     for (typename Pairs::iterator it = _pairs.begin(); it != _pairs.end() && it->first != 0; ++it){
@@ -187,13 +189,91 @@ int PmergeMe<Container>::getJacobstalNumber(){
     return result;
 }
 
-/*std::lower_bound returns an iterator pointing to the first element in the range that is not less than the specified value. 
-If all elements in the range are less than the specified value, it returns an iterator pointing to the end of the range.*/
-//Usa std::lower_bound para encontrar a posição de inserção
-//Insere o target na posição correta
+//Insertion creates 2 containers: sorted (from the first number of each pair) and pend (wicth is not sorted, from the second number of each pair)
+//It's goal is to insert, one by one, the numbers in pend into sorted, getting, in the end, the sorted sequence with all the numbers (final output of the algorithm)
 
-//starting index to insert = sequencia de jacobstal - 1; 
-//insertion area size = 2^x -1 (x comeca no 2, sequencia de jacobstal comeca no 3, ou seja starting index to insert comeca no 2)
+//Note that sorted has the first and highest numbers of each pair
+//We will use notation like p1, p2, p3 to describe the numbers in pend, and s1, s2... to describe the numbers in sorted (where p1 and s1 are the first numbers of each sequence)
+
+//The goal of the algorithm is to do the least number of comparisons
+//For the worst case scenario we get the least number of comparisons if we try to insert a number into a sequence with size (2^x) - 1 (insertion area)
+
+//The ford jonhson algorithm uses binary search to find the right spot in sorted in witch to insert each element of pend
+//The key for this algorithm is in the size of the area of sorted in witch we are searching (insertion area = (2^x) - 1)
+//In the code bellow I took - 1 from the indexes choosen because in c++ indexes start at 0 instead of 1
+
+//We know the first number of pend is smaller then the first number of sorted (p1 < s1), so the first step is to insert p1 in the begining of sorted
+
+//Going forward, there is a specific order in which we insert the numbers from the pend sequence into the sorted sequence:
+//this link was the one I found that better explains the reasoning behind this order, but the goal of this insertion order is to insert the number into a sequence with size (2^x) - 1 (insertion area)
+//https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort
+
+//1. Choose the next index to insert: use the jacobstal sequence (...3, 5, 11, 21, 43, 85...), starting at number 3, to choose the index of the next number to insert
+//2. Choose the next insertion area: (2^x)-1, starting at x = 2
+//3. Insert the choosen index into the first (2^x)-1 numbers of sorted
+        //The first time we will insert p3 into the first 3 numbers of sorted (insertion area = 3)
+//4. Go backwards in the pend sequence inserting the numbers one by one into the the first (2^x)-1 numbers of sorted
+        //The first time we will insert p2, and then stop, because p1 was already inserted (insertion area = 3)
+//When it finds an index witch has already been inserted it reapeats steps 1, 2, 3 and 4
+    //Next time the index will be 5, the insertion area will be 7, and we will insert p5 and p4
+    //After, the index will be 11, the insertion area will be 15, and we will insert p11, p10, p9, p8, p7, p6
+
+//Example + explanation:
+//NOTE: First we insert p1 in the begining of sorted
+//1. The first index to insert is 3
+//2. The first insertion area is 3
+//3. Insert p3 into the first 3 numbers of sorted
+        //The size of the insertion area in wicth we need to search to insert p3 is 3 ((2^2) - 1), why?
+        //We know p3 is smaller then s3, so we only need to look in {p1, s1, s2}
+//4. Insert p2 into the first 3 numbers of sorted
+        //The size of the insertion area in wicth we need to search to insert p2 is only 3 ((2^2) - 1), why?
+        //We know p2 is smaller then s2, so we only need to look in {p1, s1, p3}, {p1, p3, s1} or {p1, s1, s2}, depending where p3 was inserted
+
+//1. The second index to insert is 11
+//2. The second insertion area is 15
+//3. Insert p5 into the first 7 numbers of sorted
+        //The size of the insertion area in wicth we need to search to insert p5 is 7 ((2^3) - 1), why?
+        //We know p5 is smaller then s5, so we only need to look in {p1, s1, p2, p3, s2, s3, s4}
+//4. Insert p4 into the first 7 numbers of sorted
+        //The size of the insertion area in wicth we need to search to insert p4 is only 7 or less ((2^3) - 1), why?
+        //We know p4 is smaller then s4, so we only need to look in {p1, s1, p2, p3, s2, s3, p5}
+
+//1. The thirth index to insert is 5
+//2. The thirth insertion area is 7
+//3. Insert p11 into the first 15 numbers of sorted
+        //The size of the insertion area in wicth we need to search to insert p11 is 15 ((2^4) - 1), why?
+        //We know p11 is smaller then s11, so we only need to look in {p1, s1, p2, p3, s2, s3, p5, p4, s4, s5, s6, s7, s8, s9, s10}
+//4.1 Insert p10 into the first 15 numbers of sorted
+        //The size of the insertion area in wicth we need to search to insert p10 is only 15 ((2^4) - 1), why?
+        //We know p10 is smaller then s10, so we only need to look in {p1, s1, p2, p3, s2, s3, p5, p4, s4, s5, s6, s7, s8, s9, p11}
+//4.2 Insert p9 into the first 15 numbers of sorted
+        //The size of the insertion area in wicth we need to search to insert p9 is only 15 ((2^4) - 1), why?
+        //We know p9 is smaller then s9, so we only need to look in {p1, s1, p2, p3, s2, s3, p5, p4, s4, s5, s6, s7, s8, p11, p10}
+//4.3 Insert p8 into the first 15 numbers of sorted
+        //The size of the insertion area in wicth we need to search to insert p8 is only 15 ((2^4) - 1), why?
+        //We know p8 is smaller then s8, so we only need to look in {p1, s1, p2, p3, s2, s3, p5, p4, s4, s5, s6, s7, p11, p10, p9}
+//4.4 Insert p7 into the first 15 numbers of sorted
+        //The size of the insertion area in wicth we need to search to insert p7 is only 15 ((2^4) - 1), why?
+        //We know p7 is smaller then s7, so we only need to look in {p1, s1, p2, p3, s2, s3, p5, p4, s4, s5, s6, p11, p10, p9, p8}
+//4.4 Insert p6 into the first 15 numbers of sorted
+        //The size of the insertion area in wicth we need to search to insert p6 is only 15 ((2^4) - 1), why?
+        //We know p6 is smaller then s6, so we only need to look in {p1, s1, p2, p3, s2, s3, p5, p4, s4, s5, p11, p10, p9, p8, p7}
+
+//1. The fourth index to insert is 21
+//2. The fourth insertion area is 31
+//3. ...
+
+//We go on like this until all numbers from the pend sequence are inserted into the sorted sequence
+//Although the explanation of the insertion varies a litle from mine (also correct, just a slightly different explanation), 
+//I found this figma very usefull to understand and visualize the algorithm working:
+//https://www.figma.com/board/JW5jFeoD6fbSnu2K2XXfKV/Ford-Johnson-(merge-insertion-sort)-algorithm?node-id=0-1&t=fUrqtORMbTtfKqEL-0
+
+//Insertion uses lower_bound to find the place of insertion in the sorted container
+//lower_bound() is used to return the pointer to the first element that is greater than or equal to the value passed. 
+//lower_bound() uses binary search to search through the space (binary search is an important part of the ford jonhson algorithm)
+
+//starting index to insert = sequencia de jacobstal - 1 (jacobstal sequence starts at 3)
+//insertion area size = 2^x -1 (x starts at 2)
 template <typename Container>
 void PmergeMe<Container>::insertion(bool print){
     for (typename Pairs::iterator it = _pairs.begin(); it != _pairs.end() && it->first != 0; ++it){
@@ -203,9 +283,9 @@ void PmergeMe<Container>::insertion(bool print){
         _pend.push_back(it->second);
     }
     if(print == true){
-        std::cout << GREEN << "\nStep 4. " << RESET << "Highest numbers of each pair are a sorted sequence:\n";
+        std::cout << GREEN << "\nStep 4. " << RESET << "Highest numbers of each pair form a sorted sequence:\nS: ";
         printContainer(_sorted);
-        std::cout << GREEN << "\nStep 4. " << RESET << "Lowest numbers of each pair are a unsorted sequence:\n";
+        std::cout << GREEN << "\nStep 4. " << RESET << "Lowest numbers of each pair form a unsorted sequence:\npend: ";
         printContainer(_pend);
         std::cout << std::endl;
     }
@@ -214,18 +294,37 @@ void PmergeMe<Container>::insertion(bool print){
         std::cout << GREEN << "Step 5. " << RESET << "Insert the numbers in the unsorted sequence (pend) into the sorted sequence (S):\n\n";
         std::cout << GREEN << "Step 5.1. " << RESET << "Insert the fisrt number of pend in the begining of S:\n";
         std::cout << GREEN << "Explanation: " << RESET << "The fisrt number of pend is smaller then the first number of S (and therefore smaller then every number in S):\n";
+        std::cout << "pend: ";
+        printContainer(_pend);
+        std::cout << "S: ";
         printContainer(_sorted);
+        std::cout << std::endl;
+        std::cout << GREEN << "Step 5.2. " << RESET << "Going forward, there is a specific order in which we insert the numbers from pend into S.\n"
+        << "We use the jacobstal sequence to find the next index to insert. The goal is to insert the number in a subquence of S with size (2^x)-1\n";
+        std::cout << std::endl;
     }
     int last_starting_index = 0;
     int x = 2;
     while(last_starting_index < static_cast<int>(_pend.size()) - 1){
         int insertion_area_size = std::min(static_cast<int>(std::pow(2, x++)) - 1, static_cast<int>(_sorted.size()));
         int starting_index = std::min(this->getJacobstalNumber() - 1, static_cast<int>(_pend.size()) - 1);
+        if(print == true){
+            std::cout << GREEN << "Step 5.2." << x - 2 << ". "<< RESET << "Index to insert: " << starting_index + 1 << "; insertion area: " << insertion_area_size;
+            std::cout << std::endl;
+        }
         for(int j = starting_index; j > last_starting_index; --j){
             typename Container::iterator it = std::lower_bound(_sorted.begin(), _sorted.begin() + insertion_area_size, _pend[j]);
             _sorted.insert(it, _pend[j]);
+            if(print == true){
+                std::cout << GREEN << "Insert index " << j + 1 << RESET << std::endl;
+                std::cout << "pend: ";
+                printContainer(_pend);
+                std::cout << "S: ";
+                printContainer(_sorted);
+            }
         }
         last_starting_index = starting_index;
+        std::cout << std::endl;
     }
 }
 

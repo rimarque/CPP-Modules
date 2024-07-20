@@ -35,7 +35,7 @@ int main(int argc, char **argv){
         return 3;
     }
     for(int i = 0; i < number; ++i){
-        std::cout << 1 + std::rand() % 5000 << " ";
+        std::cout << 1 + std::rand() % 3000 << " ";
     }
     std::cout << std::endl;
 }
