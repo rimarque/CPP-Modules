@@ -103,14 +103,14 @@ int partition(Pairs& pairs, int low, int high) {
 
     for (int j = low; j < high; ++j) {
         if (pairs[j].first <= pivot) {
-            // movendo elementos menores que o pivô para a esquerda
+            //Move os elementos menores que o pivô para a esquerda, trocando o pairs[j] com o numero mais a esquerda que e maior que o pivo: pairs[i]
             ++i;
             std::swap(pairs[i], pairs[j]); 
         }
     }
-    //Após completar o loop, troca o pivô com o elemento imediatamente após o último elemento menor que o pivô
-    std::swap(pairs[i + 1], pairs[high]);
-    return i + 1;
+    //Após completar o loop, troca o pivo, pairs[high], com o numero mais a esquerda que e maior que o pivo, pairs[i]
+    std::swap(pairs[++i], pairs[high]);
+    return i;
 }
 
 //quicksort_pair will sort the pairs by the first of each pair (highest value of the pair)
@@ -324,7 +324,8 @@ void PmergeMe<Container>::insertion(bool print){
             }
         }
         last_starting_index = starting_index;
-        std::cout << std::endl;
+        if(print == true)
+            std::cout << std::endl;
     }
 }
 

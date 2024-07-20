@@ -69,7 +69,7 @@ int main(int argc, char **argv){
         double data_managment_time = getTimeInMicroSec(start, end);
         PmergeMe<std::vector<int> > sortvec(vec);
         gettimeofday(&start, NULL);
-        std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(true);
+        std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(false);
         gettimeofday(&end, NULL);
         double sorting_time_vec = getTimeInMicroSec(start, end);
         if (isOrdered(sorted_vec) == false)
@@ -81,7 +81,7 @@ int main(int argc, char **argv){
         double sorting_time_deq = getTimeInMicroSec(start, end);
         if (isOrdered(sorted_deq) == false)
             throw MyException("Error: sequence not sorted");
-        std::cout << "\n\nBefore: ";
+        std::cout << "Before: ";
         printContainer(vec);
         std::cout << "After: ";
         printContainer(sorted_vec);

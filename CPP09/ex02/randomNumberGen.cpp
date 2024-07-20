@@ -34,6 +34,7 @@ int main(int argc, char **argv){
         std::cout << "No numbers above 3000 allowed" << std::endl;
         return 3;
     }
+    srand(time(NULL));
     for(int i = 0; i < number; ++i){
         std::cout << 1 + std::rand() % 3000 << " ";
     }
