@@ -61,9 +61,9 @@ git clone git@github.com:rimarque/CPP-Modules.git
 ```
 - Templates
 ```
-### **Module** 0️⃣:
+### **Module** 0️⃣8️⃣
 ```
-- Templates eight
+- Templated containers, iterators, algorithms
 ```
 
 ## 🌐 **Resources**
