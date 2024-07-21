@@ -117,6 +117,7 @@ $ ./executable
 ```
 
 # **The Ford Johnson Algorithm**
+
 The Ford-Johnson algorithm, also known as merge-insertion sort is a sorting algorithm designed to perform as few comparisons as possible to sort a collection.
 
 From what I was able to gather, this algorithm isn't widely used and is not considered to be that fast or efficient. But it's interesting in what concerns the minimum number of comparisons possible.
@@ -132,7 +133,7 @@ line 72 std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(false); ==> s
 ```
 It activates a flag that prints all the steps of the algorithm, so you can better understand how it works.
 
-My program only takes positive intergers: n > 0 && n < INT_MAX
+My program only takes positive intergers: 0 < n < INT MAX
 
 Consider N the number of elements to sort.
 ```
