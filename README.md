@@ -165,19 +165,14 @@ Pair Collection:
 Step 3. Sort Pair Collection (quicksort_pair()) - recursively sort Pair Collection by the highest value of each pair (in our case, the first). Every article I read about this algorithm mentioned that this sorting step needed to be done recursively. I found no more information about how it should be done. So I researched a few recursive sorting algorithms and implemented quicksort, adapting it to sort a pair collection by the first of each pair. 
 The important thing here is that the pairs remain connected, but ordered by their highest value.
 
-Example:
-
+``
 Pair Collection:
-
 (30, 20)
-
 (40, 8)
-
 (55, 3)
-
 (109, 2)
-
 ( , 99)
+``
 
 
 Step 4. Highest numbers of each pair form a sorted sequence (S) and lowest numbers of each pair form a unsorted sequence (pend). (PmergeMe<Container>::Insertion()).
