@@ -192,13 +192,9 @@ Insert index 2
 S: 3 8 20 30 40 55 109 
 
 Step 5.2.2. Index to insert: 5; insertion area: 7 => (2^3)-1
-Insert index 5
+Insert index 5: S: 3 8 20 30 40 55 99 109
 
-S: 3 8 20 30 40 55 99 109
-
-Insert index 4
-
-S: 2 3 8 20 30 40 55 99 109 
+Insert index 4: S: 2 3 8 20 30 40 55 99 109 
 
 Has you can see in the example, we choose the index of pend we want do insert and then we go backwards in the pend sequence until we find a number that was already inserted.
 
