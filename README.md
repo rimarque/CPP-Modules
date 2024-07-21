@@ -189,7 +189,9 @@ S: 30 40 55 109
 pend: 20 8 3 2 99
 ```
 
-### Step 5: Insert the numbers in the unsorted sequence (pend) into the sorted sequence (S), using binnary search. (PmergeMe<Container>::Insertion())
+### Step 5: Insertion 
+Insert the numbers in the unsorted sequence (pend) into the sorted sequence (S), using binnary search. 
+(PmergeMe<Container>::Insertion())
 
 5.1: Insert the fisrt number of pend in the begining of S. The first number of pend is smaller then the first number of S (it's pair), and because S is sorted, the first number of pend is smaller then every number in S).
 ```
@@ -211,15 +213,15 @@ Insert index 2: S {3 8 20 30 40 55 109}
 Insert index 5: S {3 8 20 30 40 55 99 109}
 Insert index 4: S {2 3 8 20 30 40 55 99 109}
 ```
-Has you can see in the example, we choose the index of pend we want do insert and then we go backwards in the pend sequence inserting the numbers one by one into  the first (2^x)-1 numbers of S.
+Has you can see in the example, we choose the index of pend we want do insert and then we go backwards in the pend sequence inserting the numbers one by one into the first (2^x)-1 numbers of S.
 
 🔍 ### **Detailed insertion explanation**
 
-If you are still confused I will try my best to explain step 5.1 at a deeper level.
+If you are still confused I will try my best to explain step 5.2 at a deeper level.
 
 We will use notation like p1, p2, p3 to describe the numbers in pend, and s1, s2... to describe the numbers in S (where p1 and s1 are the first numbers of each sequence).
 
-After step 4 we have two sequences: S (witch is sorted, and contains the highest numbers of each pair) and pend (witch is unsorted, and contains the smallest numbers if each pair). Such as: p1 < s1; p2 < s2; p3 < s3; p4 < s4; and so on...
+After step 4 we have two sequences: S (witch is sorted, and contains the highest numbers of each pair) and pend (witch is unsorted, and contains the smallest numbers of each pair). Such as: p1 < s1; p2 < s2; p3 < s3; p4 < s4; and so on...
 
 Now we have to insert, one by one, the numbers in pend into S, until S contains all N numbers in ascending order.
 
@@ -229,7 +231,7 @@ The ford johnson algorithm uses binary search to find the correct place in S in 
 
 In my code, I removed 1 from the selected indexes because in c++ indexes start at 0 instead of 1.
 
-We know the first number of pend is smaller then the first number of S (p1 < s1), so the first step is to insert p1 in the begining of S
+We know the first number of pend is smaller then the first number of S (p1 < s1), so the first step is to insert p1 in the begining of S.
 
 Going forward, there is a specific order in which we insert the numbers from the pend sequence into S. The goal of this insertion order is to insert the number into a sequence with size (2^x) - 1 (insertion area):
 
@@ -241,7 +243,7 @@ Going forward, there is a specific order in which we insert the numbers from the
      The first time we will insert p3 into the first 3 numbers of sorted (insertion area = 3)
 ` 
 
-5. Go backwards in the pend sequence inserting the numbers one by one into the the first (2^x)-1 numbers of sorted
+4. Go backwards in the pend sequence inserting the numbers one by one into the the first (2^x)-1 numbers of sorted
 
 ` 
      The first time we will insert p2, and then stop, because p1 was already inserted
