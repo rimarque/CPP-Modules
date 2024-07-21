@@ -141,7 +141,7 @@ My program only takes positive intergers as input: 0 < n < INT MAX
 
 Consider N the number of elements to sort.
 
-### Next there is a step by step of the algorithm with examples:
+### **Next there is a step by step of the algorithm with examples:**
 
 ```
 Input {20, 30, 2, 109, 40, 8, 3, 55, 99}
