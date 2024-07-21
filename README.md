@@ -116,7 +116,7 @@ This rule will generate an executable file. To launch the executable you should 
 $ ./executable
 ```
 
-## **The Ford Johnson Algorithm**
+➿ ## **The Ford Johnson Algorithm**
 
 The Ford-Johnson algorithm, also known as merge-insertion sort is a sorting algorithm designed to perform as few comparisons as possible to sort a collection.
 
@@ -141,7 +141,7 @@ My program only takes positive intergers as input: 0 < n < INT MAX
 
 Consider N the number of elements to sort.
 
-### **Next there is a step by step of the algorithm with examples:**
+### Next there is a step by step of the algorithm with examples:
 
 ```
 Input {20, 30, 2, 109, 40, 8, 3, 55, 99}
@@ -157,7 +157,8 @@ Pair Collection:
 ( , 99)
 ```
 
-Step 2. Sort pairs (PmergeMe<Container>::sortPairs()) - perform pairwise comparisons so that the first number of each pair is also the highest. As N is odd, in our example, 99 in unpaired.
+### Step 2. Sort pairs 
+Perform pairwise comparisons so that the first number of each pair is also the highest. As N is odd, in our example, 99 in unpaired. (PmergeMe<Container>::sortPairs()).
 ```
 Pair Collection:
 (30, 20)
@@ -167,8 +168,9 @@ Pair Collection:
 ( , 99)
 ```
 
-Step 3. Sort Pair Collection (quicksort_pair()) - recursively sort Pair Collection by the highest value of each pair (in our case, the first). Every article I read about this algorithm mentioned that this sorting step needed to be done recursively. I found no more information about how it should be done. So I researched a few recursive sorting algorithms and implemented quicksort, adapting it to sort a pair collection by the first of each pair. 
-The important thing here is that the pairs remain connected, but ordered by their highest value.
+### Step 3. Sort Pair Collection
+Recursively sort Pair Collection by the highest value of each pair (in our case, the first). Every article I read about this algorithm mentioned that this sorting step needed to be done recursively. I found no more information about how it should be done. So I researched a few recursive sorting algorithms and implemented quicksort, adapting it to sort a pair collection by the first of each pair. 
+The important thing here is that the pairs remain connected, but ordered by their highest value. (quicksort_pair()) 
 
 ```
 Pair Collection:
@@ -180,13 +182,14 @@ Pair Collection:
 ```
 
 
-Step 4. Highest numbers of each pair form a sorted sequence (S) and lowest numbers of each pair form a unsorted sequence (pend). (PmergeMe<Container>::Insertion()).
+### Step 4. 
+Highest numbers of each pair form a sorted sequence (S) and lowest numbers of each pair form a unsorted sequence (pend). (PmergeMe<Container>::Insertion()).
 ```
 S: 30 40 55 109
 pend: 20 8 3 2 99
 ```
 
-Step 5: Insert the numbers in the unsorted sequence (pend) into the sorted sequence (S) (PmergeMe<Container>::Insertion())
+### Step 5: Insert the numbers in the unsorted sequence (pend) into the sorted sequence (S), using binnary search. (PmergeMe<Container>::Insertion())
 
 5.1: Insert the fisrt number of pend in the begining of S. The first number of pend is smaller then the first number of S (it's pair), and because S is sorted, the first number of pend is smaller then every number in S).
 ```
@@ -194,7 +197,7 @@ S: 20 30 40 55 109
 ```
 
 5.2. Going forward, there is a specific order in which we insert the numbers from pend into S.
-We use the jacobstal sequence to find the next index to insert. The goal is to insert the number in a subsequence of S with size (2^x)-1. This example assumes the index starts at 1 and instead of zero.
+We use the jacobstal sequence to find the next index to insert, and use binnary search to find the correct place of insertion. The goal is to search in a subsequence of S with size (2^x)-1. This example assumes the index starts at 1 and instead of zero.
 
 
 5.2.1. Index to insert: 3; insertion area: 3 => (2^2)-1
@@ -208,23 +211,25 @@ Insert index 2: S {3 8 20 30 40 55 109}
 Insert index 5: S {3 8 20 30 40 55 99 109}
 Insert index 4: S {2 3 8 20 30 40 55 99 109}
 ```
-Has you can see in the example, we choose the index of pend we want do insert and then we go backwards in the pend sequence until we find a number that was already inserted.
+Has you can see in the example, we choose the index of pend we want do insert and then we go backwards in the pend sequence inserting the numbers one by one into  the first (2^x)-1 numbers of S.
 
-### **Detailed insertion explanation**
+🔍 ### **Detailed insertion explanation**
 
 If you are still confused I will try my best to explain step 5.1 at a deeper level.
 
-After step 4 we have two sequences: S (witch is sorted, and contains the highest numbers of each pair) and pend (witch is unsorted, and contains the smallest numbers if each pair).
-
-Now we have to insert, one by one, the numbers in pend into S, until S contains all N number in ascending order.
-
 We will use notation like p1, p2, p3 to describe the numbers in pend, and s1, s2... to describe the numbers in S (where p1 and s1 are the first numbers of each sequence).
+
+After step 4 we have two sequences: S (witch is sorted, and contains the highest numbers of each pair) and pend (witch is unsorted, and contains the smallest numbers if each pair). Such as: p1 < s1; p2 < s2; p3 < s3; p4 < s4; and so on...
+
+Now we have to insert, one by one, the numbers in pend into S, until S contains all N numbers in ascending order.
 
 The goal of the algorithm is to do the least number of comparisons. For the worst case scenario we get the least number of comparisons if we try to insert a number into a sequence with size (2^x) - 1 (insertion area).
 
-The ford johnson algorithm uses binary search to find the correct place in S in which to insert each element of pend. The key for this algorithm is in the size of the subsequence of S in witch we are searching (insertion area = (2^x) - 1). In my code, I removed 1 from the selected indexes because in c++ indexes start at 0 instead of 1.
+The ford johnson algorithm uses binary search to find the correct place in S in which to insert each element of pend. The key for this algorithm is in the size of the subsequence of S in witch we are searching (insertion area = (2^x) - 1). 
 
-We know the first number of pend is smaller then the first number of sorted (p1 < s1), so the first step is to insert p1 in the begining of sorted
+In my code, I removed 1 from the selected indexes because in c++ indexes start at 0 instead of 1.
+
+We know the first number of pend is smaller then the first number of S (p1 < s1), so the first step is to insert p1 in the begining of S
 
 Going forward, there is a specific order in which we insert the numbers from the pend sequence into S. The goal of this insertion order is to insert the number into a sequence with size (2^x) - 1 (insertion area):
 
@@ -244,7 +249,7 @@ Going forward, there is a specific order in which we insert the numbers from the
 
 When it finds an index that has already been inserted, it repeats steps 1, 2, 3 and 4. Next time, the index will be 5, the insertion area will be 7, and we will insert p5 and p4. Then the index will be 11, the insertion area will be 15, and we will insert p11, p10, p9, p8, p7, p6.
 
-### **Example until index to insert = 1️⃣1️⃣**
+### **Example until jacobstal number 1️⃣1️⃣**
 NOTE: First we insert p1 in the begining of sorted
 
 #### **Jacobstal number 3️⃣**
