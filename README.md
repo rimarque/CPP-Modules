@@ -92,6 +92,10 @@ git clone git@github.com:rimarque/CPP-Modules.git
 
 [Queue](https://www.geeksforgeeks.org/queue-cpp-stl/)
 
+[Ford-Johnson merge-insertion sort - codereview](https://codereview.stackexchange.com/questions/116367/ford-johnson-merge-insertion-sort)
+
+[Ford-Johnson merge-insertion sort - figma](https://www.figma.com/board/JW5jFeoD6fbSnu2K2XXfKV/Ford-Johnson-(merge-insertion-sort)-algorithm?node-id=0-1&t=JN6OEvVyCySPm7fN-0)
+
 ## :link: **Compilation**
 
 Choose the module and the exercise you want to compile, for example:
