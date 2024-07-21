@@ -131,15 +131,18 @@ If you clone the repository, in the main function, when calling the fordJohnsonA
 `
 bollean
 `
-) you can change the argument to true:
+) you can change the argument to *true*:
 ```
-line 72 std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(false); ==> std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(true);
+line 72 std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(true);
 ```
 It activates a flag that prints all the steps of the algorithm, so you can better understand how it works.
 
 My program only takes positive intergers as input: 0 < n < INT MAX
 
 Consider N the number of elements to sort.
+
+### Next there is a step by step of the algorithm with examples:
+
 ```
 Input {20, 30, 2, 109, 40, 8, 3, 55, 99}
 ```
