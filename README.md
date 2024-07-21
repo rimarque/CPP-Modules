@@ -146,7 +146,7 @@ Consider N the number of elements to sort.
 ```
 Input {20, 30, 2, 109, 40, 8, 3, 55, 99}
 ```
-### **Step 1. Make pairs**
+### Step 1. Make pairs
 Take the unsorted input sequence and pair the numbers, forming a collection of N/2 pairs of numbers. This can be done randomly. If N is odd, the last number of the collection will be unpaired. (PmergeMe<Container>::makePairs()).
 ```
 Pair Collection:
@@ -182,7 +182,7 @@ Pair Collection:
 ```
 
 
-### Step 4. 
+### Step 4. Create S and pend sequences
 Highest numbers of each pair form a sorted sequence (S) and lowest numbers of each pair form a unsorted sequence (pend). (PmergeMe<Container>::Insertion()).
 ```
 S: 30 40 55 109
@@ -252,7 +252,7 @@ Going forward, there is a specific order in which we insert the numbers from the
 When it finds an index that has already been inserted, it repeats steps 1, 2, 3 and 4. Next time, the index will be 5, the insertion area will be 7, and we will insert p5 and p4. Then the index will be 11, the insertion area will be 15, and we will insert p11, p10, p9, p8, p7, p6.
 
 ### **Example until jacobstal number 1️⃣1️⃣**
-NOTE: First we insert p1 in the begining of sorted
+NOTE: First we insert p1 in the begining of S
 
 #### **Jacobstal number 3️⃣**
 1. The first index to insert is 3
