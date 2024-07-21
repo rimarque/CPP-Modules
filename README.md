@@ -137,13 +137,14 @@ line 72 std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(false); ==> s
 ```
 It activates a flag that prints all the steps of the algorithm, so you can better understand how it works.
 
-My program only takes positive intergers: 0 < n < INT MAX
+My program only takes positive intergers as input: 0 < n < INT MAX
 
 Consider N the number of elements to sort.
 ```
 Input {20, 30, 2, 109, 40, 8, 3, 55, 99}
 ```
-Step 1. Make pairs (PmergeMe<Container>::makePairs()) - take the unsorted input sequence and pair the numbers, forming a collection of N/2 pairs of numbers. This can be done randomly. If N is odd, the last number of the collection will be unpaired.
+### **Step 1. Make pairs**
+Take the unsorted input sequence and pair the numbers, forming a collection of N/2 pairs of numbers. This can be done randomly. If N is odd, the last number of the collection will be unpaired. (PmergeMe<Container>::makePairs()).
 ```
 Pair Collection:
 (20, 30)
