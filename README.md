@@ -127,7 +127,11 @@ All the links that helped me understand the the algorithm are shown in the **Res
 
 I will do a step by step of the algorithm while relating them to the functions in my code. My implematation can be found in CPP09/ex02. I implemented the algorithm in the template class PmergeMe, so it can use both deque and vector and compare the containers time performace.
 
-If you clone the repository, in the main function, when calling the fordJohnsonAlgorithm(**bollean**) you can change the argument to true:
+If you clone the repository, in the main function, when calling the fordJohnsonAlgorithm(
+`
+bollean
+`
+) you can change the argument to true:
 ```
 line 72 std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(false); ==> std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(true);
 ```
