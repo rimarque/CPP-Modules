@@ -135,77 +135,70 @@ It activates a flag that prints all the steps of the algorithm, so you can bette
 My program only takes positive intergers: n > 0 && n < INT_MAX
 
 Consider N the number of elements to sort.
-
+```
 Input {20, 30, 2, 109, 40, 8, 3, 55, 99}
-
+```
 Step 1. Make pairs (PmergeMe<Container>::makePairs()) - take the unsorted input sequence and pair the numbers, forming a collection of N/2 pairs of numbers. This can be done randomly. If N is odd, the last number of the collection will be unpaired.
-
+```
 Pair Collection:
 (20, 30)
 (2, 109)
 (40, 8)
 (3, 55)
 ( , 99)
+```
 
 Step 2. Sort pairs (PmergeMe<Container>::sortPairs()) - perform pairwise comparisons so that the first number of each pair is also the highest. As N is odd, in our example, 99 in unpaired.
-
+```
 Pair Collection:
-
 (30, 20)
-
 (109, 2)
-
 (40, 8)
-
 (55, 3)
-
 ( , 99)
-
+```
 
 Step 3. Sort Pair Collection (quicksort_pair()) - recursively sort Pair Collection by the highest value of each pair (in our case, the first). Every article I read about this algorithm mentioned that this sorting step needed to be done recursively. I found no more information about how it should be done. So I researched a few recursive sorting algorithms and implemented quicksort, adapting it to sort a pair collection by the first of each pair. 
 The important thing here is that the pairs remain connected, but ordered by their highest value.
 
-`
+```
 Pair Collection:
 (30, 20)
 (40, 8)
 (55, 3)
 (109, 2)
 ( , 99)
-`
+```
 
 
 Step 4. Highest numbers of each pair form a sorted sequence (S) and lowest numbers of each pair form a unsorted sequence (pend). (PmergeMe<Container>::Insertion()).
-
+```
 S: 30 40 55 109
-
 pend: 20 8 3 2 99
-
+```
 
 Step 5: Insert the numbers in the unsorted sequence (pend) into the sorted sequence (S) (PmergeMe<Container>::Insertion())
 
 5.1: Insert the fisrt number of pend in the begining of S. The first number of pend is smaller then the first number of S (it's pair), and because S is sorted, the first number of pend is smaller then every number in S).
-
+```
 S: 20 30 40 55 109
-
+```
 
 5.2. Going forward, there is a specific order in which we insert the numbers from pend into S.
 We use the jacobstal sequence to find the next index to insert. The goal is to insert the number in a subsequence of S with size (2^x)-1. This example assumes the index starts at 1 and instead of zero.
 
 
 5.2.1. Index to insert: 3; insertion area: 3 => (2^2)-1
-
+```
 Insert index 3: S {3 20 30 40 55 109}
-
 Insert index 2: S {3 8 20 30 40 55 109}
-
+```
 
 5.2.2. Index to insert: 5; insertion area: 7 => (2^3)-1
-
+```
 Insert index 5: S {3 8 20 30 40 55 99 109}
-
 Insert index 4: S {2 3 8 20 30 40 55 99 109}
-
+```
 Has you can see in the example, we choose the index of pend we want do insert and then we go backwards in the pend sequence until we find a number that was already inserted.
 
 ## **Detailed insertion explanation**
