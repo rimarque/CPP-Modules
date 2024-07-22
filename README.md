@@ -116,7 +116,7 @@ This rule will generate an executable file. To launch the executable you should 
 $ ./executable
 ```
 
-➿ ## **The Ford Johnson Algorithm**
+## ➿ **The Ford Johnson Algorithm**
 
 The Ford-Johnson algorithm, also known as merge-insertion sort is a sorting algorithm designed to perform as few comparisons as possible to sort a collection.
 
