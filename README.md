@@ -133,7 +133,7 @@ You can run `make` in the CPP09/ex02 folder to compile the program. Then launch 
 $ ./PmergeMe 20 30 2 109 40 8 3 55 99
 ```
 
-If you clone the repository, in the main function, when calling the fordJohnsonAlgorithm(
+In the main function, when calling the fordJohnsonAlgorithm(
 `
 bollean
 `
