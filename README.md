@@ -139,7 +139,7 @@ bollean
 `
 ) you can change the argument to *true*:
 ```
-line 72 std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(true);
+std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(true);
 ```
 It activates a flag that prints all the steps of the algorithm, so you can better understand how it works.
 
