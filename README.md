@@ -127,6 +127,12 @@ All the links that helped me understand the the algorithm are shown in the **Res
 
 I will do a step by step of the algorithm while relating them to the functions in my code. My implematation can be found in CPP09/ex02. I implemented the algorithm in the template class PmergeMe, so it can use both deque and vector and compare the containers time performace.
 
+You can run `make` in the CPP09/ex02 folder to compile the program. Then launch it:
+
+```sh
+$ ./PmergeMe 20 30 2 109 40 8 3 55 99
+```
+
 If you clone the repository, in the main function, when calling the fordJohnsonAlgorithm(
 `
 bollean
