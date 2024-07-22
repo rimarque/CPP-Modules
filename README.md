@@ -245,15 +245,15 @@ Going forward, there is a specific order in which we insert the numbers from the
 2. Choose the next insertion area: (2^x)-1, starting at x = 2
 3. Insert the choosen index into the first (2^x)-1 numbers of sorted
 
-`
+``` 
      The first time we will insert p3 into the first 3 numbers of sorted (insertion area = 3)
-` 
+``` 
 
 4. Go backwards in the pend sequence inserting the numbers one by one into the the first (2^x)-1 numbers of sorted
 
-` 
+```
      The first time we will insert p2, and then stop, because p1 was already inserted
-` 
+``` 
 
 When it finds an index that has already been inserted, it repeats steps 1, 2, 3 and 4. Next time, the index will be 5, the insertion area will be 7, and we will insert p5 and p4. Then the index will be 11, the insertion area will be 15, and we will insert p11, p10, p9, p8, p7, p6.
 
