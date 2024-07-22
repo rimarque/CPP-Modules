@@ -191,8 +191,8 @@ Pair Collection:
 ### Step 4. Create S and pend sequences
 Highest numbers of each pair form a sorted sequence (S) and lowest numbers of each pair form a unsorted sequence (pend). (PmergeMe<Container>::Insertion()).
 ```
-S: 30 40 55 109
-pend: 20 8 3 2 99
+S {30 40 55 109}
+pend {20 8 3 2 99}
 ```
 
 ### Step 5: Insertion 
@@ -201,7 +201,7 @@ Insert the numbers in the unsorted sequence (pend) into the sorted sequence (S),
 
 5.1: Insert the fisrt number of pend in the begining of S. The first number of pend is smaller then the first number of S (it's pair), and because S is sorted, the first number of pend is smaller then every number in S).
 ```
-S: 20 30 40 55 109
+S {20 30 40 55 109}
 ```
 
 5.2. Going forward, there is a specific order in which we insert the numbers from pend into S.
