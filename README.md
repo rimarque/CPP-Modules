@@ -215,7 +215,7 @@ Insert index 4: S {2 3 8 20 30 40 55 99 109}
 ```
 Has you can see in the example, we choose the index of pend we want do insert and then we go backwards in the pend sequence inserting the numbers one by one into the first (2^x)-1 numbers of S.
 
-🔍 ### **Detailed insertion explanation**
+### 🔍  **Detailed insertion explanation**
 
 If you are still confused I will try my best to explain step 5.2 at a deeper level.
 
