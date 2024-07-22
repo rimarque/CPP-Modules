@@ -137,7 +137,7 @@ In the main function, when calling the fordJohnsonAlgorithm(
 `
 bollean
 `
-) you can change the argument to *true*:
+) you can change the argument to ***true***:
 ```
 std::vector<int> sorted_vec = sortvec.fordJohnsonAlgorithm(true);
 ```
